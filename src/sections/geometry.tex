@@ -42,6 +42,7 @@ La manera de probarlo es la siguiente:
 \vspace{0.5cm}
 \centering
 \begin{asy}
+	size(6cm);
 	pair A = dir(110);
 	pair B = dir(210);
 	pair C = dir(330);
@@ -76,7 +77,7 @@ ya que juntos forman una recta (la recta $\ell$).
 	recta $\ell_2$.
 \end{remark}
 
-Aquí un problema que puede ser resuelto con solo eso.
+\subsection*{Problemas para esta sección}
 \begin{problem}
 Demuestre que la suma de los ángulos internos
 de un polígono
@@ -85,7 +86,7 @@ es $180(n - 2)^\circ$.
 \addhints{hint:sumapol1, hint:sumapol2}
 \end{problem}
 
-\section{Razones}
+\section{Razones y Semejanza}
 Las razones en geometría son de extrema
 importancia, consisten en hablar
 de las proporciones que tienen ciertos
@@ -102,9 +103,9 @@ manera:
 	\[\frac{AX}{AB} = \frac{AY}{AC}.\]
 \end{theorem}
 
-
 \centering
 \begin{asy}
+	size(6cm);
 	pair A = dir(110);
 	pair B = dir(210);
 	pair C = dir(330);
@@ -121,7 +122,6 @@ manera:
 \end{asy}
 \par
 \raggedright
-
 
 Para dar una intuición de por qué esto
 es cierto, imaginemos que $A$
@@ -151,9 +151,6 @@ a otras dos, las otras dos deben ser paralelas
 Una demostración completa se puede encontrar
 \href{https://www.youtube.com/watch?v=d7QXlL_Ztvc}{aquí}.
 
-
-
-\section{Semejanza}
 Podemos analizar más propiedades relacionadas a
 la forma de los triángulos,
 sin ir más allá, nos es difícil
@@ -289,12 +286,6 @@ y por ende $OAX$ y $OBY$ son semejantes.
 \par
 \raggedright
 
-\begin{problem}
-Muestre que esto no es cierto en general
-si no se restringe que los triángulos
-sean directamente semejantes.
-\end{problem}
-
 \begin{example}
 	Sea $ABC$ un triángulo y $M$, $N$ y $P$
 	los puntos medios de los lados $AB$, $BC$ y $AC$
@@ -357,7 +348,54 @@ la demostración por el criterio AAA.
 	medial de $ABC$.
 \end{remark}
 
-\section{Círculos}
+\subsection*{Problemas para esta sección}
+\begin{problem}
+Muestre que el criterio Lado-Lado-Ángulo
+sí funciona si el ángulo en cuestión
+es igual a $90^\circ$.
+\end{problem}
+
+\begin{problem}
+Muestre que el lema \ref{lemma:rotomotecia}
+no es cierto en general
+si no se restringe que los triángulos
+sean directamente semejantes.
+\end{problem}
+
+
+\section{Círcunferencias}
+Empezamos con qué es una
+circunferencia.
+
+\begin{definition}
+	Una circunferencia con centro $O$ y radio
+	$r$ es el espacio geométrico de
+	todos los puntos que distan $r$ de $O$.
+\end{definition}
+
+Las circunferencias son fundamentales
+por que en particular si $X$
+e $Y$ son dos puntos en la circunferencia,
+entonces $OX = OY$, lo que nos da un triángulo
+isósceles de gratis además de $\angle OAB = \angle OBA$.
+
+Ahora presentamos lo que es, quizás,
+el resultado más sorprendente relacionado
+a las circunferencias:
+
+\begin{theorem}[Medida del ángulo central]
+	Sean $A$, $B$ y $C$ tres puntos en una circunferencia
+	de centro $O$ con $A$ del mismo lado
+	de la recta $BC$ que $O$,
+	entonces $\angle BOC = 2\angle BAC$.
+\end{theorem}
+
+\begin{figure}
+	\begin{center}
+		\input{figures/angulo_central.tex}
+	\end{center}
+	\caption{El ángulo central es el doble del arco inscrito.}
+\end{figure}
 
 \begin{lemma}\label{lemma:righttrianglemindpoint}
 	Sea $ABC$ un triángulo recto en $B$
