@@ -1,0 +1,596 @@
+\chapter{Geometría}
+
+En esta sección exploraremos lo básico para resolver
+problemas de geometría de olimpiadas.
+
+Esta sección no tiene como intención crear una
+construcción axiomática de los factos que se exponen,
+y se asume un conocimiento previo
+e intuición mínima (muy mínima).
+
+\section{Ángulos y triángulos}
+Lo más básico que se puede discutir acerca
+de los ángulos es cómo interactuan con
+rectas paralelas, y es algo que probablemente
+ya conozcas:
+\begin{theorem}
+	Una recta forma un mismo ángulo
+	con otras dos rectas si éstas son
+	paralelas.
+
+	\input{figures/paralelas.tex}
+\end{theorem}
+
+A la igualdad entre los ángulos marcados
+en rojo se los llama ángulos correspondientes
+y a la igualdad entre el ángulo rojo
+de abajo y el azul se le denomina como alternos internos.
+
+Y resulta ser que esto se puede usar para
+probar otra cosa que probablemente también
+conozcas:
+
+\begin{theorem}
+	Los ángulos internos de un triángulo suman $180^\circ$.
+\end{theorem}
+
+Pensándolo un poco, resulta ser bastante sorprendente
+que, sin importar su forma, cualquier triángulo cumple
+que la suma de sus ángulos internos es $180^\circ$.
+La manera de probarlo es la siguiente:
+
+\vspace{0.5cm}
+\centering
+\begin{asy}
+	pair A = dir(110);
+	pair B = dir(210);
+	pair C = dir(330);
+
+	draw((A - (0.5, 0))--(A + (1, 0)));
+	draw(A--B--C--cycle);
+	dot("$A$", A, (-0.5, 1));
+	dot("$B$", B, SW);
+	dot("$C$", C, SE);
+	label("$\ell$", (0.7, 1));
+
+	markangle(A, C, B, radius=10, red);
+	markangle(C, B, A, radius=10, blue);
+	markangle((A - (1, 0)), A, B, radius=10, blue);
+	markangle(C, A, (A + (1, 0)), radius=10, red);
+\end{asy}
+\par
+\raggedright
+
+Seleccionamos un vértice y dibujamos la recta $\ell$
+paralela al lado opuesto que pasa por ese vértice,
+por alternos internos vemos que $\dang(\ell, AB) = \angle B$
+y $\dang(AC, \ell) = \angle C$
+y resulta ser que $\angle A + \angle B + \angle C = 180^\circ$
+ya que juntos forman una recta (la recta $\ell$).
+
+\begin{remark}
+	Aquí la notación $\dang(\ell_1, \ell_2)$
+	simboliza el ángulo por el que debe rotarse la recta $\ell_1$
+	alrededor del punto de intersección
+	en sentido antihorario para que coincida con la
+	recta $\ell_2$.
+\end{remark}
+
+Aquí un problema que puede ser resuelto con solo eso.
+\begin{problem}
+Demuestre que la suma de los ángulos internos
+de un polígono
+de $n$ lados que no se intersecan
+es $180(n - 2)^\circ$.
+\addhints{hint:sumapol1, hint:sumapol2}
+\end{problem}
+
+\section{Razones}
+Las razones en geometría son de extrema
+importancia, consisten en hablar
+de las proporciones que tienen ciertos
+segmentos o áreas, y convenientemente existen
+muchos resultados que nos ayudan a trabajar
+con éstos, uno de ellos es
+el Teorema de Thales, que lo enunciamos de la siguiente
+manera:
+\begin{theorem}[Teorema de Thales]
+	Sea $ABC$ un triángulo y sean $X$ e $Y$
+	puntos en los segmentos $AB$ y $AC$,
+	entonces las rectas $XY$ y $BC$
+	son paralelas si y solo si
+	\[\frac{AX}{AB} = \frac{AY}{AC}.\]
+\end{theorem}
+
+
+\centering
+\begin{asy}
+	pair A = dir(110);
+	pair B = dir(210);
+	pair C = dir(330);
+	pair X = midpoint(A--B);
+	pair Y = midpoint(A--C);
+
+	draw(A--B--C--cycle);
+	draw(X--Y, dashed);
+	dot("$A$", A, NW);
+	dot("$B$", B, SW);
+	dot("$C$", C, SE);
+	dot("$X$", X, W);
+	dot("$Y$", Y, E);
+\end{asy}
+\par
+\raggedright
+
+
+Para dar una intuición de por qué esto
+es cierto, imaginemos que $A$
+es un alfiler clavado en una goma,
+a continuación estiramos la goma
+hacia todas las direcciones afuera
+desde $A$ hasta que la goma tenga el doble
+de su tamaño original (cada distancia dentro
+de la goma se duplicó),
+entonces si $X$ e $Y$ eran puntos en
+la goma antes de estirarla, digamos que
+que ambos se convirtieron en los puntos
+$B$ y $C$, claramente como estiramos
+la goma por un factor de $2$ desde $A$,
+entonces las distancias $AX$ y
+$AY$ se duplicaron al transformarse
+en $AB$ y $AC$. Ahora, ¿por qué
+las rectas $XY$ y $BC$ deben ser paralelas?,
+esto pasa por que si trazamos una altura desde $A$
+a $XY$, entonces al estirar
+la goma esta recta seguirá siendo altura de $BC$,
+más aún, continuará siendo la misma recta,
+y como esta recta es perpendicular
+a otras dos, las otras dos deben ser paralelas
+(esto es por el quinto axioma de Euclides).
+
+Una demostración completa se puede encontrar
+\href{https://www.youtube.com/watch?v=d7QXlL_Ztvc}{aquí}.
+
+
+
+\section{Semejanza}
+Podemos analizar más propiedades relacionadas a
+la forma de los triángulos,
+sin ir más allá, nos es difícil
+imaginar dos triángulos, uno más grande que
+otro pero ambos con la misma forma, al
+tener la misma forma entonces también tienen
+los mismos ángulos internos, las mismas razones,
+¿cómo podemos hacer uso de esto en los problemas?,
+simple: si dos triángulos tienen
+la misma ``forma'' pero
+con distinto (o posiblemente igual) tamaño decimos que son
+\textit{triángulos semejantes}.
+
+Aquí van los tres criterios de semejanza principales:
+\begin{theorem}[Criterio AAA, Ángulo-Ángulo-Ángulo]
+	Dos triángulos $ABC$ y $XYZ$ son semejantes
+	si y solo si $\angle A = \angle X$, $\angle B = \angle Y$ y
+	$\angle C = \angle Z$. Más aún,
+	si dos de esas igualdades de ángulos son ciertas,
+	entonces también lo es la tercera.
+\end{theorem}
+
+
+\begin{remark}
+	La aclaración se desmitifica sabiendo que
+	la suma de los ángulos internos de un triángulo es
+	constante (igual a $180^\circ$), ya que si
+	se conocen dos ángulos, entonces es posible encontrar el tercero.
+\end{remark}
+
+\begin{theorem}[Criterio LLL, Lado-Lado-Lado]
+	Dos triángulos $ABC$ y $XYZ$ son semejantes si y solo si
+	\[\frac{AB}{XY} = \frac{BC}{YZ} = \frac{CA}{ZX}.\]
+\end{theorem}
+
+\begin{theorem}[Criterio LAL, Lado-Ángulo-Lado]
+	Dos triángulos $ABC$ y $XYZ$ son semejantes si y solo si
+	$\angle A = \angle X$ y
+	\[\frac{AB}{XY} = \frac{AC}{XZ}.\]
+\end{theorem}
+
+Este último criterio resulta ser problemático
+en algunas ocasiones por que el orden Lado-Ángulo-Lado
+es muy importante, si en su lugar tuvieramos que
+$\angle A = \angle X$ y $\frac{AB}{XY} = \frac{BC}{YZ}$,
+entonces no podemos afirmar que los triángulos
+sean semejantes.
+
+\begin{question*}
+	¿Por qué pasa esto?
+\end{question*}
+
+\begin{definition}[Triángulos directa y opuestamente semejantes]
+	Dos triángulos son directamente semejantes si
+	el listado de sus vértices correspondientes
+	están ambos en el mismo sentido de
+	las agujas del reloj y en caso contrario
+	son opuestamente semejantes.
+\end{definition}
+
+A esto también se lo puede ver como que
+si es posible cambiar el tamaño de uno de
+los triángulos y trasladarlo al lugar del otro
+para que coincida con este entonces son directamente
+semejantes pero si es necesario \textit{reflejar}
+uno de los triángulos para obtener esto
+entonces son opuestamente semejantes.
+
+No establezco una definición de semejanza
+entre dos triángulos porque todas las
+anteriores son equivalentes.
+
+\begin{lemma}\label{lemma:rotomotecia}
+	Sean $OAB$ y $OXY$ dos triángulos \textit{directamente}
+	semejantes, entonces $OAX$ y $OBY$
+	son directamente semejantes.
+\end{lemma}
+
+Hacemos uso del criterio LAL. La semejanza
+nos dice que $\angle AOB = \angle XOY$,
+pero como los ángulos $\angle AOX$
+y $BOY$ comparten el ángulo
+$BOX$, entonces éstos son iguales.
+Por la semejanza también tenemos
+\[\frac{OA}{OX} = \frac{OB}{OY},\]
+reordenando la razón vemos que
+\[\frac{OA}{OB} = \frac{OX}{OY},\]
+pero esto junto con la igualdad de
+ángulos completa el criterio LAL
+y por ende $OAX$ y $OBY$ son semejantes.
+
+\centering
+\begin{asy}
+	size(8cm);
+	pair O = (0, 0);
+	pair A = (-2, -4);
+	pair B = (-1, -6);
+
+	picture p1;
+	picture p2;
+
+	pair X = (rotate(40)*A)*0.8;
+	pair Y = (rotate(40)*B)*0.8;
+
+	draw(p1, O--A--B--cycle);
+	draw(p1, O--X--Y--cycle);
+
+	filldraw(p1, O--A--X--cycle, lightblue + opacity(0.3));
+	filldraw(p1, O--B--Y--cycle, lightblue + opacity(0.3));
+
+
+	dot(p1, "$O$", O, N);
+	dot(p1, "$A$", A, W);
+	dot(p1, "$B$", B, SW);
+	dot(p1, "$X$", X, NE);
+	dot(p1, "$Y$", Y, E);
+
+	filldraw(p2, O--A--B--cycle, lightblue + opacity(0.3));
+	filldraw(p2, O--X--Y--cycle, lightblue + opacity(0.3));
+
+	draw(p2, O--A--X--cycle);
+	draw(p2, O--B--Y--cycle);
+
+	dot(p2, "$O$", O, N);
+	dot(p2, "$A$", A, W);
+	dot(p2, "$B$", B, SW);
+	dot(p2, "$X$", X, NE);
+	dot(p2, "$Y$", Y, E);
+
+	add(p1);
+	add(shift(7, 0)*p2);
+\end{asy}
+\par
+\raggedright
+
+\begin{problem}
+Muestre que esto no es cierto en general
+si no se restringe que los triángulos
+sean directamente semejantes.
+\end{problem}
+
+\begin{example}
+	Sea $ABC$ un triángulo y $M$, $N$ y $P$
+	los puntos medios de los lados $AB$, $BC$ y $AC$
+	respectivamente. Demuestre que $NPM$
+	es semejante a $ABC$.
+\end{example}
+Aquí hacemos uso del teorema de Thales
+y de un criterio de semejanza.
+Por ser $M$ y $N$ puntos medios de $AB$ y $BC$,
+entonces
+\[\frac{BM}{BA}=\frac{BN}{BC} = \half\]
+pero por el teorema de Thales esto implica
+que $MN$ es paralela a $AC$. De manera
+análoga sabemos también que $MP\parallel BC$
+y $NP\parallel AB$.
+Por las paralelas sabemos que $\angle NMP = \angle APM = \angle C$
+de manera completamente análoga concluimos que
+$\angle MPN = \angle B$
+y $\angle PNM = \angle A$, concluyendo
+la demostración por el criterio AAA.
+
+\centering
+\begin{asy}
+	size(6cm);
+	pair A = dir(110);
+	pair B = dir(210);
+	pair C = dir(330);
+
+	pair M = midpoint(A--B);
+	pair N = midpoint(C--B);
+	pair P = midpoint(A--C);
+
+	draw(A--B--C--cycle);
+	draw(M--N--P--cycle);
+	dot("$A$", A, NW);
+	dot("$M$", M, W);
+	dot("$B$", B, SW);
+	dot("$N$", N, S);
+	dot("$C$", C, SE);
+	dot("$P$", P, E);
+
+	markangle(B, A, C, radius=10, red);
+	markangle(B, M, N, radius=10, red);
+	markangle(P, N, M, radius=10, red);
+
+	markangle(C, B, A, radius=10, blue);
+	markangle(C, N, P, radius=10, blue);
+	markangle(M, P, N, radius=10, blue);
+
+	markangle(N, M, P, radius=10, green);
+	markangle(A, P, M, radius=10, green);
+	markangle(A, C, B, radius=10, green);
+
+\end{asy}
+\par
+\raggedright
+
+\begin{remark}
+	A $MNP$ se lo conoce como el triángulo
+	medial de $ABC$.
+\end{remark}
+
+\section{Círculos}
+
+\begin{lemma}\label{lemma:righttrianglemindpoint}
+	Sea $ABC$ un triángulo recto en $B$
+	y sea $O$ un punto en el segmento
+	$AC$. Si dos de las logitudes
+	$OA$, $OB$ y $OC$ son iguales,
+	entonces también lo es la tercera.
+\end{lemma}
+
+Una vez, durante un examen de ingreso estábamos
+vendiendo panchos y ofrecíamos uno gratis si
+eran capaces de resolver este sencillo problema
+(nadie lo resolvió):
+
+\centering
+\begin{asy}
+	size(6cm);
+	pair D = dir(30);
+	pair C = dir(-50);
+	pair A = dir(90);
+	pair B = dir(190);
+
+	pair P = extension(A, C, B, D);
+
+	draw(A--B--C--D--cycle);
+	draw(A--C);
+	draw(B--D);
+	markrightangle(A, P, B);
+
+	dot("$A$", A, NW);
+	dot("$B$", B, SW);
+	dot("$C$", C, S);
+	dot("$D$", D, NE);
+	dot(P);
+
+	label("$40^\circ$", A, (2.9, -3.9));
+	label("$40^\circ$", B, (3, 0));
+	label("$30^\circ$", C, (-0.5, 9));
+	markangle(P, B, A);
+	label("$x$", B, (8, 6.5));
+\end{asy}
+\par
+\raggedright
+
+A primera vista puede parecer que
+con saber que la suma de los ángulos
+interiores de un triángulo
+suman $180^\circ$ puede ser suficiente
+para hallar $x$, pero
+resulta ser que no,
+y para ello necesitamos una
+herramienta que vimos antes:
+la semejanza.
+
+Sea $P$ la intersección de las diagonales,
+entonces los triángulos $PAD$
+y $PBC$ son opuestamente semejantes
+por $AAA$, esto implica que
+\[\frac{PA}{PB} = \frac{PD}{PC},\]
+reordenando la ecuación obtenemos
+\[\frac{PA}{PD} = \frac{PB}{PC}.\]
+Como $\angle APB = \angle CPD$
+por ángulos opuestos, entonces por
+el criterio LAL, los triángulos $PAB$
+y $PDC$ son semejantes,
+lo que implica que
+\[x = \angle PBA = \angle DCP = 30^\circ.\]
+
+Resulta que este razonamiento puede
+ser aplicado para deducir un resultado más general:
+\begin{problem}
+Sea $ABCD$ un cuadrilátero convexo
+con $\angle CAD = \angle CBD$,
+demuestre que $\angle DBA = \angle DCA$.
+\end{problem}
+
+% TODO: DESARROLLAR el lema
+\begin{lemma}
+	Sea $H$ el ortocentro de un triángulo $ABC$, entonces las
+	refexiones de $H$ sobre el lado $BC$ y sobre el punto medio de $BC$
+	respectivamente se encuentran en el circuncírculo de $ABC$.
+	Y $A[reflexion de H sobre midpoint de BC]$ es diámetro de
+	$ABC$.
+\end{lemma}
+
+\section{Cuadriláteros cíclicos}
+
+
+
+\section{Problemas}
+\begin{problem}[Teorema de Pick o Parcelarias]
+Se tiene un polígono no degenerado
+en el plano cartesiano
+teniendo todos  sus vértices coordenadas enteras.
+Si $I$ es la cantidad de puntos
+con coordenadas enteras en el interior del polígono
+y $B$ la cantidad
+en el borde, entonces el área del polígono
+es igual a
+\[I + \frac{B}2 - 1.\]
+\end{problem}
+
+\begin{problem}
+Sean $O$ y $H$ el circuncentro y ortocentro respectivamente de
+un triángulo acutángulo $ABC$.
+Demuestre que $\angle BAO = \angle HAC$.
+\end{problem}
+
+\begin{problem}[Teorema de Brahmagupta nunca supe cómo se escribe]
+Sea $ABCD$ un cuadrilátero cíclico. Se sabe que
+sus diagonales $AC$ y $BD$ son perpendidulares. Demuestre que la recta
+perpendicular a $BC$ que pasa por la intersección de las diagonales biseca
+al lado $AD$.
+\end{problem}
+
+\begin{problem}[Recta de Simson]
+Un punto $X$ se encuentra en el circuncírculo de un triángulo $ABC$. Los pies de las perpendiculares
+desde $X$ a los lados $BC$, $AC$ y $AB$ son $P$, $Q$ y $R$ respectivamente. Demuestre que $P$, $Q$ y $R$
+son colineales.
+\end{problem}
+
+\begin{problem}
+Sea $ABCD$ un paralelogramo tal que $\angle DBA = 2\angle DBC$. Sea $T$ la intersección
+de la recta perpendicular a $BC$ que pasa por $A$ con el segmento $BD$. Si
+$AB = 6$, calcule la longitud del segmento $TD$.
+\addhints{ricardojaja1}
+\end{problem}
+
+\begin{problem}
+Sean $a$, $b$, $c$ y $d$ números reales positivos con
+\begin{align*}
+	a^2 + b^2      & =       c^2 + d^2  \\
+	a^2 + d^2 - ad & =  b^2 + c^2 + bc.
+\end{align*}
+Encuentre el valor de $\frac{ad + bc}{ab + cd}$.
+\addhints{ciclicoalgebra1, ciclicoalgebra2, ciclicoalgebra3, ciclicoalgebra4}
+\end{problem}
+
+\begin{problem}
+Sea $ABCD$ un cuadrilátero convexo con
+$AC = AD$ y $\angle BAC = \angle CAD$.
+Sea $E$ un punto en $AC$ talque $AE = AB$.
+Muestre que $BC = DE$.
+\addhints{rotomoteciacuadrilatero}
+\end{problem}
+
+\begin{problem}
+Sea $ABC$ un triángulo inscrito en una circunferencia $\Omega$ con
+$AC$ diámetro de $\Omega$. Sea $P$ la intersección de la recta $AC$ con
+la recta tangente a $\Omega$ que pasa por $B$. Si $\angle BAC = 33^\circ$,
+halle el valor del ángulo $\angle CPB$.
+\end{problem}
+
+\begin{problem}
+Sea $ABC$ un triángulo isósceles con $AB = AC$. Sean $P$ y $Q$ puntos
+en $AB$ y $AC$ respectivamente tales que $AP = QC$. Sea $O$
+la intersección de la altura $A$ del triángulo $ABC$ con el
+circuncírculo del triángulo $APQ$. Demuetre que $O$ es el
+circuncentro de $ABC$.
+\end{problem}
+
+\begin{problem}
+Sea $ABC$ un triangulo acutángulo, sea $BE$ la prolongación del lado $AB$ y $CF$
+la prolongación del lado $AC$, si $AB=CF$ y $AC=BE$, demuestre que el punto
+de intersección entre el circuncírculo del triángulo $ABC$ y la altura
+del triangulo $AEF$ es circuncentro de $AEF$.
+\end{problem}
+
+\begin{problem}
+Sea $ABCD$ un paralelogramo. Sean $E$ y $F$ puntos externos al
+paralelogramo tales que los triángulos $AED$ y $CDF$ son equiláteros.
+Demuestre que $EBF$ es equilátero.
+\end{problem}
+
+\begin{problem}
+Sea $ABC$ un triángulo. Sea $P \neq C$ un punto en la recta $BC$ tal que $BP = BC$.
+Sea $Q$ el punto medio de $AB$ y sea $R$ la intersección de las rectas $PQ$ y $AC$.
+Si $G$ es el baricentro de $ABC$, demuestre que $RG$ es paralela a $AB$.
+\end{problem}
+
+\begin{problem}[CAM 2025]
+Sea $ABC$ un triángulo acutángulo y $X$ un punto en
+el lado $AC$ tal que $CX = 2AX$. Sea $P$ la intersección
+de la recta $BX$ con la mediana $A$ de $ABC$. Si el
+área de $ABC$ es $60$, calcule el área del triángulo $APX$.
+\end{problem}
+
+\begin{problem}
+Sea $ABC$ un triángulo acutángulo con ortocentro $H$, sea $P$ la reflexión
+de $H$ sobre la recta $BC$ y $F$ el pie de la altura desde $C$. La
+circunferencia circunscripta al triángulo $AFP$ intersecta
+a la recta $BC$ en dos puntos distintos $X$ e $Y$.
+Demuestre que $C$ es el punto medio del segmento $XY$.
+\end{problem}
+
+\begin{problem}
+Sea $ABC$ un triángulo equilátero de lado $\ell$ y sea $P$ un punto interior
+a $ABC$. Sean $P_1$, $P_2$ y $P_3$ las proyecciones de $P$ sobre
+los lados $AB$, $AC$ y $BC$ respectivamente. En términos de
+$\ell$, calcule la suma
+\[PP_1 + PP_2 + PP_3.\]
+\end{problem}
+
+\begin{problem}
+Si el área de un triángulo es $50$, y dos de sus lados miden
+$5$ y $6$, calcule todos los valores posibles del lado restante.
+\end{problem}
+
+\begin{problem}
+Sea $ABCD$ un cuadrilátero convexo.
+Demuestre que los cuatro puntos de intersección
+entre las bisectrices de los ángulos
+$A$ y $C$ con las de los ángulos $B$ y $D$
+se encuentran sobre una circunferencia.
+\end{problem}
+
+\begin{problem}[Teorema de la mariposa]
+A través del punto medio $C$ de una cuerda arbitraria $AB$ de una circunferencia,
+se han trazado dos cuerdas $KL$ y $MN$
+($K$ y $M$ se encuentran de un mismo lado de $AB$), $Q$ es el punto de intersección
+de $AB$ y $KN$, $P$ es el punto de intersección de $AB$ y $ML$. Demuestre que $QC = CP$.
+\end{problem}
+
+\begin{problem}[Libro ruso de geometría ``de primaria'']
+En una circunferencia se tienen dos puntos fijos
+$A$ y $B$ y un punto móvil $M$. En la prolongación del segmento
+$AM$ fuera de la circunferencia se traza el segmento $MN = MB$.
+Halle el lugar geométrico de los puntos $N$.
+\end{problem}
+
+\begin{problem}
+Sea $I$ el incentro de un triángulo $ABC$.
+$AI$ intersecta a $BC$ en $D$. Demuestre que
+\[\frac{AI}{ID} = \frac{AB + AC}{BC}.\]
+\end{problem}
+

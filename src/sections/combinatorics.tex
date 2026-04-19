@@ -1,0 +1,57 @@
+\chapter{Combinatoria}
+En esta sección exploraremos los conceptos
+fundamentales de la combinnatoria.
+
+Primero hablaremos de conceptos más
+generales.
+
+\section{Propiedades sumativas}
+
+\section{Coloreo}
+
+\section{Casos}
+
+\section{Insight}
+
+\section{Tableros}
+
+\section{}
+
+\section{Problemas}
+\begin{problem}[El Salvador 2016]
+Se tienen $15$ fichas circulares,
+todas del mismo radio en una formación de triángulo
+equilátero como se muestra en la figura.
+Cada una de las fichas se pinta de un solo color:
+rojo o azul.
+
+Demuestre que, sin importar cómo se pinten las fichas,
+siempre existen tres de ellas del mismo color
+cuyos centros son los vértices de un triángulo
+equilátero.
+\addhints{elsalvador2015equilatero1, elsalvador2015equilatero2, elsalvador2015equilatero3}
+\end{problem}
+
+\centering
+\begin{asy}
+	size(8cm);
+	for(real i = 0; i < 5; ++i){
+			for(real j = -0.5 * i; j <= 0.5*i; ++j){
+					draw(circle((j, -i * sqrt(3) * 0.5), 0.5));
+				}
+		}
+\end{asy}
+\par
+\raggedright
+
+\begin{problem}
+En un torneo de fútbol participan $30$ equipos, cada equipo
+juega contra cada otro exactamente dos veces. Calcule el número
+de encuentros del torneo.
+\end{problem}
+
+\begin{problem}
+Considere que cada punto en el plano euclídeo está coloreado de rojo o verde.
+Demuestre que existen dos puntos a distancia exactamente $1$ que son del mismo color.
+\end{problem}
+
