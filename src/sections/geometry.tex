@@ -30,9 +30,9 @@ Y resulta ser que esto se puede usar para
 probar otra cosa que probablemente también
 conozcas:
 
-\begin{theorem}
+\begin{proposition}\label{proposition:sumangle180}
 	Los ángulos internos de un triángulo suman $180^\circ$.
-\end{theorem}
+\end{proposition}
 
 Pensándolo un poco, resulta ser bastante sorprendente
 que, sin importar su forma, cualquier triángulo cumple
@@ -97,7 +97,7 @@ el Teorema de Thales, que lo enunciamos de la siguiente
 manera:
 \begin{theorem}[Teorema de Thales]
 	Sea $ABC$ un triángulo y sean $X$ e $Y$
-	puntos en los segmentos $AB$ y $AC$,
+	puntos en las rectas $AB$ y $AC$,
 	entonces las rectas $XY$ y $BC$
 	son paralelas si y solo si
 	\[\frac{AX}{AB} = \frac{AY}{AC}.\]
@@ -123,33 +123,70 @@ manera:
 \par
 \raggedright
 
-Para dar una intuición de por qué esto
-es cierto, imaginemos que $A$
-es un alfiler clavado en una goma,
-a continuación estiramos la goma
-hacia todas las direcciones afuera
-desde $A$ hasta que la goma tenga el doble
-de su tamaño original (cada distancia dentro
-de la goma se duplicó),
-entonces si $X$ e $Y$ eran puntos en
-la goma antes de estirarla, digamos que
-que ambos se convirtieron en los puntos
-$B$ y $C$, claramente como estiramos
-la goma por un factor de $2$ desde $A$,
-entonces las distancias $AX$ y
-$AY$ se duplicaron al transformarse
-en $AB$ y $AC$. Ahora, ¿por qué
-las rectas $XY$ y $BC$ deben ser paralelas?,
-esto pasa por que si trazamos una altura desde $A$
-a $XY$, entonces al estirar
-la goma esta recta seguirá siendo altura de $BC$,
-más aún, continuará siendo la misma recta,
-y como esta recta es perpendicular
-a otras dos, las otras dos deben ser paralelas
-(esto es por el quinto axioma de Euclides).
-
-Una demostración completa se puede encontrar
+Una demostración mejor de lo que creo
+soy capaz de explicar se encuentra
 \href{https://www.youtube.com/watch?v=d7QXlL_Ztvc}{aquí}.
+
+\begin{example}
+	Sea $ABCD$ un cuadrilátero.
+	Se traza por $C$ la recta paralela
+	a $AD$ e interseca a $BD$ en $M$.
+	De manera similar se traza la recta paralela
+	a $BC$ por $D$ e interseca a $AC$
+	en $N$. Demuestre que $MN$ es paralela a $AB$.
+\end{example}
+
+Al principio este problema puede dar miedo,
+pero nos acordamos de nuestro queridísimo
+teorema de Thales. Así definimos a
+la intersección de las diagonales $AC$
+y $BD$ como $P$.
+
+Sin miedo al éxito aplicamos Thales a $PBC$
+y $ND$ para concluir que
+\[\frac{PD}{PB} = \frac{PN}{PC}\]
+y de manera similar con $PAD$ y $MC$
+vemos que
+\[ \frac{PM}{PD}= \frac{PC}{PA},\]
+para finanizar multiplicamos ambas
+ecuaciones y concluimos que
+\[\frac{PM}{PB} = \frac{PN}{PA},\]
+lo que implica $AB\parallel MN$
+de nuevo por el terema de Thales.
+
+\centering
+\begin{asy}
+	size(6cm);
+	pair A = dir(110);
+	pair B = dir(210);
+	pair C = dir(330);
+	pair D = dir(40);
+
+	pair aux = A - D + C;
+
+	pair M = extension(B, D, C, aux);
+	aux = B - C + D;
+	pair N = extension(A, C, D, aux);
+
+	pair P = extension(A, C, B, D);
+
+	draw(A--B--C--D--cycle);
+	draw(A--C);
+	draw(B--D);
+	draw(C--M);
+	draw(D--N);
+	draw(M--N, dashed);
+
+	dot("$A$", A, N);
+	dot("$B$", B, SW);
+	dot("$C$", C, SE);
+	dot("$D$", D, NE);
+	dot("$M$", M, S);
+	dot("$N$", N, NE);
+	dot("$P$", P, (0.36, 1));
+\end{asy}
+\par
+\raggedright
 
 Podemos analizar más propiedades relacionadas a
 la forma de los triángulos,
@@ -172,7 +209,6 @@ Aquí van los tres criterios de semejanza principales:
 	si dos de esas igualdades de ángulos son ciertas,
 	entonces también lo es la tercera.
 \end{theorem}
-
 
 \begin{remark}
 	La aclaración se desmitifica sabiendo que
@@ -356,7 +392,7 @@ es igual a $90^\circ$.
 \end{problem}
 
 \begin{problem}
-Muestre que el lema \ref{lemma:rotomotecia}
+Muestre que el \autoref{lemma:rotomotecia}
 no es cierto en general
 si no se restringe que los triángulos
 sean directamente semejantes.
@@ -390,11 +426,36 @@ a las circunferencias:
 	entonces $\angle BOC = 2\angle BAC$.
 \end{theorem}
 
-\begin{figure}
+\begin{figure}[h]
 	\begin{center}
 		\input{figures/angulo_central.tex}
 	\end{center}
 	\caption{El ángulo central es el doble del arco inscrito.}
+\end{figure}
+
+Para probar esto no es necesario nada
+más y nada menos que los triángulos isósceles
+y las igualdades de ángulos que nos dan.
+Dibujamos el rayo $AO$,
+claramente $OAB$ y $OAC$ son triángulos isósceles,
+por ende $\angle OBA = \angle OAB = \alpha$ y $\angle OCA = \angle O = \beta$,
+en particular por \autoref{proposition:sumangle180}
+tenemos $\angle BOA = 180 - 2\alpha$
+y $\angle COA = 180 - 2\beta$.
+Y como $\angle BOA + \angle COA + \angle BOC = 360$
+concluimos
+\[\angle BOC = 360 - (180 - 2\alpha - 2\beta) = 2\alpha + 2\beta = 2\angle BAC.\]
+
+Esto implica que si $ABCD$ es un cuadrilátero convexo
+inscrito en una circunferencia de centro $O$,
+entonces $\angle BAC = \angle BDC$ por que
+ambos serán iguales al ángulo central $\angle BOC$.
+
+\begin{figure}[H]
+	\begin{center}
+		\input{figures/arco_capaz.tex}
+	\end{center}
+	\caption{Arcos capaces.}
 \end{figure}
 
 \begin{lemma}\label{lemma:righttrianglemindpoint}
@@ -410,35 +471,14 @@ vendiendo panchos y ofrecíamos uno gratis si
 eran capaces de resolver este sencillo problema
 (nadie lo resolvió):
 
-\centering
-\begin{asy}
-	size(6cm);
-	pair D = dir(30);
-	pair C = dir(-50);
-	pair A = dir(90);
-	pair B = dir(190);
-
-	pair P = extension(A, C, B, D);
-
-	draw(A--B--C--D--cycle);
-	draw(A--C);
-	draw(B--D);
-	markrightangle(A, P, B);
-
-	dot("$A$", A, NW);
-	dot("$B$", B, SW);
-	dot("$C$", C, S);
-	dot("$D$", D, NE);
-	dot(P);
-
-	label("$40^\circ$", A, (2.9, -3.9));
-	label("$40^\circ$", B, (3, 0));
-	label("$30^\circ$", C, (-0.5, 9));
-	markangle(P, B, A);
-	label("$x$", B, (8, 6.5));
-\end{asy}
-\par
-\raggedright
+\begin{example}
+	Halle el valor de $x$ que se indica en la figura.
+	\begin{figure}[H]
+		\begin{center}
+			\input{figures/ciclico_pancho.tex}
+		\end{center}
+	\end{figure}
+\end{example}
 
 A primera vista puede parecer que
 con saber que la suma de los ángulos
@@ -632,3 +672,44 @@ $AI$ intersecta a $BC$ en $D$. Demuestre que
 \[\frac{AI}{ID} = \frac{AB + AC}{BC}.\]
 \end{problem}
 
+\begin{problem}
+Se dibujan dos rectas paralelas $\ell_1$
+y $\ell_2$ y un punto
+$O$ entre ellas. Por $O$ se traza una recta
+secante que corta a las rectas paralelas
+en $A_1$ y $A_2$ respectivamente. Sea $X$
+un punto tal que $OA_1 = XA_2$ y $XA_2 \perp A_1A_2$.
+Encuentre el espacio geométrico de todos los puntos $X$
+a medida que la recta secante varía.
+\end{problem}
+
+\begin{problem}
+Demuestre que en un trángulo
+un bisector más corto correspode
+a un lado más largo.
+\end{problem}
+
+\begin{problem}
+Sean $a$ y $b$ dos reales positivos.
+Se ubican dos punto $A$
+y $B$ en una recta $\ell$ y los puntos $A_1$
+y $B_1$ tal que $AA_1 = a$ y $BB_1 = b$.
+con $AA_1 \perp \ell$ y $BB_1 \perp \ell$.
+Sea $H$ el punto de intersección de las rectas
+$AB_1$ y $A_1B$. Demuestre que la distancia
+de $H$ a la recta $\ell$ es constante
+sin importar la elección de $A$ y $B$.
+\end{problem}
+
+\begin{problem}[Iberoamericana 2024]
+Algunos puntos del plano Euclídeo son pintados
+del color rojo con la siguiente regla:
+si dos vértices de un triángulo con ángulos
+$30^\circ$, $60^\circ$ y $90^\circ$ son rojos,
+entonces también lo es el tercero.
+
+Demuestre que si los vértices de un
+triángulo cualquiera son rojos,
+entonces el baricentro de ese triángulo
+también es rojo.
+\end{problem}
