@@ -5,5 +5,4 @@
 *.fdb_latexmk 
 *.pdf 
 *.log 
-*.asy
 *.pre

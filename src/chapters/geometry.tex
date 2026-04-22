@@ -411,10 +411,78 @@ circunferencia.
 \end{definition}
 
 Las circunferencias son fundamentales
-por que en particular si $X$
-e $Y$ son dos puntos en la circunferencia,
-entonces $OX = OY$, lo que nos da un triángulo
+por que en particular si $A$
+y $B$ son dos puntos en la circunferencia,
+entonces $OA = OB$, lo que nos da un triángulo
 isósceles de gratis además de $\angle OAB = \angle OBA$.
+
+Este es un hecho básico: %TODO: Reparafrasear esa basura
+
+\begin{theorem}
+	Para cualesquiera tres puntos en el
+	plano, no todos colineales, existe
+	una única circunferencia que pasa
+	por esos tres puntos.
+\end{theorem}
+
+Una manera de demostrar esto sería
+probar que existe un punto $O$ en el plano
+tal que $OA = OB = OC$, de esta manera
+la circunferencia de centro $O$ y radio $OA$
+pasaría por los tres puntos, que es lo que estamos buscando.
+
+Recordamos que esto es cierto. %TODO: Parafrasear esto.
+\begin{lemma}
+	La mediatriz de un segmento $XY$ es
+	la recta perpendicular a
+	$XY$ que pasa por su punto medio.
+	Esa recta cumple que para todo punto $P$
+	en ella se cumple que $PX = PY$.
+	Además, si $Q$ es un punto tal que $QX = QY$,
+	entonces $Q$ está en la mediatriz.
+\end{lemma}
+
+No demostraremos esto por ser muy elemental.
+Con este lema en cuenta
+vemos que si trazamos la mediatriz
+de, por ejemplo, el segmento $AB$,
+entonces cualquier punto $P$
+en esta cumple que $PA = PB$,
+si tan solo pudiésemos encontrar un
+punto en esa mediatriz tal que $PA = PC$,
+entonces ese punto sería el punto $O$
+que estamos buscando. Pero se nos ocurre que
+la mediatriz del segmento $AC$
+cumple que cualquier punto en esta equidista
+de $A$ y $C$, por lo que si definimos a
+$O$ como la intersección de las dos mediatrices,
+entonces como está en la mediatriz de $AB$,
+tenemos $OB = OA$,
+pero como está en la mediatriz de $AC$, entonces
+$OA = OC$, en conclusión:
+\[OA = OB = OC,\]
+que es el punto que estábamos buscando.
+Más aún, como $OB = OC$, entonces $O$ también
+está en la mediatriz de $BC$. De esta manera
+deducimos un resultado más fuerte:
+
+\begin{theorem}
+	Si $ABC$ es un triángulo, entonces
+	las mediatrices de los lados $AB$,
+	$BC$ y $AC$ intersecan en el centro
+	de la circunferencia que pasa por
+	$A$, $B$ y $C$.
+\end{theorem}
+
+A este punto $O$ de lo llama el
+\textit{circuncentro} del triángulo $ABC$.
+Decimos \textbf{la} porque esa circunferencia
+es única.
+
+\begin{question*}
+	¿Por qué existe una única circunferencia
+	que pasa por tres puntos en el plano?
+\end{question*}
 
 Ahora presentamos lo que es, quizás,
 el resultado más sorprendente relacionado
@@ -545,10 +613,155 @@ demuestre que $\angle DBA = \angle DCA$.
 \end{lemma}
 
 \section{Cuadriláteros cíclicos}
+Este término es quizás el más común y
+útil en geometría de olimpiada.
 
+La palabra ``cíclico'' pueda dar miedo,
+aunque es en realidad bastante sencillo.
 
+\begin{definition}[Cuadrilátero cíclico]
+	Un cuadrilátero es cíclico si existe
+	una circunferencia que pasa por sus cuatro vértices.
+\end{definition}
+
+Al principio puede parecer que si sabemos
+que un cuadrilátero es cíclico no nos
+da mucha información, pero esto no es
+así ya que nos da una infinidad de
+igualdades de ángulos y semejanzas
+que son muy útiles en muchos problemas.
+Sin ir más allá miremos la figura:
+
+\begin{figure}[H]
+	\begin{center}
+		\input{figures/quad_cyc.tex}
+		\caption{Cuadrilátero cíclico.}
+	\end{center}
+\end{figure}
+
+Las igualdades de los ángulos verdes
+son por arco capaz
+y las otras dos son debidas a que
+$\angle CBA + \angle ADC = 180^\circ$.
+Más aún, si $P$ es la intersección de las
+diagonales, entonces los triángulos
+$PBC$ y $PAD$ son opuestamente semejantes
+al igual que $PBA$ y $PCD$.
+
+Ahora vemos el resultado más potente de todos:
+
+\begin{lemma}
+	Sea $ABCD$ un cuadrilátero convexo.
+	Entonces $ABCD$ es cíclico si y solo si
+	\[\angle DCA = \angle DBA\]
+	o
+	\[\angle CBA + \angle ADC = 180^\circ.\]
+\end{lemma}
+
+Esto nos dice que, con que tengamos una
+sola de esas relaciones, entonces el cuadrilátero
+ya es cíclico, y si en su lugar tuviéramos
+$\angle ACB = \angle ADB$ o $\angle BAD + \angle DCB = 180^\circ$
+entonces el cuadrilátero igualmente sería cíclico
+ya que es cuestión de aplicar el teorema
+con un orden distinto de los vértices.
+
+Pero nos queda una pregunta: sabemos que
+si el cuadrilátero es cíclico, entonces se dan
+las igualdades de ángulos, pero si se dan las
+igualdades de ángulos, ¿por qué el cuadrilátero
+debe ser cíclico?
+
+\centering
+\begin{asy}
+	pair A = dir(80);
+	pair B = dir(160);
+	pair C = dir(210);
+	pair D = dir(330);
+
+	pair X = 1.3 * (B - C) + C;
+	draw(X--B);
+
+	draw(A--B--C--D--cycle);
+
+	draw(A--C);
+	draw(B--D);
+
+	draw(unitcircle);
+
+	dot("$A$", A, NE);
+	dot("$B^\prime$", B, NW);
+	dot("$C$", C, SW);
+	dot("$D$", D, SE);
+	dot("$B$", X, W);
+	draw(X--D);
+
+	markangle(C, B, D, radius=10, blue);
+	markangle(C, A, D, radius=10, blue);
+	markangle(C, X, D, radius=10, blue);
+\end{asy}
+\par
+\raggedright
+
+Este problema puede ser resuelto planteándolo
+por contradicción.
+Sea $\Omega$ el circuncírculo de $ADC$.
+Supongamos que $\angle CBD = \angle CAD$
+pero que $B$ \textbf{no} está en
+el circuncírculo de $ADC$.
+Sea $B^\prime$ el segundo punto
+de intersección de $BC$ con $\Omega$.
+Claramente
+\[\angle CBD = \angle CAD = \angle CB^\prime D,\]
+por arco capaz,
+pero esto implica que $DB$ y $DB^\prime$
+son rectas paralelas, lo que no es cierto ya
+que intersecan en $D$.
+
+El caso $\angle ADC + \angle CBA = 180^\circ$
+se deja como un ejercicio al lector.
+
+Ilustramos el uso de este hecho con
+el siguiente teorema:
+
+\begin{theorem}
+	Las alturas de un triángulo intersecan
+	en un punto, a este punto se le denomina
+	el ortocentro del triángulo.
+\end{theorem}
+
+\begin{figure}[H]
+	\begin{center}
+		\input{figures/ortocenter.tex}
+	\end{center}
+	\caption{El ortocentro del triángulo $ABC$.}
+\end{figure}
+
+Sean $E$ y $F$ los pies de las
+alturas del triángulo desde $B$ y $C$
+respectivamente y sea $H$ la intersección de
+$BE$ y $CF$. Sea $E$ la intersección
+de $AH$ y $BC$.
+
+Notemos que si demostramos que $AD$
+es perpendicular a $BC$, entonces el problema
+ya estaría resuelto ya que habríamos probado
+que las tres alturas coinciden en un punto.
+
+Recordamos nuestro lema de cuadriláteros cíclicos
+y vemos que $\angle BFC = \angle BEC = 90^\circ$,
+lo que implica que $BFEC$ es cíclico, más aún,
+como $\angle AEH + \angle HFA = 90^\circ + 90^\circ = 180^\circ$
+entonces $AFHE$ también es cíclico.
+
+Ahora es cuestión de ver igualdades de ángulos:
+\[90 - \angle B = \angle FCB = \angle FEB = \angle FEH = \angle FAH,\]
+todo porque $BFEC$ y $AFHE$ son cíclicos.
+Para finalizar vemos que
+\[\angle ADB = 180^\circ - (\angle BAD + \angle B) = 180^\circ - (90 - \angle B + \angle B) = 90.\]
 
 \section{Problemas}
+
 \begin{problem}[Teorema de Pick o Parcelarias]
 Se tiene un polígono cuyos lados no se intersecan
 en el plano cartesiano
@@ -578,6 +791,17 @@ al lado $AD$.
 Un punto $X$ se encuentra en el circuncírculo de un triángulo $ABC$. Los pies de las perpendiculares
 desde $X$ a los lados $BC$, $AC$ y $AB$ son $P$, $Q$ y $R$ respectivamente. Demuestre que $P$, $Q$ y $R$
 son colineales.
+\end{problem}
+
+\begin{problem}
+Sean $A$, $B$ y $C$ tres puntos en una recta en
+se orden. Sea dibujan las circunferencias
+$\Omega$ y $\Gamma$ con diámetros $AB$ y $AC$
+respectivamente. Sea $D$ un punto en $\Omega$
+tal que $CD$ es tangente a $\Omega$.
+La recta $CD$
+en $E$. Si $AB = BC$, determine el valor de
+\[\frac{CD}{DE}.\]
 \end{problem}
 
 \begin{problem}
@@ -714,7 +938,7 @@ a un lado más largo.
 
 \begin{problem}
 Sean $a$ y $b$ dos reales positivos.
-Se ubican dos punto $A$
+Se ubican dos puntos $A$
 y $B$ en una recta $\ell$ y los puntos $A_1$
 y $B_1$ tal que $AA_1 = a$ y $BB_1 = b$.
 con $AA_1 \perp \ell$ y $BB_1 \perp \ell$.
