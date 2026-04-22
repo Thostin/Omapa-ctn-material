@@ -1,42 +1,4 @@
-%% WARNING: !!!ChatGPT!!!
-% collect hints
-\makeatletter
-\Newassociation{hint}{hintitem}{hints}
-
-% counter for hint numbering
-\newcounter{hintctr}
-\renewcommand{\thehintctr}{\arabic{hintctr}}
-
-% printed form of each hint in the hints section
-\renewenvironment{hintitem}{%
-	\refstepcounter{hintctr}
-	\par\smallskip\noindent\text{\thehintctr.}\ignorespaces
-}{%
-	\par\smallskip
-}
-\makeatother
-
-\makeatletter
-\newcommand{\addhints}[1]{%
-	\def\hint@list{}%
-	\forcsvlist{\hint@add}{#1}%
-	\ifx\hint@list\empty\else
-		\footnotesize\textbf{Pistas:\ \hint@list}%
-	\fi
-}
-
-\newcommand{\hint@add}[1]{%
-	\ifx\hint@list\empty
-		\protected@edef\hint@list{\ref{#1}}%
-	\else
-		\protected@edef\hint@list{\hint@list, \ref{#1}}%
-	\fi
-}
-\makeatother
-
-\renewcommand{\solutionextension}{out}
-\Opensolutionfile{hints}
-\newcommand{\makehints}{\Closesolutionfile{hints}\input{hints.out}}
+\newcommand{\hintref}[1]{\textup{\ref{#1}}}
 
 \declaretheorem[style=thmblackbox,name=Pregunta,numbered=no]{question*}
 
