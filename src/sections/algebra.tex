@@ -7,6 +7,101 @@ y es importante conocer lo básico
 ya que en particular se puede aplicar a
 infinidad de problemas.
 
+\section{Inducción}
+Esto es un método fundamental en todas
+las áreas de la matemática.
+
+Para ilustrar qué dice lo podemos imaginar como
+una serie de dominós en fila, tal que
+si cae uno de ellos entonces cae el que
+está inmediatamente a la derecha.
+Es claro que si cae el primer dominó, entonces
+caen todos los demás ya que si cae el primero,
+entonces cae el segundo; si cae el segundo
+entonces cae el tercero, y así sucesivamente.
+
+% TODO: Añadir figura de dominós cayendo
+
+Esta misma idea se puede formalizar, pero
+en lugar de dominós, con proposiciones.
+Esta es una definición informal:
+
+\begin{theorem}[Inducción]
+	\label{theorem:induccion}
+	Si $P(n)$ es una proposición cuya veracidad
+	depende del valor de $n$, se sabe que si
+	$P(n)$ es cierto entonces $P(n + 1)$ es
+	cierto, y $P(1)$ es cierto, entonces $P(n)$
+	es cierto para todo $n$.
+\end{theorem}
+
+Para digerir el método lo mejor es usar
+ejemplos.
+
+\begin{example}[Suma Gaussiana]
+	Demuestre que la suma de los primeros
+	$n$ números naturales es igual a
+	\[\frac{n(n + 1)}2.\]
+\end{example}
+
+Este resultado se le atribuye
+al matemático Carl Gauss, quien, se cuenta,
+lo dedujo cuando era un niño.
+
+La manera de imaginar por qué
+este resultado es cierto es sumar
+los números de extremo a extremo como se
+ve en la figura:
+
+Por el momento simplificamos el problema
+y consideramos que $n$ es par. Claramente
+la suma del primer con el último
+número es $n + 1$,
+del segundo con el penúltimo $2 + n - 1 = n + 1$,
+y así sucesivamente todos los pares tienen la
+misma suma. Pero nos damos cuenta de que
+hay exactamente $\frac n2$ pares, de ahí la suma
+necesariamente debe ser igual a
+\[\frac n2 \cdot (n + 1).\]
+
+Para demostrar con inducción que la fórmula
+es cierta para todo $n$
+podemos verificar que la misma funciona
+para $n = 1$ ya que si sustituimos obtenemos
+\[\frac{1 \cdot 2}{2} = 1\]
+que es la suma hasta el primer número natural.
+
+Ahora notemos que si conseguimos probar que
+si la fórmula funciona para $n$, entonces
+funciona para $n + 1$, entonces funcionaría
+para todo $n$ ya que la misma funciona para
+$n = 1$\footnote{Ten en cuenta el \autoref{theorem:induccion}}
+
+Para ello si ocurre que
+\[1 + 2 + \cdots + n = \frac{n(n + 1)}2,\]
+debemos probar que
+\[1 + 2 + \cdots + n + (n + 1) = \frac{(n + 1)(n + 2)}2,\]
+pero sustituyendo
+\[1 + 2 + \cdots + n = \frac{n(n + 1)}2\]
+notamos que
+\[\frac{n(n + 1)}2 + (n + 1) = (n + 1)\left(\frac n2 + 1\right) = \frac{(n + 1)(n + 2)}2,\]
+que es lo que queríamos probar.
+
+\subsection*{Problemas para esta sección}
+\begin{problem}
+Muestre que
+\[1^2 + 3^2 + \cdots + n^2 = \frac{n(n + 1)(2n + 1)}6.\]
+\end{problem}
+
+\begin{problem}
+Pruebe que la suma de los primeros
+$n$ números impares es igual a $n^2$.
+\end{problem}
+
+\section{Funciones}
+Algo recurrente son las funciones
+
+\section{Desigualdades}
 
 \section{Identidades}
 Manejar expresiones algebraicas puede ser
@@ -37,16 +132,35 @@ inesperados y especialmente en teoría de números:
 La identidad de Sophie Germain establece lo siguiente:
 \[a^4 + 4b^4 = (a^2 + 2b^2 + 2ab)(a^2 + 2b^2 - 2ab)\]
 
-\section{Problemas}
-\begin{problem}
-Muestre que
-\[1^2 + 3^2 + \cdots + n^2 = \frac{n(n + 1)(2n + 1)}6.\]
-\end{problem}
+\subsection{Racionalización}
+Normalmente es difícil tratar con raíces en
+los denominadores de fracciones,
+y el simple hecho de que
+\[(a + b)(a - b) = a^2 - b^2\]
+nos ayuda bastante ya que si
+$a$ o $b$ son raíces cuadradas, es posible
+multiplicar la expresión por $a - b$
+para deshacerse de las raíces,
+así, un uso común es cuando tenemos algo del
+siguiente estilo:
 
-\begin{problem}
-Demuestre que la suma de los primeros
-$n$ números impares es igual a $n^2$.
-\end{problem}
+\[\frac1{\sqrt a + \sqrt b}.\]
+
+Podemos multiplicar la fracción
+por $1$ y eso no cambia su valor,
+pero
+\[1 = \frac{\sqrt a - \sqrt b}{\sqrt a - \sqrt b}.\]
+
+y si lo aplicamos a la expresión anterior vemos que
+\[\frac1{\sqrt a + \sqrt b}\cdot\frac{\sqrt a - \sqrt b}{\sqrt a - \sqrt b} = \frac{\sqrt a - \sqrt b}{\sqrt a ^2 - \sqrt b ^2} = \frac{\sqrt a - \sqrt b}{a - b}.\]
+
+Y ahora ya no tenemos raíces en el denominador.
+Esta transformación es especialmente
+últil si $a$ y $b$ son números
+enteros o racionales, o
+si $a - b$ lo es.
+
+\section{Problemas}
 
 \begin{problem}
 Resuelva el sistema de ecuaciones:
@@ -66,6 +180,7 @@ Si $a$ es un número real distinto de $0$, encuentre el valor de la expresión:
 \begin{problem}[Omapa 2023 - Ronda Departamental]
 Encuentre el valor de la expresión
 \[\frac1{\sqrt1 + \sqrt2} + \frac1{\sqrt2 + \sqrt3} + \cdots + \frac1{\sqrt{2022} + \sqrt{2023}}.\]
+\addhints{racionalizacion}
 \end{problem}
 
 \begin{problem}[Libro ruso]

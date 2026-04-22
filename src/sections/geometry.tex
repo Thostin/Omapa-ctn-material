@@ -83,7 +83,8 @@ Demuestre que la suma de los ángulos internos
 de un polígono
 de $n$ lados que no se intersecan
 es $180(n - 2)^\circ$.
-\addhints{hint:sumapol1, hint:sumapol2}
+\addhints{hint:sumapol1, hint:sumapol3}
+% , hint:sumapol2
 \end{problem}
 
 \section{Razones y Semejanza}
@@ -399,7 +400,7 @@ sean directamente semejantes.
 \end{problem}
 
 
-\section{Círcunferencias}
+\section{Circunferencias}
 Empezamos con qué es una
 circunferencia.
 
@@ -434,7 +435,7 @@ a las circunferencias:
 \end{figure}
 
 Para probar esto no es necesario nada
-más y nada menos que los triángulos isósceles
+más y nada menos que con los triángulos isósceles
 y las igualdades de ángulos que nos dan.
 Dibujamos el rayo $AO$,
 claramente $OAB$ y $OAC$ son triángulos isósceles,
@@ -449,13 +450,35 @@ concluimos
 Esto implica que si $ABCD$ es un cuadrilátero convexo
 inscrito en una circunferencia de centro $O$,
 entonces $\angle BAC = \angle BDC$ por que
-ambos serán iguales al ángulo central $\angle BOC$.
+ambos serán iguales al ángulo central $\angle BOC$,
+a esto se lo denomina arco capaz.
 
 \begin{figure}[H]
 	\begin{center}
 		\input{figures/arco_capaz.tex}
 	\end{center}
 	\caption{Arcos capaces.}
+\end{figure}
+
+Podemos deducir más resultados respecto
+a las circunferencias, como lo es el
+siguiente:
+\begin{theorem}
+	Sea $ABCD$ un cuadrilátero convexo inscrito
+	en una circunferencia, entonces
+	\[\angle BAD + \angle BCD = 180^\circ.\]
+\end{theorem}
+
+Esto no es difícil de deducir por
+la medida del ángulo central. Sea
+$O$ el centro de la circunferencia,
+entonces
+\[\angle BAD + \angle BCD = \half\angle BOD + \half\angle DOB = \half\left(\angle BOD + \angle DOB\right) = \half 360^\circ = 180^\circ.\]
+\begin{figure}[H]
+	\begin{center}
+		\input{figures/suma180.tex}
+	\end{center}
+	\caption{Ángulos opuestos suman $180^\circ$.}
 \end{figure}
 
 \begin{lemma}\label{lemma:righttrianglemindpoint}
@@ -527,13 +550,13 @@ demuestre que $\angle DBA = \angle DCA$.
 
 \section{Problemas}
 \begin{problem}[Teorema de Pick o Parcelarias]
-Se tiene un polígono no degenerado
+Se tiene un polígono cuyos lados no se intersecan
 en el plano cartesiano
 teniendo todos  sus vértices coordenadas enteras.
 Si $I$ es la cantidad de puntos
 con coordenadas enteras en el interior del polígono
 y $B$ la cantidad
-en el borde, entonces el área del polígono
+en el borde, demuestre que el área del polígono
 es igual a
 \[I + \frac{B}2 - 1.\]
 \end{problem}
