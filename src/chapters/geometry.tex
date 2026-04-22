@@ -442,6 +442,13 @@ Recordamos que esto es cierto. %TODO: Parafrasear esto.
 	entonces $Q$ está en la mediatriz.
 \end{lemma}
 
+\begin{figure}[H]
+	\begin{center}
+		\input{figures/perpbisector.tex}
+	\end{center}
+	\caption{La mediatriz del segmento $AB$.}
+\end{figure}
+
 No demostraremos esto por ser muy elemental.
 Con este lema en cuenta
 vemos que si trazamos la mediatriz
@@ -462,6 +469,14 @@ pero como está en la mediatriz de $AC$, entonces
 $OA = OC$, en conclusión:
 \[OA = OB = OC,\]
 que es el punto que estábamos buscando.
+
+\begin{figure}[H]
+	\begin{center}
+		\input{figures/circumcenter.tex}
+	\end{center}
+	\caption{El circuncentro y el circuncírculo de $ABC$.}
+\end{figure}
+
 Más aún, como $OB = OC$, entonces $O$ también
 está en la mediatriz de $BC$. De esta manera
 deducimos un resultado más fuerte:
@@ -562,7 +577,7 @@ vendiendo panchos y ofrecíamos uno gratis si
 eran capaces de resolver este sencillo problema
 (nadie lo resolvió):
 
-\begin{example}
+\begin{example}\label{example:firstcyclic}
 	Halle el valor de $x$ que se indica en la figura.
 	\begin{figure}[H]
 		\begin{center}
@@ -759,6 +774,13 @@ Ahora es cuestión de ver igualdades de ángulos:
 todo porque $BFEC$ y $AFHE$ son cíclicos.
 Para finalizar vemos que
 \[\angle ADB = 180^\circ - (\angle BAD + \angle B) = 180^\circ - (90 - \angle B + \angle B) = 90.\]
+
+Ahora que conocemos a los cuadriláteros cíclicos
+podemos retornar al \autoref{example:firstcyclic},
+que ahora se trivializa ya que con $\angle CAD = \angle CBD = 40^\circ$
+es suficiente para afirmar que el
+cuadrilátero es de hecho cíclico, y por ende
+$x = \angle DBA = \angle DCA = 30^\circ$.
 
 \section{Problemas}
 
