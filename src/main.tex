@@ -1,13 +1,13 @@
 \documentclass{scrreprt}
-\usepackage[sexy]{evan}
+\usepackage[sexy]{evanspanish}
 \usepackage{amsmath,amsthm}
 \usepackage[spanish, es-nosectiondot, es-nolists, shorthands=off]{babel}
 \usepackage{scrambledenvs}
+\usepackage{float}
 
 \newscrambledenv{hint}
 
-% EGMO-like formatting
-\hintlabel{Hint}
+\hintlabel{Pista}
 \hintprintenv{\begin{enumerate}}{\end{enumerate}}
 \hintprintitem{\item}
 
@@ -19,29 +19,28 @@
 \newcommand{\hintref}[1]{\textup{\ref{hint:#1}}}
 
 \title{Entrenamiento - OMAPA}
+\author{Ever Ortega}
 
 \begin{document}
+
+\maketitle
+\begin{abstract}
+	Este es un compilado de conceptos,
+	ejemplos y problemas de práctica orientados
+	a la resolución de problemas
+	de la olimpiada matemática paraguaya.
+	Dedicado a todos los cetenianos.
+\end{abstract}
 
 \tableofcontents
 \clearpage
 
-\chapter{Ejemplos}
-
-\begin{problem}\label{prob:prueba}
-Jaja xd.
-
-\begin{hints}
-	\begin{hint}
-		Hoja jaja xd.
-	\end{hint}
-	\begin{hint}
-		Segunda pista.
-	\end{hint}
-	\begin{hint}
-		Tercera pista.
-	\end{hint}
-\end{hints}
-\end{problem}
+% \input{chapters/hints.tex}
+\input{chapters/algebra.tex}
+\input{chapters/geometry.tex}
+\input{chapters/combinatorics.tex}
+\input{chapters/number_theory.tex}
+\input{chapters/personal_favorites.tex}
 
 \chapter*{Hints}
 \printhint
