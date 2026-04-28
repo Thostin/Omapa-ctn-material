@@ -1,4 +1,227 @@
 \chapter{Teoría de números}
+En este capítulo hablaremos de
+lo básico que concierne a la
+teoría de números de olimpiadas.
+
+No discurtiremos demasiado los
+problemas que aparecen en omapa,
+pero si lo elemental que se aplican
+a éstos e innumerables problemas
+de práctica.
+
+\section{Divisibilidad}
+La intuición de este concepto
+se esclarifica con ejemplos.
+Decimos que un entero positivo $a$
+es divisible entre otro entero
+positivo $n$ si es posible
+partir el número $a$ en $n$ partes.
+Por ejemplo se nos ocurre que definitivamente
+$2$ divide a $4$ ya que es posible
+partir el $4$ en $2$ partes iguales.
+De manera similar $6$ es divisible
+entre $2$ ya que es posible partir
+el $6$ en $3 + 3$.
+También nos damos cuenta de que
+\[6 = 2 + 2 + 2\]
+por lo que también es posible partir
+al $6$ en $3$ partes iguales, o sea
+$3$ divide a $6$.
+
+Por lo que podemos considerar
+la siguiente manera de pensar en la
+división:
+
+\begin{intuition*}
+	Un entero positivo $a$ divide a
+	un entero positivo $b$ si es posible
+	partir a $b$ en $a$ partes iguales.
+\end{intuition*}
+
+Este concepto se puede generalizar
+con la misma idea de la siguiente manera:
+
+\begin{definition}
+	\label{definition:div}
+	Decimos que un entero $a$ divide
+	a otro entero $b$ si es posible
+	encontrar un entero $z$ tal que
+	\[az = b.\]
+\end{definition}
+
+\begin{question*}
+	¿Cómo se relaciona esto con que
+	se posible partir un entero en
+	una cantidad entera de partes?
+\end{question*}
+
+A la relación de divisibilidad
+se la denota por el símbolo `\mid'
+y ``$a$ divide a $b$'' se simboliza como
+\[a \mid b.\]
+
+De manera similar si $a$ \textbf{no}
+divide a $b$ se simboliza como
+\[a \nmid b.\]
+
+\subsection{Propiedades de la división}
+Ahora establecemos algunas propiedades
+que son fundamentales relacionados a
+la división entre dos números enteros.
+
+\begin{proposition}[Transitividad de la divisibilidad]
+	\label{proposition:transitivitydiv}
+	Si $a \mid b$ y $b \mid c$, entonces $a \mid c$
+\end{proposition}
+
+\begin{proposition}[Desigualdad con la divisibilidad]
+	Si $a \mid b$, entonces $\abs a \leq \abs b$.
+\end{proposition}
+
+Esto tiene sentido ya que
+claramente no es posible partir un
+entero en más partes que unidades éste
+contiene.
+
+\begin{proposition}
+	Si $a \mid b$ y $a \mid b + c$, entonces
+	$a \mid c$.
+\end{proposition}
+
+\begin{proposition}
+	Si $a \mid b$, entonces $a \mid zb$
+	para todos los enteros $z$.
+\end{proposition}
+
+\subsection*{Problemas para esta sección.}
+Estos problemas se hacen todos
+con la \autoref{definition:div}.
+
+\begin{problem}
+Demuestre las últimas cuatro
+proposiciones.
+\end{problem}
+
+\begin{problem}
+Demuestre la
+\end{problem}
+
+\section{Números primos}
+\begin{definition}
+	Un número primo es un entero positivo con
+	exactamente dos divisores positivos.
+\end{definition}
+
+Como ya vimos, el número $1$ divide a todo número,
+y a su vez $n$ siempre divide a $n$, esto implica
+que si $n$ es primo, entonces éstos son sus únicos
+dos divisores (nótese que así el $1$ no es primo).
+
+\begin{theorem}[Teorema fundamental de la aritmética]
+	Todo entero positivo $n$ puede ser descompuesto
+	en factores primos de manera única.
+\end{theorem}
+
+Para desglosar qué dice este teorema,
+una manera de verlo es que si $n$ es un
+entero positivo y $p_1$, $p_2$, \dots, $p_n$
+son todos los primos que lo dividen, entonces
+existen unos únicos exponenetes $\alpha_1$, $\alpha_2$,
+\dots, $\alpha_n$ tales que
+\[n = p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_n^{\alpha_n}.\]
+
+Se puede afirmar con bastante seguridad que
+este facto se aplica a casi todos los problemas
+de teoría de números.
+
+\section{Aritmética modular}
+Esta es una idea en la que se sostiene
+casi todo lo desarrollado respecto
+a la tería de números, y consiste en
+categorizar qué en general
+si analizamos los restos que deja
+el algoritmo de división euclidiana.
+
+El clásico ejemplo para describir a la
+aritmética modular es el reloj de $12$ horas:
+
+% TODO: Insertar imagen de reloj de 12 horas
+
+Digamos que el reloj empieza en la hora $0$,
+entonces al cabo de $10$ horas el reloj
+marcará, $10$, al cabo de $11$ marcará $11$,
+pero al paso de $12$ horas éste volverá a marcar $0$.
+\footnote{Esquivada olímpica.} % TODO: Quitar este footnote.
+
+Esto se puede formalizar a través de
+analizar los restos en \textit{módulo} $12$
+y decimos que las horas que marca el reloj
+son los enteros \textit{módulo} $12$.
+
+\begin{definition}
+	Dos enteros son congruentes módulo $n$
+	si tienen el mismo resto divididos entre $n$.
+\end{definition}
+
+Esto abre paso a, quizás, querer separar
+a los enteros teniendo en cuenta
+su resto al dividirse entre $n$,
+en particular, no es difícil de ver que:
+
+\begin{theorem}\label{theorem:congruence}
+	Dos enteros $a$ y $b$ son congruentes
+	módulo $n$ si y solo si $n$ divide a $a - b$.
+\end{theorem}
+
+Más aún, ver a los enteros desde esta perspectiva
+nos abre un gran abanico de herramientas
+para entenderlos, entre ellos se dejan ciertas
+propiedades como ejercicios al lector.
+
+\begin{definition}
+	Denotamos a `$\equiv$' como el símbolo
+	de congruencia. La expresión
+	``$a$ y $b$ son congruentes módulo $n$''
+	se escribe matemáticamente de la siguiente
+	manera:
+	\[a \equiv b \pmod n\]
+\end{definition}
+
+\subsection*{Problemas para esta sección. }
+\begin{problem}
+Demuestre el \autoref{theorem:congruence}.
+\end{problem}
+
+\begin{problem}[Transitividad de la congruencia]
+Demuestre que si $a \equiv b$ y $b \equiv c$,
+entonces $a \equiv c$.
+\end{problem}
+
+\begin{problem}[Suma de congruencias]
+Demuestre que si $a \equiv b$ y $x \equiv y$ en
+módulo $n$, entonces
+\[a + x \equiv b + y \pmod n.\]
+\end{problem}
+
+\begin{problem}[Congruencia y multiplicaciones]
+\label{theorem:congprod}
+Demuestre que si $a \equiv x$ y $b \equiv y$
+en módulo $n$ entonces
+\[ab \equiv xy \pmod n.\]
+\end{problem}
+
+\begin{problem}[Congruencia y la exponenciación]
+Demuestre que si $a \equiv b$ en módulo $n$,
+entonces
+\[a^k \equiv b^k \pmod n\]
+para todo entero positivo $k$.
+
+\begin{hints}
+	\begin{hint}
+		\autoref{theorem:congprod}.
+	\end{hint}
+\end{hints}
+\end{problem}
 
 \section{Problemas}
 \begin{problem}
