@@ -370,14 +370,124 @@ los dígitos $1$, $2$, \dots, $10$?
 \begin{problem}
 Un número de chapa de un vehículo
 en Paraguay consiste en tres letras del
-alfabeto y tres dígitos, los dígitos no
+alfabeto y luego tres dígitos, los dígitos no
 pueden ser todos ceros.
 ¿Cuántos números de chapa son posibles?
 \end{problem}
 
-\begin{problem}
+\section{Calcular los otros casos} %NOTE: Retitular esto
+Muchas veces necesitamos calcular
+cuántas veces ocurre algo, pero
+resulta mucho más fácil calcular
+cuántas veces no ocurre eso.
 
-\end{problem}
+Aquí algunos ejemplos.
+
+\begin{example}
+\end{example}
+
+\begin{example}[Paradoja del cumpleaños]
+	Se encuentran $22$ personas en una sala.
+	La probabilidad de que existan dos de ellas que
+	cumplan años el mismo día es superior al $50\%$.
+\end{example}
+
+Calcular directamente la probabilidad de que
+existan puede ser un poco jodido,
+pero calcular la probabilidad de que
+no existan es bastante sencillo.
+
+Asumiendo que las fechas de cumpleaños de las personas
+estás más o menos distribuidas de manera uniforme,
+debemos calcular la cantidad de combinaciones
+de fecha de nacimiento en que
+ninguna persona cumpla años el mismo día entre
+la cantidad total de combinaciones.
+
+Esto es simple ya que si ponemos en una fila a
+todas las personas y suponemos que ninguna cumple
+años el mismo día que otro, entonces la primera
+persona tiene $365$ posibilidades para su fecha de
+nacimiento; la segunda $364$, la tercera $363$
+y así hasta $365 - (22 - 1) = 344$.
+En total son
+\[365 \cdot 364 \cdot 363 \cdots 344.\]
+
+Y la cantidad total es claramente $365^{22}$.
+Ahora
+\[\frac{365 \cdot 364 \cdot 363 \cdots 344}{365^{22}} \approx 0.49,\]
+De ahí se sigue que la probabilidad de que existan
+dos personas que cumplan años el mismo día
+es de aproximadamente $51\%$.
+
+\section{Permutaciones}
+Estas son herramientas fundamentales que
+nos ayudan a resolver todo tipo
+de problemas de combinatoria.
+
+\begin{example}[Permutaciones con orden]
+	La cantidad de maneras de ubicar $k$
+	elementos distintos en una fila de entre
+	$n$ elementos distintos es
+	\[\frac{n!}{(n - k)!}.\]
+\end{example}
+Como ya vimos reiteradas veces, el razonamiento
+es parecido:
+El primer elemento tiene $n$ posibilidades,
+el segundo $n - 1$ y así hasta
+el $k$-ésimo elemento que tiene $n - k + 1$
+posibilidades.
+Pero con álgebra es posible expresar el
+producto de esta manera:
+\[n \cdot (n - 1) \cdots (n - k + 1) = \frac{n \cdot (n - 1) \cdots (n - k + 1) \cdot (n - k) \cdots 2 \cdot 1}{(n - k) \cdot (n - k - 1) \cdots 1} = \frac{n!}{(n - k)!}\]
+
+Este resultado es extremadamente últil y trivializa
+muchos problemas:
+\begin{example}[Permutaciones sin orden]
+	La cantidad de maneras de escoger $k$
+	elementos de entre $n$ elementos distintos
+	sin considerar el orden de los elementos escogidos
+	es
+	\[\frac{n!}{k!(n - k)!}\]
+\end{example}
+Esta fórmula es bastante parecida a la anterior,
+solo que con un factor extra de $k!$ en el denominador.
+De hecho, se puede deducir de la anterior si nos
+damos cuenta de lo siguiente:
+
+Supongamos que una de las permutaciones es
+\[(a_1, a_2, \dots, a_k),\]
+si nos preguntamos cuántas otras permutaciones
+tienen exactemente esos elementos, porque
+nos interesa descartarlos, vemos que la cantidad
+de maneras de ordenar los elementos
+de esa permutación es $k!$, y todas esas permutaciones
+son contadas al contar las permutaciones con orden,
+y esto ocurre para cada colección de
+elementos $a_1$, $a_2$, \dots, $a_k$, por lo
+cada colección no ordenada de estos
+es contada exactamente $k!$ veces, por lo que
+es suficiente dividir el resultado anterior
+entre $k!$ para obtener el resultado deseado.
+
+Este valor es simbolizado muchas veces como
+\[n \choose k\]
+y es icreíblemente común en problemas de combinatoria.
+
+No recuerdo muy bien el problema pero era algo
+parecido a esto:
+\begin{example}[Examen de ingreso]
+	En un torneo de fútbol de $12$ equipos, cada
+	uno juega contra cada otro exactamente una vez.
+	¿Cuántos partidos se disputan en el torneo?.
+\end{example}
+Es simple si vemos que cada partido
+es protagonizado por dos equipos,
+o sea que la cantidad de partidos
+es la cantidad de maneras de seleccionar dos equipos
+de entre $12$ sin importar el orden, pero esto
+es aplicación de fórmula:
+\[{12\choose{2}} = \frac{12 \cdot 11 }{2!} = 66.\]
 
 \section{Coloreo}
 El coloreo es una técnica que
@@ -418,7 +528,6 @@ un tablero de ajedrez nos damos cuenta de algo:
 					filldraw((i, j)--(i + 1, j)--(i + 1, j + 1)--(i, j + 1)--cycle, rgb(1.0 - p * 0.7, 1.0 - p * 0.7, 1.0 - p * 0.7));
 				}
 		}
-
 \end{asy}
 \par
 \raggedright
