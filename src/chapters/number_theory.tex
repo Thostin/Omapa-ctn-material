@@ -55,8 +55,13 @@ con la misma idea de la siguiente manera:
 	una cantidad entera de partes?
 \end{question*}
 
+Notemos también que el número $1$
+divide a todos los enteros, porque
+es obvio que es posible partir un número
+en una sola parte.
+
 A la relación de divisibilidad
-se la denota por el símbolo `\mid'
+se la denota por el símbolo `$\mid$'
 y ``$a$ divide a $b$'' se simboliza como
 \[a \mid b.\]
 
@@ -93,20 +98,45 @@ contiene.
 	para todos los enteros $z$.
 \end{proposition}
 
-\subsection*{Problemas para esta sección.}
+\begin{proposition}
+	Si $a \mid b$ si y solo si $a \mid -b$
+	si y solo si $-a \mid b$.
+\end{proposition}
+
+\subsection*{Problemas para esta sección}
 Estos problemas se hacen todos
 con la \autoref{definition:div}.
 
 \begin{problem}
-Demuestre las últimas cuatro
+Demuestre las últimas cinco
 proposiciones.
 \end{problem}
 
-\begin{problem}
-Demuestre la
-\end{problem}
+\section{Algoritmo de división Euclidiana}
+Este el el algoritmo básico en el que se sostiene
+toda la teoría de números.
+
+Este es un teorema que nos permite expresar
+cada par de dividendo y divisor $a$ y $b$
+como
+\[a = bq + r\]
+donde $0 \leq r < b$.
+Que en síntesis
 
 \section{Números primos}
+Hay enteros positivos que no son el
+producto de otros dos enteros mayores que $1$,
+como por ejemplo el $2$ y el $3$,
+vemos que no existen otros enteros
+distintos de $1$ que \textit{dividen}
+a $2$ a parte de sí mismo.
+
+Esto también pasa con el $5$, revisando número
+por número vemos que ninguno divide a este
+salvo el $1$ y el $5$. De hecho, hay infinitos
+números que cumplen esto, y se los
+llama \textit{números primos}.
+
 \begin{definition}
 	Un número primo es un entero positivo con
 	exactamente dos divisores positivos.
@@ -115,7 +145,7 @@ Demuestre la
 Como ya vimos, el número $1$ divide a todo número,
 y a su vez $n$ siempre divide a $n$, esto implica
 que si $n$ es primo, entonces éstos son sus únicos
-dos divisores (nótese que así el $1$ no es primo).
+dos divisores positivos (nótese que así el $1$ no es primo).
 
 \begin{theorem}[Teorema fundamental de la aritmética]
 	Todo entero positivo $n$ puede ser descompuesto
@@ -141,6 +171,9 @@ a la tería de números, y consiste en
 categorizar qué en general
 si analizamos los restos que deja
 el algoritmo de división euclidiana.
+
+Para nosotros este pedazo de teoría
+nos ayudará a abreviar muchas o
 
 El clásico ejemplo para describir a la
 aritmética modular es el reloj de $12$ horas:
