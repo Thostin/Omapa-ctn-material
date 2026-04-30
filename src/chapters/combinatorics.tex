@@ -1,7 +1,6 @@
 \chapter{Combinatoria}
 La combinatoria es el arte de contar.
 
-
 En esta sección exploraremos los conceptos
 fundamentales de la combinnatoria.
 
@@ -59,7 +58,7 @@ se deben sumar las posiblidades para
 hallar la cantidad total de las mismas:
 cuando se deben multiplicar.
 
-El ejemplo más sencillo es el siguiente:
+Un ejemplo sencillo es el siguiente:
 \begin{example}
 	Emilio tiene dos dados idénticos,
 	primero tira uno, luego otro
@@ -227,6 +226,7 @@ multiplicamos los tres valores y obtenemos
 \[3 \cdot 2 \cdot 1 = 6.\]
 
 Aquí un diagrama para entender mejor:
+
 \vspace{0.3cm}
 \centering
 \begin{asy}
@@ -306,6 +306,33 @@ $4$, $5$, \dots, $10$ y multiplicarlas.
 Eso es simple conociendo el factorial:
 \[3! \cdot 7! = 30240.\]
 
+\begin{example}[Cantidad de subconjuntos]
+	La cantidad de subconjuntos de un conjunto con $n$
+	elementos es $2^n$ (incluyendo el conjunto vacío).
+\end{example}
+Una manera de interpretar esto es poniendo
+a cada elemento del conjunto en una fila.
+Ahora, un subconjunto puede o no contener a
+uno de ellos, y eso para para todos los
+elementos. Entonces para contar la cantidad
+de subconjuntos podemos ir elemento por elemento
+y decidir si está o no en el subconjunto, y
+como son dos posibilidades tendremos en total
+\[\underbrace{2 \cdot 2 \cdot 2 \cdots 2}_{n \ \text{repeticiones}} = 2^n.\]
+
+\begin{remark}
+	Otra manera de verlo es considerar que
+	si cualquier subconjunto de $n$ elementos
+	tiene $2^n$ subconjuntos, entonces
+	al añadirle un elemento más, todos los subconjuntos
+	anteriores se mantienen y se generan exactamente $2^n$
+	subconjuntos nuevos que son todos los anteriores pero
+	con el nuevo elemento extra, dando así un total de
+	$2^n + 2^n = 2^{n + 1}$ subconjuntos.
+	El conjunto vacío tiene $2^0 = 1$ elementos,
+	y ya estaríamos por inducción.
+\end{remark}
+
 \subsection*{Problemas para esta sección}
 \begin{problem}
 Emilio tiene $n$ dados de $6$ caras
@@ -384,7 +411,37 @@ cuántas veces no ocurre eso.
 Aquí algunos ejemplos.
 
 \begin{example}
+	¿Cuántos subconjuntos de ${1, 2, \dots, n}$
+	contienen por lo menos un elemento par?
 \end{example}
+Si tomamos el camino incorrecto de
+calcular directamente el número
+deseado nos complicaremos demasiado.
+Resulta ser que la cantidad de subconjuntos
+que contienen por lo menos un elemento
+par es la cantidad total de subconjuntos
+menos la cantidad de ellos que no contiene
+ningún elemento par.
+
+Por lo que contaremos la cantidad de subconjuntos
+que consistan únicamente en
+elementos impares (contanto el conjunto vacío),
+esta cantidad es obviamente la cantidad de
+subconjuntos del conjunto de todos los
+elementos impares de ${1, 2, \dots, n}$.
+
+De momento tenemos lo siguiente: %NOTE: Reparafrasear eso
+\begin{itemize}
+	\ii La cantidad total de subconjuntos es $2^n$.
+	\ii La cantidad de elementos impares de ${1, 2, \dots, n}$
+	es $\left\lceil\frac n2\right\rceil$.
+\end{itemize}
+\begin{question*}
+	Verifique que el segundo punto sea cierto.
+\end{question*}
+
+Ahora, el número que estamos buscando es
+\[2^n - 2^{\left\lceil\frac n2\right\rceil}.\]
 
 \begin{example}[Paradoja del cumpleaños]
 	Se encuentran $22$ personas en una sala.
@@ -424,6 +481,16 @@ es de aproximadamente $51\%$.
 Estas son herramientas fundamentales que
 nos ayudan a resolver todo tipo
 de problemas de combinatoria.
+
+\begin{definition}[Permutación]
+	Una permutación de una colección
+	de elementos $a_1$, $a_2$, \dots, $a_n$
+	es un \textit{tuplo}\footnotemark
+	que contiene a los mismos.
+
+	\footnotetext{Un tuplo es una secuecia ordenada
+		de elementos, se suele simbolizar así: $(a_1, a_2, \dots, a_n)$.}
+\end{definition}
 
 \begin{example}[Permutaciones con orden]
 	La cantidad de maneras de ubicar $k$
