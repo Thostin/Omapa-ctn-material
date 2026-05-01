@@ -3,7 +3,7 @@ En este capítulo hablaremos de
 lo básico que concierne a la
 teoría de números de olimpiadas.
 
-No discurtiremos demasiado los
+No discutiremos demasiado los
 problemas que aparecen en omapa,
 pero si lo elemental que se aplican
 a éstos e innumerables problemas
@@ -69,6 +69,37 @@ De manera similar si $a$ \textbf{no}
 divide a $b$ se simboliza como
 \[a \nmid b.\]
 
+Otra manera de pensarlo es
+con tablas de multiplicar:
+
+\begin{align*}
+	            & \vdots \\
+	5 \times -5 & = -25  \\
+	5 \times -4 & = -20  \\
+	5 \times -3 & = -15  \\
+	5 \times -2 & = -10  \\
+	5 \times -1 & = -5   \\
+	5 \times 0  & = 0    \\
+	5 \times 1  & = 5    \\
+	5 \times 2  & = 10   \\
+	5 \times 3  & = 15   \\
+	5 \times 4  & = 20   \\
+	5 \times 5  & = 25   \\
+	5 \times 6  & = 30   \\
+	5 \times 7  & = 35   \\
+	5 \times 8  & = 40   \\
+	            & \vdots
+\end{align*}
+
+Podemos decir entonces que
+$a \mid b$ si $b$ está en la
+tabla de multiplicar de $a$.
+
+\begin{question*}
+	¿Cómo se relaciona esto con
+	la \autoref{definition:div}?
+\end{question*}
+
 \subsection{Propiedades de la división}
 Ahora establecemos algunas propiedades
 que son fundamentales relacionados a
@@ -104,24 +135,76 @@ contiene.
 \end{proposition}
 
 \subsection*{Problemas para esta sección}
-Estos problemas se hacen todos
-con la \autoref{definition:div}.
-
 \begin{problem}
 Demuestre las últimas cinco
-proposiciones.
+proposiciones (\textit{Nota: } Todas se hacen
+con la \autoref{definition:div}).
 \end{problem}
 
-\section{Algoritmo de división Euclidiana}
-Este el el algoritmo básico en el que se sostiene
-toda la teoría de números.
-
+\section{Algoritmo de la división}
 Este es un teorema que nos permite expresar
 cada par de dividendo y divisor $a$ y $b$
 como
 \[a = bq + r\]
-donde $0 \leq r < b$.
-Que en síntesis
+donde $0 \leq r < b$ de manera \textbf{única}.
+
+Una manera de ver por qué esto es cierto
+es restringir $a > b > 0$ y ver qué pasa
+si tomamos a $a$ como dividendo y $b$
+como divisor.
+Digamos que $q$ es la mayor cantidad de veces que
+podemos sacar $b$ de $a$ sin que este se vuelta
+negativo, y al resto que sobra de sacar $q$
+veces $b$ de $a$ (que es menor que $b$
+ya que de lo contrario podríamos sacar más veces $b$
+de $a$)
+lo llamamos $r$, y de aquí se ve que
+\[a = bq + r.\]
+
+Demostrar formalmente este facto no es muy
+complicado y requiere de un pensamiento
+muy concreto pero fácil de seguir.
+
+\begin{proposition}[Principio del buen orden]
+	\label{proposition:well_order}
+	Si $A$ es un subconjunto no vacío
+	de los números naturales, entonces $A$
+	tiene un mínimo elemento.
+\end{proposition}
+
+\begin{question*}
+	Convéncete que esto es cierto.
+\end{question*}
+
+Dado que queremos encontrar un par $(q, r)$
+tal que $a = bq + r$ y $0 \leq r$,
+podemos hablar de \textit{todos}
+los enteros $q$ que satisfacen que si
+$a = bq + r$ entonces $r \geq 0$
+y luego tratar de hallar
+el menor valor posible de $r = a - bq$.
+
+Por lo que definimos el conjunto
+\[A = \left\{a - bq \colon a - bq \geq 0\right\}.\]
+
+Como $A$ es un conjunto de enteros no
+negativos, entonces tiene un mínimo
+elemento por \autoref{proposition:well_order}
+al que llamaremos $r$ y que claramente es
+único.
+
+Para probar que $r < b$ podemos ir por
+contradicción y suponer que $r \geq b$,
+pero esto implica que
+\[0 \leq r - b = a - bq - b = a - b(q + 1),\]
+y como $q + 1$ es entero, entonces
+$a - b(q + 1)$ está en $A$ ya que éste
+es mayor o igual que cero,
+pero entonces $r - b < r$
+está en $A$, por lo que $r$
+no era el menor elemento, contradicción.
+
+Por lo que $0 \leq r < b$ y finalizamos.
 
 \section{Números primos}
 Hay enteros positivos que no son el
@@ -163,6 +246,11 @@ existen unos únicos exponenetes $\alpha_1$, $\alpha_2$,
 Se puede afirmar con bastante seguridad que
 este facto se aplica a casi todos los problemas
 de teoría de números.
+
+Un buen tip es que muchas veces es mejor
+pensar a los números no como
+las cantidades que representan, sino
+en términos de sus factores primos.
 
 \section{Aritmética modular}
 Esta es una idea en la que se sostiene
