@@ -231,7 +231,7 @@ que si $n$ es primo, entonces éstos son sus únicos
 dos divisores positivos (nótese que así el $1$ no es primo).
 
 \begin{theorem}[Teorema fundamental de la aritmética]
-	Todo entero positivo $n$ puede ser descompuesto
+	Todo entero positivo $n \geq 2$ puede ser descompuesto
 	en factores primos de manera única.
 \end{theorem}
 
@@ -246,11 +246,64 @@ existen unos únicos exponenetes $\alpha_1$, $\alpha_2$,
 Se puede afirmar con bastante seguridad que
 este facto se aplica a casi todos los problemas
 de teoría de números.
+Este teorema lo probamos en la siguiente sección.
 
 Un buen tip es que muchas veces es mejor
 pensar a los números no como
 las cantidades que representan, sino
 en términos de sus factores primos.
+
+\section{Máximo común divisor y Mínimo común múltiplo}
+Empezamos con una defición básica:
+\begin{definition}[Máximo común divisor]
+	El máximo común divisor entre dos enteros
+	es el producto de los primos comunes (con repetición)
+	entre las factorizaciones de éstos.
+\end{definition}
+
+
+
+\subsection{Demostración del Teorema Fundamental de la Aritmética}
+Para probar este teorema debemos
+probar tres cosas:
+\begin{itemize}
+	\ii Todo entero positivo mayor que
+	$2$ puede expresarse como un producto de
+	primos.
+	\ii Sea cual sea la descomposición
+	en factores primos que obtengamos,
+	estos serán siempre los mismos primos.
+	\ii Los exponentes de todos los primos
+	son únicos (este paso completa lo de ``de manera única'').
+\end{itemize}
+
+El primer ítem requiere de inducción,
+siendo la base $n = 2$,
+que puede ser expresado como
+un producto de números primos ya que este es primo.
+Para el paso inductivo supongamos que
+todos los enteros positivos $2 \leq n < K$
+se pueden expresar como producto de primos,
+si $n = K$, hay dos posibilidades:
+
+\paragraph{$n$ es primo. } Si esto ocurre entonces
+ya está.
+
+\paragraph{$n$ es compuesto. } Esto significa que
+$n$ tiene por lo menos un divisor $a > 0$ que no es $1$ ni $n$,
+como $a \mid n$ entonces $a < n$ y existe un
+entero $b$ tal que $ab = n$, de la misma manera $b < n$,
+por lo que podemos aplicar la hipótesis inductiva a $a$
+y $b$ y concluir que éstos pueden ser expresados
+como un producto de primos, y de ahí se sigue que $n$
+también es un producto de primos, completando
+la inducción.
+
+El segundo punto requiere el lema de Euclides.
+\begin{lemma}[Lema de Euclides]
+	Si $p$ es un primo tal que $p \mid ab$,
+	entonces $p \mid a$ o $p \mid b$.
+\end{lemma}
 
 \section{Aritmética modular}
 Esta es una idea en la que se sostiene
