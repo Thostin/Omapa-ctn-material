@@ -6,8 +6,7 @@ teoría de números de olimpiadas.
 No discutiremos demasiado los
 problemas que aparecen en omapa,
 pero si lo elemental que se aplican
-a éstos e innumerables problemas
-de práctica.
+a éstos y varios problemas de prática.
 
 \section{Divisibilidad}
 La intuición de este concepto
@@ -254,7 +253,7 @@ pensar a los números no como
 las cantidades que representan, sino
 en términos de sus factores primos.
 
-\section{Máximo común divisor y Mínimo común múltiplo}
+\section{Máximo común divisor}
 Existen muchas maneras de definir el
 máximo común divisor entre dos
 enteros, aquí exhibimos tres de ellas
@@ -338,7 +337,9 @@ era el mínimo elemento. Esto implica
 que $d \mid a$ y $d \mid b$
 completando la prueba.
 
+Aquí un teorema muy útil:
 \begin{lemma}[Lema de Euclides]
+	\label{lemma:euclidprime}
 	Si $p$ es un primo tal que $p \mid ab$,
 	entonces $p \mid a$ o $p \mid b$.
 \end{lemma}
@@ -370,10 +371,10 @@ completando la prueba.
 
 \subsection{Demostración del Teorema Fundamental de la Aritmética}
 Para probar este teorema debemos
-probar tres cosas:
+probar cosas:
 \begin{itemize}
 	\ii Todo entero positivo mayor que
-	$2$ puede expresarse como un producto de
+	$1$ puede expresarse como un producto de
 	primos.
 	\ii Sea cual sea la descomposición
 	en factores primos que obtengamos,
@@ -404,7 +405,34 @@ también es un producto de primos, completando
 la inducción.
 
 El segundo punto requiere el lema de Euclides.
+Supongamos que escribimos a $n$
+como un producto de primos de dos maneras:
+\[p_1p_2 \cdots p_k = q_1q_2 \cdots q_l.\]
 
+Primero podemos simplificar todos los primos
+comunes de tal manera que al final no haya un mismo primo que
+esté de ambos lados de la ecuación.
+Veremos que en esta situación tendremos
+necesariamente $1 = 1$ (todos los primos se
+cancelaron).
+\begin{question*}
+	¿Por qué esto implica que teníamos
+	entonces la misma factorización?
+\end{question*}
+
+Podemos suponer lo contrario,
+que al final tenemos algo como esto:
+\[p_1p_2\cdots p_s = q_1q_2\cdots q_t.\]
+
+Obviamente $p_1 \mid q_1 \cdot (q_2\cdots q_t)$,
+por lo que $p_1 \mid q_1$ o $p_1 \mid q_2\cdots q_t$
+por el \autoref{lemma:euclidprime},
+como $q_1 \neq p_1$, entonces
+la segunda relación de división es cierta,
+por lo que $p_1 \mid q_2q_3 \cdots q_t$,
+lo que implica $p_1 \mid q_3\cdots q_t$
+y así sucesivamente hasta $p_1 \mid q_t$,
+lo que es una contradicción.
 
 \section{Aritmética modular}
 Esta es una idea en la que se sostiene
