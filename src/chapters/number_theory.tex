@@ -261,6 +261,49 @@ Empezamos con una defición básica:
 	entre las factorizaciones de éstos.
 \end{definition}
 
+\begin{theorem}[Teorema de Bézout]
+	Si $a$ y $b$ son dos enteros cuyo máximo común divisor
+	es $d$, entonces existen enteros $x$ e $y$ tales que
+	\[ax + by = d.\]
+\end{theorem}
+
+Una manera de ver esto es fijarse en la
+imagen general y considerar a \textbf{todos}
+los enteros de la forma $ax + by$
+y probar que $\gcd (a, b)$ debe estar
+en ese conjunto. Por lo que lo construimos:
+\[S = \left\{ax + by \colon ax + by > 0\right\},\]
+y sea $d$ el menor elemento de $S$ (nótese que
+$S$ no es vacío). Probaremos que $d = \gcd (a, b)$.
+Demostrar directamente esto puede ser difícil,
+por lo que en su lugar probaremos que $d \mid \gcd(a, b)$
+y que $\gcd (a, b) \mid d$.
+Claramente $\gcd (a, b) \mid d$.
+\begin{question*}
+	¿Por qué pasa esto?
+\end{question*}
+
+Ahora solo falta probar que $d \mid \gcd(a, b)$,
+que es lo mismo que decir que $d \mid a$ y $d \mid b$.
+Por construcción existen dos enteros $x_0$ e $y_0$
+que satisfacen
+\[ax_0 + by_0 = d.\]
+Podemos suponer lo contrario, que
+$d \nmid a$ o $d \nmid b$, sin pérdida de generalidad
+asumimos que $d \nmid a$.
+Por el algoritmo de la división
+podemos escribir
+\[a = dq + r\]
+con $0 < r < d$ ya que $d \nmid a$.
+Pero esto implica que
+\[r = a - dq = a - (ax_0 + by_0) = a(1 - x_0) + (-y_0)b\]
+está en el conjunto, que es una contradicción
+debido a que $r < d$ y $d$ habíamos supuesto
+era el mínimo elemento. Esto implica
+que $d \mid a$ y $d \mid b$
+y por lo tanto $d \mid \gcd(a, b)$
+completando la prueba.
+
 
 
 \subsection{Demostración del Teorema Fundamental de la Aritmética}
