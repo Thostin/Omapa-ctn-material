@@ -120,8 +120,9 @@ entero en más partes que unidades éste
 contiene.
 
 \begin{proposition}
-	Si $a \mid b$ y $a \mid b + c$, entonces
-	$a \mid c$.
+	\label{proposition:sumdiv}
+	Si $a \mid x$ y $a \mid y$, entonces
+	$a \mid x + y$.
 \end{proposition}
 
 \begin{proposition}
@@ -254,18 +255,48 @@ las cantidades que representan, sino
 en términos de sus factores primos.
 
 \section{Máximo común divisor y Mínimo común múltiplo}
-Empezamos con una defición básica:
-\begin{definition}[Máximo común divisor]
+Existen muchas maneras de definir el
+máximo común divisor entre dos
+enteros, aquí exhibimos tres de ellas
+(que son todas equivalentes).
+
+\begin{definition}
 	El máximo común divisor entre dos enteros
+	no ambos iguales a cero
 	es el producto de los primos comunes (con repetición)
 	entre las factorizaciones de éstos.
 \end{definition}
 
-\begin{theorem}[Teorema de Bézout]
-	Si $a$ y $b$ son dos enteros cuyo máximo común divisor
-	es $d$, entonces existen enteros $x$ e $y$ tales que
-	\[ax + by = d.\]
-\end{theorem}
+\begin{definition}
+	El máximo común divisor
+	entre dos enteros $a$ y $b$
+	no ambos iguales a cero
+	es el entero positivo que
+	satisface:
+	\begin{itemize}
+		\ii $d \mid a$ y $d \mid b$.
+		\ii Si $c \mid a$ y $c \mid b$, entonces $c \mid d$.
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	El máximo común divisor entre dos enteros
+	no ambos iguales a cero
+	es el mayor entero positivo que
+	divide a ambos.
+\end{definition}
+
+A este número lo denotamos por $\gcd (a, b)$
+y por ser más intuitivo tomaremos
+la última definición y probaremos
+que es equivalente a las otras dos.
+
+\begin{lemma}[Teorema de Bézout]
+	\label{lemma:bezout}
+	Si $a$ y $b$ son dos enteros no ambos iguales a cero,
+	entonces existen enteros $x$ e $y$ tales que
+	\[ax + by = \gcd (a, b).\]
+\end{lemma}
 
 Una manera de ver esto es fijarse en la
 imagen general y considerar a \textbf{todos}
@@ -276,15 +307,19 @@ en ese conjunto. Por lo que lo construimos:
 y sea $d$ el menor elemento de $S$ (nótese que
 $S$ no es vacío). Probaremos que $d = \gcd (a, b)$.
 Demostrar directamente esto puede ser difícil,
-por lo que en su lugar probaremos que $d \mid \gcd(a, b)$
-y que $\gcd (a, b) \mid d$.
-Claramente $\gcd (a, b) \mid d$.
+por lo que en su lugar probaremos que $d \leq \gcd(a, b)$
+y que $\gcd (a, b) \leq d$.
+Claramente $\gcd (a, b) \mid d$,
+por lo que $\gcd (a, b) \leq d$.
 \begin{question*}
 	¿Por qué pasa esto?
 \end{question*}
 
-Ahora solo falta probar que $d \mid \gcd(a, b)$,
-que es lo mismo que decir que $d \mid a$ y $d \mid b$.
+Ahora solo falta probar que $d \leq \gcd(a, b)$,
+y sería suficiente probar que $d \mid a$ y $d \mid b$.
+\begin{question*}
+	¿Por qué?
+\end{question*}
 Por construcción existen dos enteros $x_0$ e $y_0$
 que satisfacen
 \[ax_0 + by_0 = d.\]
@@ -301,10 +336,37 @@ está en el conjunto, que es una contradicción
 debido a que $r < d$ y $d$ habíamos supuesto
 era el mínimo elemento. Esto implica
 que $d \mid a$ y $d \mid b$
-y por lo tanto $d \mid \gcd(a, b)$
 completando la prueba.
 
+\begin{lemma}[Lema de Euclides]
+	Si $p$ es un primo tal que $p \mid ab$,
+	entonces $p \mid a$ o $p \mid b$.
+\end{lemma}
+Tenemos dos casos:
+\paragraph{$p \mid a$. } Ya estaríamos.
+\paragraph{$p \nmid a$. }
+Si esto ocurre, sería suficiente
+probar que $p \mid b$.
+$p \nmid a$ esto es lo mismo
+que decir $\gcd (a, p) = 1$,
+ya que caso contrario,
+si $d = \gcd(a, p) > 1$, entonces $d = p$
+(ya que $p$ es primo y $d \mid p$),
+lo que implicaría $p \mid p$ y $p \mid a$
+por ser el máximo común divisor,
+contradiciendo que $p \nmid a$.
 
+Por el \autoref{lemma:bezout},
+existen enteros $x$ e $y$ tales que
+\[ax + py = 1,\]
+multiplicando ambos lados por $b$
+concluimos que
+\[abx + pby = b.\]
+Como $p \mid ab$, entonces $p \mid b$,
+completando la prueba.
+\begin{remark}
+	Recuerda la \autoref{proposition:sumdiv}.
+\end{remark}
 
 \subsection{Demostración del Teorema Fundamental de la Aritmética}
 Para probar este teorema debemos
@@ -315,9 +377,8 @@ probar tres cosas:
 	primos.
 	\ii Sea cual sea la descomposición
 	en factores primos que obtengamos,
-	estos serán siempre los mismos primos.
-	\ii Los exponentes de todos los primos
-	son únicos (este paso completa lo de ``de manera única'').
+	estos serán siempre los mismos primos
+	y aparecerán la misma cantidad de veces.
 \end{itemize}
 
 El primer ítem requiere de inducción,
@@ -343,10 +404,7 @@ también es un producto de primos, completando
 la inducción.
 
 El segundo punto requiere el lema de Euclides.
-\begin{lemma}[Lema de Euclides]
-	Si $p$ es un primo tal que $p \mid ab$,
-	entonces $p \mid a$ o $p \mid b$.
-\end{lemma}
+
 
 \section{Aritmética modular}
 Esta es una idea en la que se sostiene
