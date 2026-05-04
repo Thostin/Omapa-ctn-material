@@ -6,6 +6,9 @@
 \usepackage{float, cancel}
 \usepackage{numerica}
 
+\usepackage{environ}
+\usepackage{etoolbox}
+
 \newscrambledenv{hint}
 
 \hintlabel{Pista}
@@ -20,6 +23,61 @@
 
 \newcommand{\hintref}[1]{\textup{\ref{hint:#1}}}
 
+
+%%% WARNING:
+%%% ESCRITO POR DEEPSEEK
+
+\makeatletter
+
+% List of problem labels in order of appearance
+\def\problem@list{}
+% List of solution bodies in the same order (parallel)
+\def\solution@list{}
+
+% Hook into \label inside problem environment
+\let\oldlabel\label
+\def\problem@recordlabel#1{%
+    \oldlabel{#1}%
+    \listxadd{\problem@list}{#1}%
+}
+
+% Patch the problem environment
+\let\oldproblem\problem
+\let\endoldproblem\endproblem
+\renewenvironment{problem}{%
+    \let\label\problem@recordlabel
+    \oldproblem
+}{%
+    \oldendproblem
+    \let\label\oldlabel
+}
+
+% Environment to store a solution (does not print)
+\NewEnviron{storedsolution}[1]{%
+    \edef\@tempa{%
+        \noexpand\listxadd{\noexpand\solution@list}{#1}%
+        \noexpand\listxadd{\noexpand\solution@list}{\unexpanded\expandafter{\BODY}}%
+    }%
+    \@tempa
+}
+
+% Print all solutions in the order problems appeared
+\newcommand{\printsolutions}{%
+    \def\remainingProblems{\problem@list}%
+    \def\remainingSolutions{\solution@list}%
+    \whileboolexpr{ test {\not\equal{\remainingProblems}{}} }{%
+        % Pop first problem label
+        \expandafter\listpop\expandafter\remainingProblems\to\@prob
+        % Pop first solution body (paired with that label)
+        \expandafter\listpop\expandafter\remainingSolutions\to\@solbody
+        \par\noindent\textbf{Solution to problem~\ref{\@prob}:}\par
+        \@solbody
+        \par\medskip
+    }%
+}
+
+\makeatother
+% --- End of adaptation ---
 \title{Entrenamiento - OMAPA}
 \author{Ever Ortega}
 
