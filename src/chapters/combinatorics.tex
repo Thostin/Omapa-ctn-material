@@ -1,7 +1,6 @@
 \chapter{Combinatoria}
 La combinatoria es el arte de contar.
 
-
 En esta sección exploraremos los conceptos
 fundamentales de la combinnatoria.
 
@@ -59,7 +58,7 @@ se deben sumar las posiblidades para
 hallar la cantidad total de las mismas:
 cuando se deben multiplicar.
 
-El ejemplo más sencillo es el siguiente:
+Un ejemplo sencillo es el siguiente:
 \begin{example}
 	Emilio tiene dos dados idénticos,
 	primero tira uno, luego otro
@@ -227,6 +226,7 @@ multiplicamos los tres valores y obtenemos
 \[3 \cdot 2 \cdot 1 = 6.\]
 
 Aquí un diagrama para entender mejor:
+
 \vspace{0.3cm}
 \centering
 \begin{asy}
@@ -306,6 +306,33 @@ $4$, $5$, \dots, $10$ y multiplicarlas.
 Eso es simple conociendo el factorial:
 \[3! \cdot 7! = 30240.\]
 
+\begin{example}[Cantidad de subconjuntos]
+	La cantidad de subconjuntos de un conjunto con $n$
+	elementos es $2^n$ (incluyendo el conjunto vacío).
+\end{example}
+Una manera de interpretar esto es poniendo
+a cada elemento del conjunto en una fila.
+Ahora, un subconjunto puede o no contener a
+uno de ellos, y eso para para todos los
+elementos. Entonces para contar la cantidad
+de subconjuntos podemos ir elemento por elemento
+y decidir si está o no en el subconjunto, y
+como son dos posibilidades tendremos en total
+\[\underbrace{2 \cdot 2 \cdot 2 \cdots 2}_{n \ \text{repeticiones}} = 2^n.\]
+
+\begin{remark}
+	Otra manera de verlo es considerar que
+	si cualquier subconjunto de $n$ elementos
+	tiene $2^n$ subconjuntos, entonces
+	al añadirle un elemento más, todos los subconjuntos
+	anteriores se mantienen y se generan exactamente $2^n$
+	subconjuntos nuevos que son todos los anteriores pero
+	con el nuevo elemento extra, dando así un total de
+	$2^n + 2^n = 2^{n + 1}$ subconjuntos.
+	El conjunto vacío tiene $2^0 = 1$ elementos,
+	y ya estaríamos por inducción.
+\end{remark}
+
 \subsection*{Problemas para esta sección}
 \begin{problem}
 Emilio tiene $n$ dados de $6$ caras
@@ -384,7 +411,37 @@ cuántas veces no ocurre eso.
 Aquí algunos ejemplos.
 
 \begin{example}
+	¿Cuántos subconjuntos de ${1, 2, \dots, n}$
+	contienen por lo menos un elemento par?
 \end{example}
+Si tomamos el camino incorrecto de
+calcular directamente el número
+deseado nos complicaremos demasiado.
+Resulta ser que la cantidad de subconjuntos
+que contienen por lo menos un elemento
+par es la cantidad total de subconjuntos
+menos la cantidad de ellos que no contiene
+ningún elemento par.
+
+Por lo que contaremos la cantidad de subconjuntos
+que consistan únicamente en
+elementos impares (contanto el conjunto vacío),
+esta cantidad es obviamente la cantidad de
+subconjuntos del conjunto de todos los
+elementos impares de ${1, 2, \dots, n}$.
+
+De momento tenemos lo siguiente: %NOTE: Reparafrasear eso
+\begin{itemize}
+	\ii La cantidad total de subconjuntos es $2^n$.
+	\ii La cantidad de elementos impares de ${1, 2, \dots, n}$
+	es $\left\lceil\frac n2\right\rceil$.
+\end{itemize}
+\begin{question*}
+	Verifique que el segundo punto sea cierto.
+\end{question*}
+
+Ahora, el número que estamos buscando es
+\[2^n - 2^{\left\lceil\frac n2\right\rceil}.\]
 
 \begin{example}[Paradoja del cumpleaños]
 	Se encuentran $22$ personas en una sala.
@@ -424,6 +481,16 @@ es de aproximadamente $51\%$.
 Estas son herramientas fundamentales que
 nos ayudan a resolver todo tipo
 de problemas de combinatoria.
+
+\begin{definition}[Permutación]
+	Una permutación de una colección
+	de elementos $a_1$, $a_2$, \dots, $a_n$
+	es un \textit{tuplo}\footnotemark
+	que contiene a los mismos.
+
+	\footnotetext{Un tuplo es una secuecia ordenada
+		de elementos, se suele simbolizar así: $(a_1, a_2, \dots, a_n)$.}
+\end{definition}
 
 \begin{example}[Permutaciones con orden]
 	La cantidad de maneras de ubicar $k$
@@ -489,6 +556,161 @@ de entre $12$ sin importar el orden, pero esto
 es aplicación de fórmula:
 \[{12\choose{2}} = \frac{12 \cdot 11 }{2!} = 66.\]
 
+\section{Principio de inclusión-exclusión}
+Este es un concepto que, normalmente, suele
+enseñarse como un último tema en muchos lugares,
+y no entiendo por qué ya que es un principio.
+El enunciado potente es el siguiente:
+\begin{proposition}[Inclusión-Exclusión]
+	Si $A_1$, $A_2$, \dots, $A_n$ son conjuntos, entonces
+	\begin{align*}
+		\abs{A_1 \cup A_2 \cup \cdots \cup A_n} = & \sum_{0 \leq i \leq n}\abs{A_i}                             \\
+		                                          & - \sum_{0 \leq i < j \leq n}\abs{A_i\cap A_n}               \\
+		                                          & + \sum_{0 \leq i < j < k \leq n}\abs{A_i \cap A_j \cap A_k} \\
+		                                          & \vdots                                                      \\
+		                                          & + (-1)^{n - 1} \abs{A_1 \cap A_2 \cap \cdots \cap A_n}
+	\end{align*}
+\end{proposition}
+La demostración queda a cargo del lector
+más curioso, % TODO: Para nada tengo pereza de escribir
+y es por inducción en la cantidad de
+elementos de conjuntos.
+
+Este teorema es súper útil cuando tratamos,
+justamente con cantidades de varios
+conjuntos que interactúan entre sí,
+sin ir más allá, veamos unos ejemplos.
+
+\begin{example}[Ejemplo clásico]
+	Varias personas compraron helados
+	de sabor único
+	de una heladería y se sabe lo siguiente:
+	\begin{itemize}
+		\ii $100$ personas compraron el sabor vainilla.
+		\ii $43$ personas compraron el sabor chocolate.
+		\ii $64$ personas compraron el sabor menta.
+		\ii $22$ personas compraron el sabor vainilla y el sabor chocolate.
+		\ii $15$ personas compraron el sabor vainilla y el sabor menta.
+		\ii Nadie compró el sabor el sabor vainilla y el sabor menta.
+	\end{itemize}
+	¿Cuántas personas compraron helados?
+\end{example}
+
+Aquí la clave es construir los conjuntos
+de personas que compraron ciertos sabores de helado,
+digamos $A$, $B$ y $C$ y aplicar el principio.
+Los datos del problema dicen lo siguiente:
+\begin{itemize}
+	\ii $\abs{A} = 100$.
+	\ii $\abs{B} = 43$.
+	\ii $\abs{C} = 64$.
+	\ii $\abs{A \cap B} = 22$.
+	\ii $\abs{A \cap C} = 15$.
+	\ii $\abs{B \cap C} = 0$.
+\end{itemize}
+
+Como $\abs{B \cap C} = 0$, entonces $\abs{A \cap B \cap C} = 0$.
+Aplicando el principio:
+\[A \cup B \cup C = 100 + 43 + 64 - 22 - 15 - 0 + 0 = \eval{100 + 43 + 64 - 22 - 15}.\]
+
+Otro ejemplo muy parecido:
+\begin{example}[No realista]
+	Calcule la cantidad de
+	enteros positivos no mayores que $100$
+	que son múltiplos de $2$, $3$ o $5$.
+\end{example}
+
+Antes que nada debemos probar un lema
+bastante útil en general:
+\begin{lemma}[Cantidad de múltiplos]
+	Sea $n$ un entero positivo.
+	La cantidad de enteros positivos
+	no mayores que $n$ que son
+	múltiplos de $k$ es
+	\[\left\lfloor\frac nk\right\rfloor.\]
+\end{lemma}
+Esto no es muy defícil de probar y se deja como
+ejercicio al lector.
+%TODO: Para nada no tengo ganas tipear eso
+
+Entonces podemos construir tres conjuntos
+de enteros positivos múltiplos de $2$, $3$ y $5$
+no mayores que $100$, y los llamaremos
+$A$, $B$ y $C$. Nuestro objetivo es hallar
+$\abs{A \cup B \cup C}$.
+Pero por suerte podemos aplicar el principio y
+ver que
+\begin{align*}
+	\abs{A \cup B \cup C} & = \abs{A} + \abs{B} + \abs{C} - \abs{A \cap B} - \abs{A \cap C} - \abs{B \cap C} + \abs{A \cap B \cap C}                                                                                               \\
+	                      & = \left\lfloor\frac{100}{2}\right\rfloor + \left\lfloor\frac{100}{3}\right\rfloor + \left\lfloor\frac{100}{5}\right\rfloor - \abs{A \cap B} - \abs{A \cap C} - \abs{B \cap C} + \abs{A \cap B \cap C}.
+\end{align*}
+
+Pero claro, ¿cómo hallamos las intersecciones entre estos
+conjuntos?, lo cierto es que, por ejemplo, $\abs{A \cap B}$
+es la cantidad de números que son múltiplos de $2$
+\textbf{y} de $3$, que son precisamente todos los múltiplos
+de $6$, de la misma manera $\abs{A \cap C}$ es
+la cantidad de múltiplos de $10$ y $\abs{B \cap C}$
+es la cantidad de núltiplos de $15$.
+De manera análoga notamos que $\abs{A \cap B \cap C}$
+es la cantidad de múltiplos de $30$.
+Y ahora sí podemos terminar de aplicar el teorema:
+
+\begin{align*}
+	  & \left\lfloor\frac{100}{2}\right\rfloor + \left\lfloor\frac{100}{3}\right\rfloor + \left\lfloor\frac{100}{5}\right\rfloor - \abs{A \cap B} - \abs{A \cap C} - \abs{B \cap C} + \abs{A \cap B \cap C}                                                                                                      \\
+	= & \left\lfloor\frac{100}{2}\right\rfloor + \left\lfloor\frac{100}{3}\right\rfloor + \left\lfloor\frac{100}{5}\right\rfloor - \left\lfloor\frac{100}{6}\right\rfloor - \left\lfloor\frac{100}{10}\right\rfloor  - \left\lfloor\frac{100}{15}\right\rfloor +  \left\lfloor\frac{100}{30}\right\rfloor        \\
+	= & \eval{\left\lfloor\frac{100}{2}\right\rfloor + \left\lfloor\frac{100}{3}\right\rfloor + \left\lfloor\frac{100}{5}\right\rfloor - \left\lfloor\frac{100}{6}\right\rfloor - \left\lfloor\frac{100}{10}\right\rfloor  - \left\lfloor\frac{100}{15}\right\rfloor +  \left\lfloor\frac{100}{30}\right\rfloor}
+\end{align*}
+
+Una manera de visualizar esto es con un \textit{diagrama de Venn}:
+
+\vspace{0.3cm}
+\centering
+\begin{asy}
+	size(6cm);
+	real r = 1;
+	real c = 0.8;
+
+	pair A = (0, 0);
+	pair B = (-0.5, -sqrt(3)/2);
+	pair C = (0.5, -sqrt(3)/2);
+
+	path C1 = circle(A, r);
+	path C2 = circle(B, r);
+	path C3 = circle(C, r);
+
+	draw(C1);
+	draw(C2);
+	draw(C3);
+
+	label("$A$", A + c * r * (-1, 1));
+	label("$B$", B + c * r * (-1, -1));
+	label("$C$", C + c * r * (1, -1));
+
+	pair O = 1/3 * (A + B + C);
+	real d = 2;
+	label("$3$", O);
+	label("$13$", O + d * (1/2 * (A + B) - O));
+	label("$7$", O + d * (1/2 * (A + C) - O));
+	label("$3$", O + d * (1/2 * (C + B) - O));
+
+	label("$27$", O + d * (A - O));
+	label("$14$", O + d * (B - O));
+	label("$7$", O + d * (C - O));
+\end{asy}
+\par
+\raggedright
+
+En cada espacio se encuentra la cantidad
+de números que son múltiplos únicamente de los
+números que representan los conjuntos
+que se intersecan, así, por ejemplo,
+la cantidad de números que son múltiplos de
+$3$ pero no de $2$ ni $5$ es $14$.
+
+\begin{question*}
+	Compruebe que el diagrama esté correcto.
+\end{question*}
 \section{Coloreo}
 El coloreo es una técnica que
 consiste en pintar o asignar algo
