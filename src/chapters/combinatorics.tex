@@ -562,7 +562,7 @@ enseñarse como un último tema en muchos lugares,
 y no entiendo por qué ya que es un principio.
 El enunciado potente es el siguiente:
 \begin{proposition}[Inclusión-Exclusión]
-	Si $A_1$, $A_2$, \dots, $A_n$ son conjuntos, entonces
+	Si $A_1$, $A_2$, \dots, $A_n$ son conjuntos finitos, entonces
 	\begin{align*}
 		\abs{A_1 \cup A_2 \cup \cdots \cup A_n} = & \sum_{0 \leq i \leq n}\abs{A_i}                             \\
 		                                          & - \sum_{0 \leq i < j \leq n}\abs{A_i\cap A_n}               \\
@@ -613,7 +613,11 @@ Como $\abs{B \cap C} = 0$, entonces $\abs{A \cap B \cap C} = 0$.
 Aplicando el principio:
 \[A \cup B \cup C = 100 + 43 + 64 - 22 - 15 - 0 + 0 = \eval{100 + 43 + 64 - 22 - 15}.\]
 
-Otro ejemplo muy parecido:
+Pero claro, la mayoría de veces
+no será tan fácil, y será necesario
+primero construir los conjuntos
+para resolver el problema como
+lo es en el siguiente ejemplo.
 \begin{example}[No realista]
 	Calcule la cantidad de
 	enteros positivos no mayores que $100$
@@ -629,7 +633,7 @@ bastante útil en general:
 	múltiplos de $k$ es
 	\[\left\lfloor\frac nk\right\rfloor.\]
 \end{lemma}
-Esto no es muy defícil de probar y se deja como
+Esto no es muy difícil de probar y se deja como
 ejercicio al lector.
 %TODO: Para nada no tengo ganas tipear eso
 
@@ -654,7 +658,7 @@ la cantidad de múltiplos de $10$ y $\abs{B \cap C}$
 es la cantidad de núltiplos de $15$.
 De manera análoga notamos que $\abs{A \cap B \cap C}$
 es la cantidad de múltiplos de $30$.
-Y ahora sí podemos terminar de aplicar el teorema:
+Y ahora sí podemos terminar el problema:
 
 \begin{align*}
 	  & \left\lfloor\frac{100}{2}\right\rfloor + \left\lfloor\frac{100}{3}\right\rfloor + \left\lfloor\frac{100}{5}\right\rfloor - \abs{A \cap B} - \abs{A \cap C} - \abs{B \cap C} + \abs{A \cap B \cap C}                                                                                                      \\
@@ -704,13 +708,64 @@ Una manera de visualizar esto es con un \textit{diagrama de Venn}:
 En cada espacio se encuentra la cantidad
 de números que son múltiplos únicamente de los
 números que representan los conjuntos
-que se intersecan, así, por ejemplo,
+que se intersecan (y posiblemente otros),
+así, por ejemplo,
 la cantidad de números que son múltiplos de
 $3$ pero no de $2$ ni $5$ es $14$.
 
 \begin{question*}
 	Compruebe que el diagrama esté correcto.
 \end{question*}
+
+En realidad, no es muy difícil generalizar este concepto
+a proposiciones en general:
+\begin{lemma}[Inclusión-Exclusión con proposiciones]
+	Si $x_1$, $x_2$, \dots, $x_n$ son proposiciones
+	y $P(s)$ es ``la cantidad de maneras'' en que
+	la proposición $s$ es cierta, entonces
+	\begin{align*}
+		P(x_1 \vee \cdots \vee x_n) = & \sum_{0 \leq i \leq n}P(x_i)                                 \\
+		                              & - \sum_{0 \leq i < j \leq n}P(x_i\wedge x_j)                 \\
+		                              & + \sum_{0 \leq i < j < k \leq n}P(x_i \wedge x_j \wedge x_k) \\
+		                              & \vdots                                                       \\
+		                              & + (-1)^{n - 1} P(x_1 \wedge x_2 \wedge \cdots \wedge x_n)
+	\end{align*}
+\end{lemma}
+
+Esto puede asustar, pero en realidad no es tan complicado,
+es simplemente notar que es básicamente lo mismo que
+con conjuntos.
+
+\begin{proof}
+	Podemos definir a $P(s)$ como
+	la cardinalidad del conjunto
+	de todos los elementos que satisfacen que $s$
+	sea cierto. De ahí aplicamos el principio
+	original con conjuntos y ya estaríamos.
+\end{proof}
+
+\subsection*{Problemas para esta sección}
+\begin{problem} %TODO: Chequear el enunciado original
+\label{problem:omapa2025-5}
+% TODO: Escribir solución del problema
+Claudia tiene $10$ tazas distintas entre sí. Ella desea pintar cada taza de un
+solo color de entre los colores blanco, amarillo y azul. También quiere
+asegurarse de tener por lo menos dos tazas de cada color. ¿De cuántas maneras
+puede hacerlo?
+\begin{hints}
+	\begin{hint}
+		Calcular la cantidad
+		de maneras que no cumple la condición.
+	\end{hint}
+
+	\begin{hint}
+		Considerar las proposiciones que consideran
+		la cantidad de maneras que no satisfacen la
+		condición para un color en específico.
+	\end{hint}
+\end{hints}
+\end{problem}
+
 \section{Coloreo}
 El coloreo es una técnica que
 consiste en pintar o asignar algo
