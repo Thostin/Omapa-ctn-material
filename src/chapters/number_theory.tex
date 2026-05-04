@@ -434,6 +434,104 @@ lo que implica $p_1 \mid q_3\cdots q_t$
 y así sucesivamente hasta $p_1 \mid q_t$,
 lo que es una contradicción.
 
+\section{Algoritmo de la división Euclidiana}
+Este es teorema y método que sirve
+para calcular el máximo común divisor
+entre dos enteros. Consiste en lo siguiente:
+
+\begin{theorem}
+	Si $a = bq + r$ con $0 \leq r < b$,
+	entonces $\gcd (a, b) = \gcd (b, r)$.
+\end{theorem}
+
+Para ilustrar por qué esto es últil,
+básicamene si tomamos $b < a$, entonces
+$r < a$, por lo que estaríamos disminuyendo
+el valor de una de las variables sí o sí,
+lo que nos permite repetir este
+proceso hasta que eventualmente uno de los
+valores divida al otro, y este primero
+será el máximo común divisor entre los primeros
+dos números.
+
+\begin{proof}
+	Si
+	\[a = bq + r\]
+	claramente $\gcd (a, b) \mid r$,
+	por lo que podemos escribir $a = a^\prime d$,
+	$b = b^\prime d$ y $r = r^\prime d$
+	siendo $d = \gcd (a, b)$.
+	\begin{align*}
+		a^\prime \cancel {d} & = b^\prime \cancel{d}q + r^\prime \cancel{d} \\
+		a^\prime             & = b^\prime q + r^\prime
+	\end{align*}
+
+	Notemos ahora que $a^\prime$
+	y $b^\prime$ son coprimos entre sí
+	ya que $\gcd(a^\prime, b^\prime) = 1$
+	Ahora es suficiente probar que $\gcd (b^\prime, r^\prime) = 1$.
+	\begin{question*}
+		¿Por qué?
+	\end{question*}
+
+	Esto es sencillo ya que en caso contrario,
+	si $g = \gcd (b^\prime, r^\prime) > 1$, entonces
+	$g \mid a^\prime$ y $g^\prime \mid b^\prime$,
+	lo que es una contradicción porque
+	$a^\prime$ y $b^\prime$ eran coprimos entre sí.
+\end{proof}
+
+Pero nos percatamos de algo:
+nunca usamos el dato de que
+$0 \leq r < b$; en realidad no era
+necesario, por lo que si podemos
+descomponer a $a$ en la forma
+$a = bq + r$ sean cual sean
+los valores de $r$ y $q$,
+podemos afirmar con total certeza que
+$\gcd(a, b) = \gcd (b, r)$.
+Esto deja una consecuencia inmediata:
+\begin{corollary}
+	$\gcd(a, b) = \gcd(a, b + ak)$, para todo $k \in \ZZ$.
+\end{corollary}
+
+Con este teorema en la bolsa, se vuelve
+sencillo calcular el máximo común divisor
+entre dos números sin la necesidad de factorizarlo.
+
+\begin{example}
+	Calcule el máximo común divisor entre
+	$124$ y $48$.
+\end{example}
+Pues simple:
+\begin{align*}
+	124 & = 48 \cdot 2 + 28 \\
+	48  & = 28 \cdot 1 + 20 \\
+	28  & = 20 \cdot 1 + 8  \\
+	20  & = 8 \cdot 2 + 4   \\
+	4   & \mid 8
+\end{align*}
+Por lo que
+\[\gcd (124, 48) = \gcd(28, 48) = \gcd(28, 20) = \gcd(8, 20) = \gcd(8, 4) = 4.\]
+
+A este proceso se lo llama \textit{Algoritmo de Euclides}
+para el máximo común divisor, y es de lo que trata
+esta sección. Más específicamente el algoritmo escrito
+en forma general para calcular el máximo
+común divisor entre $r_0$ y $r_1$ ($\abs{r_0} \geq \abs{r_1}$) es así:
+
+% ISSUE: The \vdots looks off-center with respect 
+% to the equal signs
+\begin{minipage}{\textwidth}
+	\begin{align*}
+		r_0 & =      r_1q_0 + r_2      \\
+		r_1 & =      r_2q_1 + r_3      \\
+		    & \vdots                   \\
+		r_k & =      r_{k + 1}q_k + 0.
+	\end{align*}
+	siendo $\gcd(r_0, r_1) = r_{k + 1}$.
+\end{minipage}
+
 \section{Aritmética modular}
 Esta es una idea en la que se sostiene
 casi todo lo desarrollado respecto
