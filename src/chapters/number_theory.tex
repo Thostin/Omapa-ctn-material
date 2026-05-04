@@ -3,11 +3,10 @@ En este capítulo hablaremos de
 lo básico que concierne a la
 teoría de números de olimpiadas.
 
-No discurtiremos demasiado los
+No discutiremos demasiado los
 problemas que aparecen en omapa,
 pero si lo elemental que se aplican
-a éstos e innumerables problemas
-de práctica.
+a éstos y varios problemas de prática.
 
 \section{Divisibilidad}
 La intuición de este concepto
@@ -69,6 +68,37 @@ De manera similar si $a$ \textbf{no}
 divide a $b$ se simboliza como
 \[a \nmid b.\]
 
+Otra manera de pensarlo es
+con tablas de multiplicar:
+
+\begin{align*}
+	            & \vdots \\
+	5 \times -5 & = -25  \\
+	5 \times -4 & = -20  \\
+	5 \times -3 & = -15  \\
+	5 \times -2 & = -10  \\
+	5 \times -1 & = -5   \\
+	5 \times 0  & = 0    \\
+	5 \times 1  & = 5    \\
+	5 \times 2  & = 10   \\
+	5 \times 3  & = 15   \\
+	5 \times 4  & = 20   \\
+	5 \times 5  & = 25   \\
+	5 \times 6  & = 30   \\
+	5 \times 7  & = 35   \\
+	5 \times 8  & = 40   \\
+	            & \vdots
+\end{align*}
+
+Podemos decir entonces que
+$a \mid b$ si $b$ está en la
+tabla de multiplicar de $a$.
+
+\begin{question*}
+	¿Cómo se relaciona esto con
+	la \autoref{definition:div}?
+\end{question*}
+
 \subsection{Propiedades de la división}
 Ahora establecemos algunas propiedades
 que son fundamentales relacionados a
@@ -89,8 +119,9 @@ entero en más partes que unidades éste
 contiene.
 
 \begin{proposition}
-	Si $a \mid b$ y $a \mid b + c$, entonces
-	$a \mid c$.
+	\label{proposition:sumdiv}
+	Si $a \mid x$ y $a \mid y$, entonces
+	$a \mid x + y$.
 \end{proposition}
 
 \begin{proposition}
@@ -104,24 +135,76 @@ contiene.
 \end{proposition}
 
 \subsection*{Problemas para esta sección}
-Estos problemas se hacen todos
-con la \autoref{definition:div}.
-
 \begin{problem}
 Demuestre las últimas cinco
-proposiciones.
+proposiciones (\textit{Nota: } Todas se hacen
+con la \autoref{definition:div}).
 \end{problem}
 
-\section{Algoritmo de división Euclidiana}
-Este el el algoritmo básico en el que se sostiene
-toda la teoría de números.
-
+\section{Algoritmo de la división}
 Este es un teorema que nos permite expresar
 cada par de dividendo y divisor $a$ y $b$
 como
 \[a = bq + r\]
-donde $0 \leq r < b$.
-Que en síntesis
+donde $0 \leq r < b$ de manera \textbf{única}.
+
+Una manera de ver por qué esto es cierto
+es restringir $a > b > 0$ y ver qué pasa
+si tomamos a $a$ como dividendo y $b$
+como divisor.
+Digamos que $q$ es la mayor cantidad de veces que
+podemos sacar $b$ de $a$ sin que este se vuelta
+negativo, y al resto que sobra de sacar $q$
+veces $b$ de $a$ (que es menor que $b$
+ya que de lo contrario podríamos sacar más veces $b$
+de $a$)
+lo llamamos $r$, y de aquí se ve que
+\[a = bq + r.\]
+
+Demostrar formalmente este facto no es muy
+complicado y requiere de un pensamiento
+muy concreto pero fácil de seguir.
+
+\begin{proposition}[Principio del buen orden]
+	\label{proposition:well_order}
+	Si $A$ es un subconjunto no vacío
+	de los números naturales, entonces $A$
+	tiene un mínimo elemento.
+\end{proposition}
+
+\begin{question*}
+	Convéncete que esto es cierto.
+\end{question*}
+
+Dado que queremos encontrar un par $(q, r)$
+tal que $a = bq + r$ y $0 \leq r$,
+podemos hablar de \textit{todos}
+los enteros $q$ que satisfacen que si
+$a = bq + r$ entonces $r \geq 0$
+y luego tratar de hallar
+el menor valor posible de $r = a - bq$.
+
+Por lo que definimos el conjunto
+\[A = \left\{a - bq \colon a - bq \geq 0\right\}.\]
+
+Como $A$ es un conjunto de enteros no
+negativos, entonces tiene un mínimo
+elemento por \autoref{proposition:well_order}
+al que llamaremos $r$ y que claramente es
+único.
+
+Para probar que $r < b$ podemos ir por
+contradicción y suponer que $r \geq b$,
+pero esto implica que
+\[0 \leq r - b = a - bq - b = a - b(q + 1),\]
+y como $q + 1$ es entero, entonces
+$a - b(q + 1)$ está en $A$ ya que éste
+es mayor o igual que cero,
+pero entonces $r - b < r$
+está en $A$, por lo que $r$
+no era el menor elemento, contradicción.
+
+Por lo que $0 \leq r < b$ y finalizamos.
 
 \section{Números primos}
 Hay enteros positivos que no son el
@@ -148,7 +231,7 @@ que si $n$ es primo, entonces éstos son sus únicos
 dos divisores positivos (nótese que así el $1$ no es primo).
 
 \begin{theorem}[Teorema fundamental de la aritmética]
-	Todo entero positivo $n$ puede ser descompuesto
+	Todo entero positivo $n \geq 2$ puede ser descompuesto
 	en factores primos de manera única.
 \end{theorem}
 
@@ -163,6 +246,291 @@ existen unos únicos exponenetes $\alpha_1$, $\alpha_2$,
 Se puede afirmar con bastante seguridad que
 este facto se aplica a casi todos los problemas
 de teoría de números.
+Este teorema lo probamos en la siguiente sección.
+
+Un buen tip es que muchas veces es mejor
+pensar a los números no como
+las cantidades que representan, sino
+en términos de sus factores primos.
+
+\section{Máximo común divisor}
+Existen muchas maneras de definir el
+máximo común divisor entre dos
+enteros, aquí exhibimos tres de ellas
+(que son todas equivalentes).
+
+\begin{definition}
+	El máximo común divisor entre dos enteros
+	no ambos iguales a cero
+	es el producto de los primos comunes (con repetición)
+	entre las factorizaciones de éstos.
+\end{definition}
+
+\begin{definition}
+	El máximo común divisor
+	entre dos enteros $a$ y $b$
+	no ambos iguales a cero
+	es el entero positivo que
+	satisface:
+	\begin{itemize}
+		\ii $d \mid a$ y $d \mid b$.
+		\ii Si $c \mid a$ y $c \mid b$, entonces $c \mid d$.
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	El máximo común divisor entre dos enteros
+	no ambos iguales a cero
+	es el mayor entero positivo que
+	divide a ambos.
+\end{definition}
+
+A este número lo denotamos por $\gcd (a, b)$
+y por ser más intuitivo tomaremos
+la última definición y probaremos
+que es equivalente a las otras dos.
+
+\begin{lemma}[Teorema de Bézout]
+	\label{lemma:bezout}
+	Si $a$ y $b$ son dos enteros no ambos iguales a cero,
+	entonces existen enteros $x$ e $y$ tales que
+	\[ax + by = \gcd (a, b).\]
+\end{lemma}
+
+Una manera de ver esto es fijarse en la
+imagen general y considerar a \textbf{todos}
+los enteros de la forma $ax + by$
+y probar que $\gcd (a, b)$ debe estar
+en ese conjunto. Por lo que lo construimos:
+\[S = \left\{ax + by \colon ax + by > 0\right\},\]
+y sea $d$ el menor elemento de $S$ (nótese que
+$S$ no es vacío). Probaremos que $d = \gcd (a, b)$.
+Demostrar directamente esto puede ser difícil,
+por lo que en su lugar probaremos que $d \leq \gcd(a, b)$
+y que $\gcd (a, b) \leq d$.
+Claramente $\gcd (a, b) \mid d$,
+por lo que $\gcd (a, b) \leq d$.
+\begin{question*}
+	¿Por qué pasa esto?
+\end{question*}
+
+Ahora solo falta probar que $d \leq \gcd(a, b)$,
+y sería suficiente probar que $d \mid a$ y $d \mid b$.
+\begin{question*}
+	¿Por qué?
+\end{question*}
+Por construcción existen dos enteros $x_0$ e $y_0$
+que satisfacen
+\[ax_0 + by_0 = d.\]
+Podemos suponer lo contrario, que
+$d \nmid a$ o $d \nmid b$, sin pérdida de generalidad
+asumimos que $d \nmid a$.
+Por el algoritmo de la división
+podemos escribir
+\[a = dq + r\]
+con $0 < r < d$ ya que $d \nmid a$.
+Pero esto implica que
+\[r = a - dq = a - (ax_0 + by_0) = a(1 - x_0) + (-y_0)b\]
+está en el conjunto, que es una contradicción
+debido a que $r < d$ y $d$ habíamos supuesto
+era el mínimo elemento. Esto implica
+que $d \mid a$ y $d \mid b$
+completando la prueba.
+
+Aquí un teorema muy útil:
+\begin{lemma}[Lema de Euclides]
+	\label{lemma:euclidprime}
+	Si $p$ es un primo tal que $p \mid ab$,
+	entonces $p \mid a$ o $p \mid b$.
+\end{lemma}
+Tenemos dos casos:
+\paragraph{$p \mid a$. } Ya estaríamos.
+\paragraph{$p \nmid a$. }
+Si esto ocurre, sería suficiente
+probar que $p \mid b$.
+$p \nmid a$ esto es lo mismo
+que decir $\gcd (a, p) = 1$,
+ya que caso contrario,
+si $d = \gcd(a, p) > 1$, entonces $d = p$
+(ya que $p$ es primo y $d \mid p$),
+lo que implicaría $p \mid p$ y $p \mid a$
+por ser el máximo común divisor,
+contradiciendo que $p \nmid a$.
+
+Por el \autoref{lemma:bezout},
+existen enteros $x$ e $y$ tales que
+\[ax + py = 1,\]
+multiplicando ambos lados por $b$
+concluimos que
+\[abx + pby = b.\]
+Como $p \mid ab$, entonces $p \mid b$,
+completando la prueba.
+\begin{remark}
+	Recuerda la \autoref{proposition:sumdiv}.
+\end{remark}
+
+\subsection{Demostración del Teorema Fundamental de la Aritmética}
+Para probar este teorema debemos
+probar cosas:
+\begin{itemize}
+	\ii Todo entero positivo mayor que
+	$1$ puede expresarse como un producto de
+	primos.
+	\ii Sea cual sea la descomposición
+	en factores primos que obtengamos,
+	estos serán siempre los mismos primos
+	y aparecerán la misma cantidad de veces.
+\end{itemize}
+
+El primer ítem requiere de inducción,
+siendo la base $n = 2$,
+que puede ser expresado como
+un producto de números primos ya que este es primo.
+Para el paso inductivo supongamos que
+todos los enteros positivos $2 \leq n < K$
+se pueden expresar como producto de primos,
+si $n = K$, hay dos posibilidades:
+
+\paragraph{$n$ es primo. } Si esto ocurre entonces
+ya está.
+
+\paragraph{$n$ es compuesto. } Esto significa que
+$n$ tiene por lo menos un divisor $a > 0$ que no es $1$ ni $n$,
+como $a \mid n$ entonces $a < n$ y existe un
+entero $b$ tal que $ab = n$, de la misma manera $b < n$,
+por lo que podemos aplicar la hipótesis inductiva a $a$
+y $b$ y concluir que éstos pueden ser expresados
+como un producto de primos, y de ahí se sigue que $n$
+también es un producto de primos, completando
+la inducción.
+
+El segundo punto requiere el lema de Euclides.
+Supongamos que escribimos a $n$
+como un producto de primos de dos maneras:
+\[p_1p_2 \cdots p_k = q_1q_2 \cdots q_l.\]
+
+Primero podemos simplificar todos los primos
+comunes de tal manera que al final no haya un mismo primo que
+esté de ambos lados de la ecuación.
+Veremos que en esta situación tendremos
+necesariamente $1 = 1$ (todos los primos se
+cancelaron).
+\begin{question*}
+	¿Por qué esto implica que teníamos
+	entonces la misma factorización?
+\end{question*}
+
+Podemos suponer lo contrario,
+que al final tenemos algo como esto:
+\[p_1p_2\cdots p_s = q_1q_2\cdots q_t.\]
+
+Obviamente $p_1 \mid q_1 \cdot (q_2\cdots q_t)$,
+por lo que $p_1 \mid q_1$ o $p_1 \mid q_2\cdots q_t$
+por el \autoref{lemma:euclidprime},
+como $q_1 \neq p_1$, entonces
+la segunda relación de división es cierta,
+por lo que $p_1 \mid q_2q_3 \cdots q_t$,
+lo que implica $p_1 \mid q_3\cdots q_t$
+y así sucesivamente hasta $p_1 \mid q_t$,
+lo que es una contradicción.
+
+\section{Algoritmo de la división Euclidiana}
+Este es teorema y método que sirve
+para calcular el máximo común divisor
+entre dos enteros. Consiste en lo siguiente:
+
+\begin{theorem}
+	Si $a = bq + r$ con $0 \leq r < b$,
+	entonces $\gcd (a, b) = \gcd (b, r)$.
+\end{theorem}
+
+Para ilustrar por qué esto es últil,
+básicamene si tomamos $b < a$, entonces
+$r < a$, por lo que estaríamos disminuyendo
+el valor de una de las variables sí o sí,
+lo que nos permite repetir este
+proceso hasta que eventualmente uno de los
+valores divida al otro, y este primero
+será el máximo común divisor entre los primeros
+dos números.
+
+\begin{proof}
+	Si
+	\[a = bq + r\]
+	claramente $\gcd (a, b) \mid r$,
+	por lo que podemos escribir $a = a^\prime d$,
+	$b = b^\prime d$ y $r = r^\prime d$
+	siendo $d = \gcd (a, b)$.
+	\begin{align*}
+		a^\prime \cancel {d} & = b^\prime \cancel{d}q + r^\prime \cancel{d} \\
+		a^\prime             & = b^\prime q + r^\prime
+	\end{align*}
+
+	Notemos ahora que $a^\prime$
+	y $b^\prime$ son coprimos entre sí
+	ya que $\gcd(a^\prime, b^\prime) = 1$
+	Ahora es suficiente probar que $\gcd (b^\prime, r^\prime) = 1$.
+	\begin{question*}
+		¿Por qué?
+	\end{question*}
+
+	Esto es sencillo ya que en caso contrario,
+	si $g = \gcd (b^\prime, r^\prime) > 1$, entonces
+	$g \mid a^\prime$ y $g^\prime \mid b^\prime$,
+	lo que es una contradicción porque
+	$a^\prime$ y $b^\prime$ eran coprimos entre sí.
+\end{proof}
+
+Pero nos percatamos de algo:
+nunca usamos el dato de que
+$0 \leq r < b$; en realidad no era
+necesario, por lo que si podemos
+descomponer a $a$ en la forma
+$a = bq + r$ sean cual sean
+los valores de $r$ y $q$,
+podemos afirmar con total certeza que
+$\gcd(a, b) = \gcd (b, r)$.
+Esto deja una consecuencia inmediata:
+\begin{corollary}
+	$\gcd(a, b) = \gcd(a, b + ak)$, para todo $k \in \ZZ$.
+\end{corollary}
+
+Con este teorema en la bolsa, se vuelve
+sencillo calcular el máximo común divisor
+entre dos números sin la necesidad de factorizarlo.
+
+\begin{example}
+	Calcule el máximo común divisor entre
+	$124$ y $48$.
+\end{example}
+Pues simple:
+\begin{align*}
+	124 & = 48 \cdot 2 + 28 \\
+	48  & = 28 \cdot 1 + 20 \\
+	28  & = 20 \cdot 1 + 8  \\
+	20  & = 8 \cdot 2 + 4   \\
+	4   & \mid 8
+\end{align*}
+Por lo que
+\[\gcd (124, 48) = \gcd(28, 48) = \gcd(28, 20) = \gcd(8, 20) = \gcd(8, 4) = 4.\]
+
+A este proceso se lo llama \textit{Algoritmo de Euclides}
+para el máximo común divisor, y es de lo que trata
+esta sección. Más específicamente el algoritmo escrito
+en forma general para calcular el máximo
+común divisor entre $r_0$ y $r_1$ ($\abs{r_0} \geq \abs{r_1}$) es así:
+
+% ISSUE: The \vdots looks off-center with respect 
+% to the equal signs
+\begin{minipage}{\textwidth}
+	\begin{align*}
+		r_0 & =      r_1q_0 + r_2      \\
+		r_1 & =      r_2q_1 + r_3      \\
+		    & \vdots                   \\
+		r_k & =      r_{k + 1}q_k + 0.
+	\end{align*}
+	siendo $\gcd(r_0, r_1) = r_{k + 1}$.
+\end{minipage}
 
 \section{Aritmética modular}
 Esta es una idea en la que se sostiene
