@@ -6,8 +6,8 @@
 \usepackage{float, cancel}
 \usepackage{numerica}
 
-\usepackage{environ}
 \usepackage{etoolbox}
+\usepackage{environ}
 
 \newscrambledenv{hint}
 
@@ -23,61 +23,42 @@
 
 \newcommand{\hintref}[1]{\textup{\ref{hint:#1}}}
 
+% --- List of problem keys (in order of appearance) ---
+\def\problemlist{}
 
-%%% WARNING:
-%%% ESCRITO POR DEEPSEEK
-
-\makeatletter
-
-% List of problem labels in order of appearance
-\def\problem@list{}
-% List of solution bodies in the same order (parallel)
-\def\solution@list{}
-
-% Hook into \label inside problem environment
-\let\oldlabel\label
-\def\problem@recordlabel#1{%
-    \oldlabel{#1}%
-    \listxadd{\problem@list}{#1}%
+% --- Command to be used INSIDE the problem environment ---
+\newcommand{\solutionlabel}[1]{%
+  \xdef\currentproblemkey{#1}%               remember key for the hook
+  \xdef\currentproblemnumber{\theproblem}%   store problem number
+  \expandafter\xdef\csname problemnumber@#1\endcsname{\currentproblemnumber}%
+  \ifinlist{#1}{\problemlist}{}{\listadd{\problemlist}{#1}}% add key to list
 }
 
-% Patch the problem environment
-\let\oldproblem\problem
-\let\endoldproblem\endproblem
-\renewenvironment{problem}{%
-    \let\label\problem@recordlabel
-    \oldproblem
-}{%
-    \oldendproblem
-    \let\label\oldlabel
+% --- Hook: append "Sol: p.yy" after every problem ---
+\AfterEndEnvironment{problem}{%
+  \ifdefined\currentproblemkey
+    \unskip\space Sol: \pageref{solpage:\currentproblemkey}%
+    \global\let\currentproblemkey\undefined
+    \global\let\currentproblemnumber\undefined
+  \fi
 }
 
-% Environment to store a solution (does not print)
-\NewEnviron{storedsolution}[1]{%
-    \edef\@tempa{%
-        \noexpand\listxadd{\noexpand\solution@list}{#1}%
-        \noexpand\listxadd{\noexpand\solution@list}{\unexpanded\expandafter{\BODY}}%
-    }%
-    \@tempa
+% --- Redefine the solution environment to store the solution and place a label ---
+\NewEnviron{solution}[1]{%
+  \global\expandafter\let\csname solcontent@#1\endcsname\BODY   % store body
+  \label{solpage:#1}%                                           % page reference
 }
 
-% Print all solutions in the order problems appeared
+% --- Print all solutions in problem order ---
 \newcommand{\printsolutions}{%
-    \def\remainingProblems{\problem@list}%
-    \def\remainingSolutions{\solution@list}%
-    \whileboolexpr{ test {\not\equal{\remainingProblems}{}} }{%
-        % Pop first problem label
-        \expandafter\listpop\expandafter\remainingProblems\to\@prob
-        % Pop first solution body (paired with that label)
-        \expandafter\listpop\expandafter\remainingSolutions\to\@solbody
-        \par\noindent\textbf{Solution to problem~\ref{\@prob}:}\par
-        \@solbody
-        \par\medskip
-    }%
+  \forlistloop{\printsolution}{\problemlist}
+}
+\newcommand{\printsolution}[1]{%
+  \par\vspace{\baselineskip}%
+  \noindent\textbf{Solution to problem \csname problemnumber@#1\endcsname.}\par
+  \csname solcontent@#1\endcsname\par
 }
 
-\makeatother
-% --- End of adaptation ---
 \title{Entrenamiento - OMAPA}
 \author{Ever Ortega}
 
@@ -104,4 +85,7 @@
 
 \chapter*{Hints}
 \printhint
+
+\chapter*{Solutions}
+\printsolutions
 \end{document}
