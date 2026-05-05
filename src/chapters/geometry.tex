@@ -957,18 +957,35 @@ Demuestre que los cuatro puntos de intersección
 entre las bisectrices de los ángulos
 $A$ y $C$ con las de los ángulos $B$ y $D$
 se encuentran sobre una circunferencia.
-\solutionlabel{problem:jajajeje}
+\begin{hints}
+	\begin{hint}
+		La suma de los ángulos opuestos debe ser $180^\circ$.
+	\end{hint}
+\end{hints}
 \end{problem}
-
-\begin{solutiontoproblem}{problem:jajajeje}
-	The solution.
-\end{solutiontoproblem}
 
 \begin{problem}[Teorema de la mariposa]
 A través del punto medio $C$ de una cuerda arbitraria $AB$ de una circunferencia,
 se han trazado dos cuerdas $KL$ y $MN$
 ($K$ y $M$ se encuentran de un mismo lado de $AB$), $Q$ es el punto de intersección
 de $AB$ y $KN$, $P$ es el punto de intersección de $AB$ y $ML$. Demuestre que $QC = CP$.
+
+\begin{hints}
+	\begin{hint}
+		Sea $O$ el centro de la circunferencia.
+	\end{hint}
+	\begin{hint}
+		Sean $X$ e $Y$ los puntos medios de $KN$ y $ML$ respectivamente.
+	\end{hint}
+	\begin{hint}
+		$\angle CXN = \angle LYC$.
+	\end{hint}
+	\begin{hint}
+		$OXQC$ es cíclico.
+	\end{hint}
+\end{hints}
+
+\solutionlabel{problem:mariposa}
 \end{problem}
 
 \begin{problem}[Libro ruso de geometría ``de primaria'']
@@ -1025,3 +1042,27 @@ triángulo cualquiera son rojos,
 entonces el baricentro de ese triángulo
 también es rojo.
 \end{problem}
+
+
+%%%%% Solutions %NOTE: Probably put on another chapter
+\begin{solutiontoproblem}{problem:mariposa}
+	Sea $O$ el centro de la circunferencia y
+	sean $X$ e $Y$ los puntos medios de los segmentos
+	$KN$ y $ML$ respectivamente.
+
+	\input{figures/mariposa.tex}
+
+	Claramente $OX \perp KN$, $OC \perp AB$ y $OY \perp ML$,
+	por lo que $OXQC$ y $OYPC$ son cíclicos.
+
+	Los triángulos $MCL$ y $KCN$ son semejantes,
+	y como $CY$ y $CX$ son medianas correspondientes
+	en estos, entonces $\angle CXN = \angle LYC$,
+	pero por cíclicos
+	\[\angle POC = \angle PYC = \angle LYC = \angle CXN = \angle CXQ = \angle COQ.\]
+	Como los triángulos $OCQ$ y $OCP$
+	satisfacen $\angle OCP = \angle QCO = 90^\circ$
+	y comparten el lado $OC$, entonces éstos son congruentes
+	por lo que $CQ = CP$.
+\end{solutiontoproblem}
+
