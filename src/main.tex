@@ -23,41 +23,39 @@
 
 \newcommand{\hintref}[1]{\textup{\ref{hint:#1}}}
 
-% --- List of problem keys (in order of appearance) ---
-\def\problemlist{}
-
-% --- Command to be used INSIDE the problem environment ---
-\newcommand{\solutionlabel}[1]{%
-  \xdef\currentproblemkey{#1}%               remember key for the hook
-  \xdef\currentproblemnumber{\theproblem}%   store problem number
-  \expandafter\xdef\csname problemnumber@#1\endcsname{\currentproblemnumber}%
-  \ifinlist{#1}{\problemlist}{}{\listadd{\problemlist}{#1}}% add key to list
+\newcommand{\solutionlabel}[1]{
+    \label{#1}
+\textbf{Sol: } \hyperref[solution:#1]{p. \pageref{solution:#1}}.
 }
 
-% --- Hook: append "Sol: p.yy" after every problem ---
-\AfterEndEnvironment{problem}{%
-  \ifdefined\currentproblemkey
-    \unskip\space Sol: \pageref{solpage:\currentproblemkey}%
-    \global\let\currentproblemkey\undefined
-    \global\let\currentproblemnumber\undefined
-  \fi
-}
+\ExplSyntaxOn
 
-% --- Redefine the solution environment to store the solution and place a label ---
-\NewEnviron{solution}[1]{%
-  \global\expandafter\let\csname solcontent@#1\endcsname\BODY   % store body
-  \label{solpage:#1}%                                           % page reference
-}
+\prop_new:N \g_solution_body_prop
+\seq_new:N  \g_solution_order_seq
 
-% --- Print all solutions in problem order ---
-\newcommand{\printsolutions}{%
-  \forlistloop{\printsolution}{\problemlist}
-}
-\newcommand{\printsolution}[1]{%
-  \par\vspace{\baselineskip}%
-  \noindent\textbf{Solution to problem \csname problemnumber@#1\endcsname.}\par
-  \csname solcontent@#1\endcsname\par
-}
+% Usage: \begin{solution}{<key>} ... \end{solution}
+\NewDocumentEnvironment{solutiontoproblem}{m +b}
+  {
+    % store key in order list
+    \seq_gput_right:Nn \g_solution_order_seq {#1}
+    % store body under that key
+    \prop_gput:Nnn \g_solution_body_prop {#1} {#2}
+  }
+  {}
+
+% Print all stored solutions, in the order they were added
+\NewDocumentCommand{\printsolutions}{}%
+  {
+    \seq_map_inline:Nn \g_solution_order_seq
+      {
+        \par\bigskip
+        \section*{Solución~al~problema~\ref{##1}}
+        \label{solution:##1}
+        \prop_item:Nn \g_solution_body_prop {##1}
+      }
+  }
+
+\ExplSyntaxOff
 
 \title{Entrenamiento - OMAPA}
 \author{Ever Ortega}
@@ -86,6 +84,6 @@
 \chapter*{Hints}
 \printhint
 
-\chapter*{Solutions}
+\chapter*{Soluciones}
 \printsolutions
 \end{document}
