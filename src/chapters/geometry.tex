@@ -410,7 +410,6 @@ si no se restringe que los triángulos
 sean directamente semejantes.
 \end{problem}
 
-
 \section{Circunferencias}
 Empezamos con qué es una
 circunferencia.
@@ -794,7 +793,9 @@ cuadrilátero es de hecho cíclico, y por ende
 $x = \angle DBA = \angle DCA = 30^\circ$.
 
 \section{Problemas}
-
+Estos problemas no están en orden,
+algunos son más fáciles y otros
+no tanto.
 \begin{problem}[Teorema de Pick o Parcelarias]
 Se tiene un polígono cuyos lados no se intersecan
 en el plano cartesiano
@@ -824,6 +825,12 @@ al lado $AD$.
 Un punto $X$ se encuentra en el circuncírculo de un triángulo $ABC$. Los pies de las perpendiculares
 desde $X$ a los lados $BC$, $AC$ y $AB$ son $P$, $Q$ y $R$ respectivamente. Demuestre que $P$, $Q$ y $R$
 son colineales.
+
+\begin{hints}
+	\begin{hint}
+		Cíclicos, muchos cíclicos.
+	\end{hint}
+\end{hints}
 \end{problem}
 
 \begin{problem}
@@ -835,6 +842,15 @@ tal que $CD$ es tangente a $\Omega$.
 La recta $CD$
 en $E$. Si $AB = BC$, determine el valor de
 \[\frac{CD}{DE}.\]
+\begin{hints}
+	\begin{hint}
+		Sea $O$ el centro de $\Omega$.
+	\end{hint}
+	\begin{hint}
+		Thales.
+	\end{hint}
+\end{hints}
+\solutionlabel{problem:xx12}
 \end{problem}
 
 \begin{problem}
@@ -908,20 +924,28 @@ circuncentro de $ABC$.
 Sea $ABC$ un triangulo acutángulo, sea $BE$ la prolongación del lado $AB$ y $CF$
 la prolongación del lado $AC$, si $AB=CF$ y $AC=BE$, demuestre que el punto
 de intersección entre el circuncírculo del triángulo $ABC$ y la altura
-del triangulo $AEF$ es circuncentro de $AEF$.
+del triangulo $AEF$ desde $A$ es circuncentro de $AEF$.
+\solutionlabel{problem:xx11}
 \end{problem}
 
 \begin{problem}
 Sea $ABCD$ un paralelogramo. Sean $E$ y $F$ puntos externos al
 paralelogramo tales que los triángulos $AED$ y $CDF$ son equiláteros.
 Demuestre que $EBF$ es equilátero.
+
+\begin{hints}
+	\begin{hint}
+		Demuestre que los triángulos $BAE$, $BCF$ y $EDF$ son congruentes.
+	\end{hint}
+\end{hints}
 \end{problem}
 
-\begin{problem}
-Sea $ABC$ un triángulo. Sea $P \neq C$ un punto en la recta $BC$ tal que $BP = BC$.
-Sea $Q$ el punto medio de $AB$ y sea $R$ la intersección de las rectas $PQ$ y $AC$.
-Si $G$ es el baricentro de $ABC$, demuestre que $RG$ es paralela a $AB$.
-\end{problem}
+%%TODO: Posiblemente remueva porque requiere de Menelao
+% \begin{problem}
+% Sea $ABC$ un triángulo. Sea $P \neq C$ un punto en la recta $BC$ tal que $BP = BC$.
+% Sea $Q$ el punto medio de $AB$ y sea $R$ la intersección de las rectas $PQ$ y $AC$.
+% Si $G$ es el baricentro de $ABC$, demuestre que $RG$ es paralela a $AB$.
+% \end{problem}
 
 \begin{problem}[CAM 2025]
 Sea $ABC$ un triángulo acutángulo y $X$ un punto en
@@ -999,6 +1023,7 @@ Halle el lugar geométrico de los puntos $N$.
 Sea $I$ el incentro de un triángulo $ABC$.
 $AI$ intersecta a $BC$ en $D$. Demuestre que
 \[\frac{AI}{ID} = \frac{AB + AC}{BC}.\]
+\solutionlabel{problem:xx13}
 \end{problem}
 
 \begin{problem}
@@ -1012,11 +1037,12 @@ Encuentre el espacio geométrico de todos los puntos $X$
 a medida que la recta secante varía.
 \end{problem}
 
-\begin{problem}
-Demuestre que en un trángulo
-un bisector más corto correspode
-a un lado más largo.
-\end{problem}
+%%NOTE: Que basura de problema
+% \begin{problem}
+% Demuestre que en un trángulo
+% un bisector más corto correspode
+% a un lado más largo.
+% \end{problem}
 
 \begin{problem}
 Sean $a$ y $b$ dos reales positivos.
@@ -1043,8 +1069,7 @@ entonces el baricentro de ese triángulo
 también es rojo.
 \end{problem}
 
-
-%%%%% Solutions %NOTE: Probably put on another chapter
+%%%%% Solutions %NOTE: Probably put on another file
 \begin{solutiontoproblem}{problem:mariposa}
 	Sea $O$ el centro de la circunferencia y
 	sean $X$ e $Y$ los puntos medios de los segmentos
@@ -1066,3 +1091,50 @@ también es rojo.
 	por lo que $CQ = CP$.
 \end{solutiontoproblem}
 
+\begin{solutiontoproblem}{problem:xx11}
+	Podemos reparafrasear el problema y
+	suponer que en su lugar $O$ es el circuncentro
+	de $AEF$ y probar que $ABOC$ es cíclico
+	(esto debido a que $AEF$ es isósceles por
+	ende $O$ está en la altura desde $A$).
+
+	\input{figures/isoscelesciclico.tex}
+
+	Como $AE = AF$ entonces los
+	triángulos $EOA$ y $FOA$ son congruentes (e isósceles),
+	y debido a que $OB$ y $OC$ son cevianas correspondientes,
+	entonces $OB = OC$. Esto junto conque $AO$
+	es bisectriz de $\angle BAC$ es suficiente
+	para decir que $ABOC$ es cíclico ya que
+	la mediatriz del segmento $BC$ y la
+	bisectriz de $\angle BAC$ se intersecan en el
+	circuncículo de $ABC$.
+\end{solutiontoproblem}
+
+\begin{solutiontoproblem}{problem:xx12}
+	Sea $O$ el punto medio del segmento $AB$,
+	claramente $O$ es el centro de $\Omega$.
+
+	\input{figures/cpigeo.tex}
+
+	Como $D$ es punto de tangencia,
+	entonces $OD \perp CE$
+	y como $AC$ es diámetro de $\Gamma$, entonces $AE\perp CE$,
+	por lo que $AE\parallel OD$, considerando $2r = AB = BC = 2AO = 2OB$
+	obtenemos por el Teorema de Thales:
+	\[\frac34 = \frac{3r}{4r} = \frac{CO}{CA} = \frac{CD}{CE}\]
+	y ya estamos.
+\end{solutiontoproblem}
+
+\begin{solutiontoproblem}{problem:xx13}
+	\input{figures/bisectormagic.tex}
+
+	Las paralelas a $IB$ e $IC$ por $D$
+	cortan a las rectas $AB$ y $AC$ en $X$
+	e $Y$ respectivamente.
+
+	Por angulitos, los triángulos $BXD$ y $CYD$
+	son isósceles con $BX = BD$ y $CY = CD$.
+	Por el teorema de Thales tenemos:
+	\[\frac{AI}{ID} = \frac{AB}{BX} = \frac{AC}{CY} = \frac{AB + AC}{BX + CY} = \frac{AB + AC}{BD + CD} = \frac{AB + AC}{BC}.\]
+\end{solutiontoproblem}

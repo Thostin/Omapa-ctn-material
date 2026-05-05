@@ -1,0 +1,32 @@
+\centering
+\begin{asy}
+	pair A = dir(110);
+	pair B = dir(210);
+	pair C = dir(330);
+
+	pair I = incenter(A, B, C);
+	pair D = extension(A, I, B, C);
+
+	real ja = length(A - D) / length(A - I);
+	pair X = A + ja * (B - A);
+	pair Y = A + ja * (C - A);
+
+	draw(D--B--X, red);
+	draw(D--C--Y, blue);
+
+	draw(B--I--C);
+	draw(X--D--Y);
+	draw(A--D);
+
+	draw(B--A--C);
+
+	dot("$A$", A, N);
+	dot("$B$", B, W);
+	dot("$C$", C, E);
+	dot("$X$", X, NW);
+	dot("$Y$", Y, NE);
+	dot("$I$", I, NE);
+	dot("$D$", D, S);
+\end{asy}
+\par
+\raggedright
