@@ -1,0 +1,27 @@
+include "figures/evan_asy.asy";
+
+size(6cm);
+pair D = dir(30);
+pair C = dir(-50);
+pair A = dir(90);
+pair B = dir(190);
+
+pair P = extension(A, C, B, D);
+
+draw(A--B--C--D--cycle);
+draw(A--C);
+draw(B--D);
+markrightangle(A, P, B);
+
+dot("$A$", A, NW);
+dot("$B$", B, SW);
+dot("$C$", C, S);
+dot("$D$", D, NE);
+dot(P);
+
+label("$40^\circ$", A, (2.9, -3.9));
+label("$40^\circ$", B, (3.5, 0));
+label("$30^\circ$", C, (-0.5, 9));
+markangle(P, B, A, radius=15);
+label("$x$", B, (5, 3.7));
+
