@@ -1,0 +1,22 @@
+include "figures/evan_asy.asy";
+
+size(6cm);
+pair A = dir(80);
+pair B = dir(160);
+pair C = dir(210);
+pair D = dir(330);
+
+pair O = (0, 0);
+
+markangle(B, A, D, radius=10);
+markangle(D, C, B, radius=10);
+
+draw(B--O--D);
+draw(A--B--C--D--cycle);
+draw(unitcircle);
+
+dot("$A$", A, NE);
+dot("$B$", B, NW);
+dot("$C$", C, SW);
+dot("$D$", D, SE);
+dot("$O$", O, NE);
