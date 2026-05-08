@@ -15,9 +15,9 @@ draw(P--X);
 draw(P--Y);
 draw(P--Z);
 
-dot("$X$", X, S);
-dot("$Y$", Y, NE);
-dot("$Z$", Z, NW);
+dot("$P_1$", X, S);
+dot("$P_2$", Y, NE);
+dot("$P_3$", Z, NW);
 
 dot("$P$", P, N);
 

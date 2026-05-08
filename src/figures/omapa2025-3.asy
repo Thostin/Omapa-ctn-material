@@ -12,7 +12,8 @@ pair Y = IP(unitcircle, Line(midpoint(A--B), midpoint(D--C)));
 
 pair Z = foot(X, B, C);
 
-draw(unitcircle);
+fill(arc((0, 0), 1, 30, 150) -- cycle, mediumgray);
+draw(arc((0, 0), 1, 0, 180));
 draw(A--B--C--D--cycle);
 draw(X--O--Y);
 draw(X--Z, StickIntervalMarker(1, 2));
