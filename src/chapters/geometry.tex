@@ -964,8 +964,9 @@ Demuestre que $EBF$ es equilátero.
 \begin{problem}[CAM 2025]
 Sea $ABC$ un triángulo acutángulo y $X$ un punto en
 el lado $AC$ tal que $CX = 2AX$. Sea $P$ la intersección
-de la recta $BX$ con la mediana $A$ de $ABC$. Si el
-área de $ABC$ es $60$, calcule el área del triángulo $APX$.
+de la recta $BX$ con la mediana $A$ de $ABC$.
+Determine la razón
+\[\frac{[APX]}{[ABC]}.\]
 \end{problem}
 
 \begin{problem}
@@ -987,7 +988,23 @@ $\ell$, calcule la suma
 		Áreas.
 	\end{hint}
 \end{hints}
+\solutionlabel{problem:equilateroareas}
 \end{problem}
+
+\begin{solutiontoproblem}{problem:equilateroareas}
+	Sea $h$ la longitud de una altura de $ABC$.
+
+	\begin{center}
+		\asyinclude{figures/equilateroareas.asy}
+	\end{center}
+
+	Notemos que
+	\[\half h\ell = [ABC] = [APB] + [APC] + [BPC] = \half \ell PP_1 + \half \ell PP_2 + \half \ell PP_3 = \half\ell(PP_1 + PP_2 + PP_3)\]
+	lo que implica que $h = PP_1 + PP_2 + PP_3$.
+	Es hecho conocido que $h = \frac{\sqrt3}{2}\ell$,
+	por lo que concluimos
+	\[PP_1 + PP_2 + PP_3 = \frac{\sqrt{3}}2\ell.\]
+\end{solutiontoproblem}
 
 \begin{problem}
 Si el área de un triángulo es $50$, y dos de sus lados miden
@@ -1054,7 +1071,6 @@ los segmentos $AB$ y $CD$ corta a $\Gamma$
 en $X$ e $Y$ respectivamente.
 Calcule el área del segmento de circunferencia
 determinado por el ángulo $\angle XOY$.
-
 \begin{hints}
 	\begin{hint}
 		Sea $Z$ la proyección de $X$ en $BC$.
@@ -1069,7 +1085,6 @@ determinado por el ángulo $\angle XOY$.
 		¿Cuánto mide $\angle XOY$?
 	\end{hint}
 \end{hints}
-
 \solutionlabel{problem:omapa2025-5}
 \end{problem}
 
@@ -1219,5 +1234,3 @@ también es rojo.
 	el valor buscado es
 	\[\frac13\pi1^2 - \half1^2\sen120^\circ = \pi^2 - \frac{\sqrt 3}4.\]
 \end{solutiontoproblem}
-
-
