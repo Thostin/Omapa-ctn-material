@@ -683,6 +683,53 @@ Encuentre todos los pares de enteros $\left(x, y\right)$ tales que
 \[\frac{xy}{x + y} = 144\]
 \end{problem}
 
+\begin{problem}[Selectivo IMO 2026/1]
+Encuentre todas las ternas de enteros no negativos
+$(p, x, y)$ con $p$ primo que satisfacen
+\[p^x = y^4 + 4.\]
+\begin{hints}
+	\begin{hint}
+		Completa el cuadrado.
+	\end{hint}
+	\begin{hint}
+		Diferencia de cuadrados.
+	\end{hint}
+	\begin{hint}
+		Lema de Euclides.
+	\end{hint}
+\end{hints}
+\solutionlabel{problem:selectivoimo2026-1}
+\end{problem}
+\begin{solutiontoproblem}{problem:selectivoimo2026-1}
+	Notemos que
+	\[y^4 + 4 = y^4 + 4y^2 + 4 - 4y^ = (y^2 + 2)^2 - (2y)^2 = (y^2 + 2y + 2)(y^2 - 2y + 2) = p^x.\]
+	Claramente $y^2 + 2y + 2 > 1$.
+	\paragraph{Caso 1. $y^2 - 2y + 2 = 1$.}
+	Esto implica $y = 1$, y sustituyendo nos queda que necesariamente $p = 5$ y $x = 1$
+	es una solución.
+	\paragraph{Caso 2. $y^2 - 2y + 2 > 1$. }
+	Esto implica que $p \mid y^2 - 2y + 2$ y $p \mid y^2 + 2y + 2$,
+	por lo que
+	\[p \mid y^2 + 2y + 2 - (y^2 - 2y + 2) = 4y.\]
+	Por el lema de Euclides, ocurre una de dos cosas:
+	\paragraph{Caso 2.1. $p \mid 4$. } Esto implica
+	que $p = 2$, lo que implica que $y$ es par,
+	pero si $y \geq 2$, entonces $16 \mid y^4$
+	por lo que
+	\[2^x = y^4 + 4 = 4(4t + 1)\]
+	que es imposible ya que $4t + 1$ no puede
+	ser potencia de $2$ con $t \geq 1$.
+	Esto implica que $y = 0$, por lo que $x = 2$.
+
+	\paragraph{Caso 2.2. $p \mid y$. } En la ecuación original
+	vemos que entonces $p \mid 4$ y regresamos al \textbf{caso 2.1}.
+
+	En síntesis, las únicas dos ternas soluciones son
+	\begin{tabular*}
+		(5, 1, 1) & \text{y} & (2, 2, 0).
+	\end{tabular*}
+\end{solutiontoproblem}
+
 \begin{problem}[CAM JT 2025]
 Demuestre que si $\overline{abc\dots{x}yz}$ es múltiplo de $37$,
 entonces $\overline{z0y0x0\dots0c0b0a}$ es múltiplo de 37.
