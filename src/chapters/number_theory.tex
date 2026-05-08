@@ -751,9 +751,19 @@ $(p, x, y)$ con $p$ primo que satisfacen
 Demuestre que si $\overline{abc\dots{x}yz}$ es múltiplo de $37$,
 entonces $\overline{z0y0x0\dots0c0b0a}$ es múltiplo de 37.
 (Ej.: $259$ es múltiplo de $37$, entonces $90502$ es múltiplo de 37).
+
+%%TODO: Poner el link de referencia 
+\textit{Nota: } Encontré este problema aquí.
 \begin{hints}
 	\begin{hint}
-		$10^3 \cong 1 \pmod 37$.
+		$10^3 \equiv 1 \pmod {37}$.
+	\end{hint}
+	\begin{hint}
+		Expresa $10^na_n + \cdots + 10a_1 + a_0 = \overline{a_n\dots a_1a_0} \equiv 0 \pmod{37}$.
+	\end{hint}
+	\begin{hint}
+		Analice el patrón que generan las potencias
+		de $10$ módulo $37$.
 	\end{hint}
 \end{hints}
 \end{problem}
