@@ -88,18 +88,9 @@ para obtener que Emilio
 pudo anotar cualquiera de $6 \cdot 6 = 36$
 pares. Aquí están todos los pares:
 
-\vspace{0.3cm}
-\centering
-\begin{asy}
-	for(int i = 1; i <= 6; ++i){
-			for(int j = 1; j <= 6; ++j){
-					label("$(" + string(i) + ", " + string(j) + ")$", (2 * i, 2 * j));
-				}
-		}
-\end{asy}
-\par
-\raggedright
-
+\begin{center}
+	\includegraphics{figures/combidados6por6.pdf}
+\end{center}
 \begin{example}
 	Emilio tira dos dados idénticos
 	al mismo tiempo y anota los valores
@@ -227,55 +218,9 @@ multiplicamos los tres valores y obtenemos
 
 Aquí un diagrama para entender mejor:
 
-\vspace{0.3cm}
-\centering
-\begin{asy}
-	size(8.5cm);
-
-	// Positions
-	pair A = (0,0);
-
-	pair B1 = (-2,-2);
-	pair B2 = (0,-2);
-	pair B3 = (2,-2);
-
-	real c = 1.5;
-	pair displaz = (0, 0.2);
-	pair C11 = c * (-2.5,-4 / c), C12 = c * (-1.5,-4 / c);
-	pair C21 = c * (-0.5,-4 / c), C22 = c * (0.5,-4 / c);
-	pair C31 = c * (1.5,-4 / c), C32 = c * (2.5,-4 / c);
-
-	// Root
-	label("$\\{1,2,3\\}$", A + (0, 0.2));
-
-	// First level
-	label("$1$", B1);
-	label("$2$", B2);
-	label("$3$", B3);
-
-	draw(A--(B1 + (0, 0.2))); draw(A--(B2 + (0, 0.2))); draw(A--(B3 + (0, 0.2)));
-
-	// Second level
-	label("$2$", C11); label("$3$", C12);
-	label("$1$", C21); label("$3$", C22);
-	label("$1$", C31); label("$2$", C32);
-
-	draw(B1 - displaz--C11 + displaz); draw(B1 - displaz--C12 + displaz);
-	draw(B2 - displaz--C21 + displaz); draw(B2 - displaz--C22 + displaz);
-	draw(B3 - displaz--C31 + displaz); draw(B3 - displaz--C32 + displaz);
-
-	// Leaves (permutations)
-	label("$(1,2,3)$", C11 + (0,-1));
-	label("$(1,3,2)$", C12 + (0,-1));
-
-	label("$(2,1,3)$", C21 + (0,-1));
-	label("$(2,3,1)$", C22 + (0,-1));
-
-	label("$(3,1,2)$", C31 + (0,-1));
-	label("$(3,2,1)$", C32 + (0,-1));
-\end{asy}
-\par
-\raggedright
+\begin{center}
+	\includegraphics{figures/arbolcombi.pdf}
+\end{center}
 
 Generalizando este razonamiento para $n$
 números notando que la cantidad
@@ -668,42 +613,9 @@ Y ahora sí podemos terminar el problema:
 
 Una manera de visualizar esto es con un \textit{diagrama de Venn}:
 
-\vspace{0.3cm}
-\centering
-\begin{asy}
-	size(6cm);
-	real r = 1;
-	real c = 0.8;
-
-	pair A = (0, 0);
-	pair B = (-0.5, -sqrt(3)/2);
-	pair C = (0.5, -sqrt(3)/2);
-
-	path C1 = circle(A, r);
-	path C2 = circle(B, r);
-	path C3 = circle(C, r);
-
-	draw(C1);
-	draw(C2);
-	draw(C3);
-
-	label("$A$", A + c * r * (-1, 1));
-	label("$B$", B + c * r * (-1, -1));
-	label("$C$", C + c * r * (1, -1));
-
-	pair O = 1/3 * (A + B + C);
-	real d = 2;
-	label("$3$", O);
-	label("$13$", O + d * (1/2 * (A + B) - O));
-	label("$7$", O + d * (1/2 * (A + C) - O));
-	label("$3$", O + d * (1/2 * (C + B) - O));
-
-	label("$27$", O + d * (A - O));
-	label("$14$", O + d * (B - O));
-	label("$7$", O + d * (C - O));
-\end{asy}
-\par
-\raggedright
+\begin{center}
+	\includegraphics{figures/venn.pdf}
+\end{center}
 
 En cada espacio se encuentra la cantidad
 de números que son múltiplos únicamente de los
@@ -793,21 +705,9 @@ no podemos cubrir con un solo dominó.
 Pero si pintamos el tablero como
 un tablero de ajedrez nos damos cuenta de algo:
 
-\vspace{0.3cm}
-\centering
-\begin{asy}
-	int p;
-	for(int i = 0; i < 8; ++i){
-			for(int j = 0; j < 8; ++j){
-					p = (i + j) % 2;
-					if(i + j != 0 && i + j != 14)
-					// (100*((i + j) % 2))
-					filldraw((i, j)--(i + 1, j)--(i + 1, j + 1)--(i, j + 1)--cycle, rgb(1.0 - p * 0.7, 1.0 - p * 0.7, 1.0 - p * 0.7));
-				}
-		}
-\end{asy}
-\par
-\raggedright
+\begin{center}
+	\includegraphics{figures/ajedrezcoloreo.pdf}
+\end{center}
 
 \begin{itemize}
 	\ii Cada dominó cubre exactamente una casilla
@@ -868,17 +768,9 @@ equilátero.
 \end{hints}
 \end{problem}
 
-\centering
-\begin{asy}
-	size(8cm);
-	for(real i = 0; i < 5; ++i){
-			for(real j = -0.5 * i; j <= 0.5*i; ++j){
-					draw(circle((j, -i * sqrt(3) * 0.5), 0.5));
-				}
-		}
-\end{asy}
-\par
-\raggedright
+\begin{center}
+	\includegraphics{figures/piramidecirculos.pdf}
+\end{center}
 
 \begin{problem}
 En un torneo de fútbol participan $30$ equipos, cada equipo
