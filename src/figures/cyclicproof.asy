@@ -1,6 +1,6 @@
 import geometry;
 
-size(6cm);
+size(8cm);
 
 pair A = dir(80);
 pair B = dir(160);
