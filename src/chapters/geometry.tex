@@ -41,28 +41,9 @@ que, sin importar su forma, cualquier triángulo cumple
 que la suma de sus ángulos internos es $180^\circ$.
 La manera de probarlo es la siguiente:
 
-\vspace{0.5cm}
-\centering
-\begin{asy}
-	size(6cm);
-	pair A = dir(110);
-	pair B = dir(210);
-	pair C = dir(330);
-
-	draw((A - (0.5, 0))--(A + (1, 0)));
-	draw(A--B--C--cycle);
-	dot("$A$", A, (-0.5, 1));
-	dot("$B$", B, SW);
-	dot("$C$", C, SE);
-	label("$\ell$", (0.7, 1));
-
-	markangle(A, C, B, radius=10, red);
-	markangle(C, B, A, radius=10, blue);
-	markangle((A - (1, 0)), A, B, radius=10, blue);
-	markangle(C, A, (A + (1, 0)), radius=10, red);
-\end{asy}
-\par
-\raggedright
+\begin{center}
+	\includegraphics{figures/trianglesum180.pdf}
+\end{center}
 
 Seleccionamos un vértice y dibujamos la recta $\ell$
 paralela al lado opuesto que pasa por ese vértice,
@@ -117,25 +98,9 @@ manera:
 	\[\frac{AX}{AB} = \frac{AY}{AC}.\]
 \end{theorem}
 
-\centering
-\begin{asy}
-	size(6cm);
-	pair A = dir(110);
-	pair B = dir(210);
-	pair C = dir(330);
-	pair X = midpoint(A--B);
-	pair Y = midpoint(A--C);
-
-	draw(A--B--C--cycle);
-	draw(X--Y, dashed);
-	dot("$A$", A, NW);
-	dot("$B$", B, SW);
-	dot("$C$", C, SE);
-	dot("$X$", X, W);
-	dot("$Y$", Y, E);
-\end{asy}
-\par
-\raggedright
+\begin{center}
+	\includegraphics{figures/thales.pdf}
+\end{center}
 
 Una demostración mejor de lo que creo
 soy capaz de explicar se encuentra
@@ -168,39 +133,9 @@ ecuaciones y concluimos que
 \[\frac{PM}{PB} = \frac{PN}{PA},\]
 que es justo lo que queríamos probar.
 
-\centering
-\begin{asy}
-	size(6cm);
-	pair A = dir(110);
-	pair B = dir(210);
-	pair C = dir(330);
-	pair D = dir(40);
-
-	pair aux = A - D + C;
-
-	pair M = extension(B, D, C, aux);
-	aux = B - C + D;
-	pair N = extension(A, C, D, aux);
-
-	pair P = extension(A, C, B, D);
-
-	draw(A--B--C--D--cycle);
-	draw(A--C);
-	draw(B--D);
-	draw(C--M);
-	draw(D--N);
-	draw(M--N, dashed);
-
-	dot("$A$", A, N);
-	dot("$B$", B, SW);
-	dot("$C$", C, SE);
-	dot("$D$", D, NE);
-	dot("$M$", M, S);
-	dot("$N$", N, NE);
-	dot("$P$", P, (0.36, 1));
-\end{asy}
-\par
-\raggedright
+\begin{center}
+	\includegraphics{figures/exampleproblemthales.pdf}
+\end{center}
 
 Podemos analizar más propiedades relacionadas a
 la forma de los triángulos,
@@ -292,49 +227,9 @@ pero esto junto con la igualdad de
 ángulos completa el criterio LAL
 y por ende $OAX$ y $OBY$ son semejantes.
 
-\centering
-\begin{asy}
-	size(8cm);
-	pair O = (0, 0);
-	pair A = (-2, -4);
-	pair B = (-1, -6);
-
-	picture p1;
-	picture p2;
-
-	pair X = (rotate(40)*A)*0.8;
-	pair Y = (rotate(40)*B)*0.8;
-
-	draw(p1, O--A--B--cycle);
-	draw(p1, O--X--Y--cycle);
-
-	filldraw(p1, O--A--X--cycle, lightblue + opacity(0.3));
-	filldraw(p1, O--B--Y--cycle, lightblue + opacity(0.3));
-
-
-	dot(p1, "$O$", O, N);
-	dot(p1, "$A$", A, W);
-	dot(p1, "$B$", B, SW);
-	dot(p1, "$X$", X, NE);
-	dot(p1, "$Y$", Y, E);
-
-	filldraw(p2, O--A--B--cycle, lightblue + opacity(0.3));
-	filldraw(p2, O--X--Y--cycle, lightblue + opacity(0.3));
-
-	draw(p2, O--A--X--cycle);
-	draw(p2, O--B--Y--cycle);
-
-	dot(p2, "$O$", O, N);
-	dot(p2, "$A$", A, W);
-	dot(p2, "$B$", B, SW);
-	dot(p2, "$X$", X, NE);
-	dot(p2, "$Y$", Y, E);
-
-	add(p1);
-	add(shift(7, 0)*p2);
-\end{asy}
-\par
-\raggedright
+\begin{center}
+	\includegraphics{figures/rotomotecia.pdf}
+\end{center}
 
 \begin{example}
 	Sea $ABC$ un triángulo y $M$, $N$ y $P$
@@ -357,41 +252,9 @@ $\angle MPN = \angle B$
 y $\angle PNM = \angle A$, concluyendo
 la demostración por el criterio AAA.
 
-\centering
-\begin{asy}
-	size(6cm);
-	pair A = dir(110);
-	pair B = dir(210);
-	pair C = dir(330);
-
-	pair M = midpoint(A--B);
-	pair N = midpoint(C--B);
-	pair P = midpoint(A--C);
-
-	draw(A--B--C--cycle);
-	draw(M--N--P--cycle);
-	dot("$A$", A, NW);
-	dot("$M$", M, W);
-	dot("$B$", B, SW);
-	dot("$N$", N, S);
-	dot("$C$", C, SE);
-	dot("$P$", P, E);
-
-	markangle(B, A, C, radius=10, red);
-	markangle(B, M, N, radius=10, red);
-	markangle(P, N, M, radius=10, red);
-
-	markangle(C, B, A, radius=10, blue);
-	markangle(C, N, P, radius=10, blue);
-	markangle(M, P, N, radius=10, blue);
-
-	markangle(N, M, P, radius=10, green);
-	markangle(A, P, M, radius=10, green);
-	markangle(A, C, B, radius=10, green);
-
-\end{asy}
-\par
-\raggedright
+\begin{center}
+	\includegraphics{figures/medialtriangle.pdf}
+\end{center}
 
 \begin{remark}
 	A $MNP$ se lo conoce como el triángulo
@@ -699,36 +562,9 @@ las igualdades de ángulos, pero si se dan las
 igualdades de ángulos, ¿por qué el cuadrilátero
 debe ser cíclico?
 
-\centering
-\begin{asy}
-	pair A = dir(80);
-	pair B = dir(160);
-	pair C = dir(210);
-	pair D = dir(330);
-
-	pair X = 1.3 * (B - C) + C;
-	draw(X--B);
-
-	draw(A--B--C--D--cycle);
-
-	draw(A--C);
-	draw(B--D);
-
-	draw(unitcircle);
-
-	dot("$A$", A, NE);
-	dot("$B^\prime$", B, NW);
-	dot("$C$", C, SW);
-	dot("$D$", D, SE);
-	dot("$B$", X, W);
-	draw(X--D);
-
-	markangle(C, B, D, radius=10, blue);
-	markangle(C, A, D, radius=10, blue);
-	markangle(C, X, D, radius=10, blue);
-\end{asy}
-\par
-\raggedright
+\begin{center}
+	\includegraphics{figures/cyclicproof.pdf}
+\end{center}
 
 Este problema puede ser resuelto planteándolo
 por contradicción.
