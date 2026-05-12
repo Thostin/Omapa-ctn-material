@@ -366,7 +366,7 @@ deducimos un resultado más fuerte:
 
 A este punto $O$ de lo llama el
 \textit{circuncentro} del triángulo $ABC$.
-Decimos \textbf{la} porque esa circunferencia
+Decimos \textbf{el} porque esa circunferencia
 es única.
 
 \begin{question*}
@@ -393,7 +393,7 @@ a las circunferencias:
 \end{figure}
 
 Para probar esto no es necesario nada
-más y nada menos que con los triángulos isósceles
+más y nada menos que los triángulos isósceles
 y las igualdades de ángulos que nos dan.
 Dibujamos el rayo $AO$,
 claramente $OAB$ y $OAC$ son triángulos isósceles,
@@ -699,12 +699,36 @@ tenemos $BY \parallel HC$.
 Por el otro otro lado, de manera muy similar:
 \[\angle CBE = \angle DAE = \angle BAY = \angle BCY.\]
 De nuevo $\angle DAE = \angle BAY$
-por el ejemplo anterior y por que
+por el ejemplo anterior y porque
 ambos ángulos comparten el ángulo $\angle XAY$.
 En conclusión $YC \parallel HB$.
 Esto junto con $BY \parallel HC$
 implica que $AHCY$ es un paralelogramo,
 que es lo que queríamos demostrar.
+\begin{remark}
+	Una manera muy elegante de probar que
+	$Y$ está en el circuncírculo es definir a $Y$
+	como la reflexión de $X$ sobre la mediatrix de $BC$,
+	claramente $Y$ está en el circuncírculo
+	($BXYC$ es un trapecio isósceles).
+	Sea $M$ la intersección de $HY$ y $BC$.
+	Obviamente $XY \parallel BC$ y
+	por el teorema de Tales vemos que $M$
+	debe ser el punto medio de $HY$.
+	Para ver que $M$ es el punto medio de $BC$
+	vemos que, como $BC \parallel XY$
+	y $HX \perp BC$, entonces $HX \perp XY$,
+	por lo que $M$ es el centro del circuncírculo de
+	$HXY$, o sea que $MX = MY$, por lo que $Y$
+	también es la reflexión de $X$ sobre la perpendicular
+	a $BC$ que pasa por $M$, o sea que $M$ debe ser punto medio
+	de $BC$ (recordemos que $XY \parallel BC$).
+
+	Para ver que $AY$ es diámetro, es simplemente
+	notar que $BXYC$ es un trapecio isósceles y por ende
+	$BX$ = $CY$ o sea que $\angle BAX = \angle YAC$
+	y entonces $O$ está en la recta $AY$.
+\end{remark}
 
 Aquí un ejemplo.
 
@@ -759,7 +783,215 @@ que es lo que que queríamos probar.
 	son congruentes por el criterio $LAL$ ($OA = OC$ y $O_1A = O_1C$ con $\angle COA = \angle AO_1C$).
 \end{remark}
 
+\section{Trigonometría}
+En esencia, puede pensarse a la trigonometría
+como ``semejanza pero abreviado'' porque
+todo lo que se puede probar con trigonometría
+puede ser probado construyendo muchos triángulos
+rectángulos.
 
+Pero primero de todo los fundamentos.
+\begin{definition}[Seno y coseno]
+	Sea $ABC$ un triángulo rectángulo recto en $B$,
+	entonces definimos al seno de $\angle ACB$ como
+	\[\frac{AB}{AC},\]
+	y al coseno del mismo ángulo como
+	\[\frac{BC}{AC}.\]
+
+	Al seno y coseno se los suele
+	simbolizar como $\sin \angle ACB$
+	y $\cos \angle ACB$ respectivamente.
+\end{definition}
+
+Esto puede parecer un poco arbitrario
+pero resulta ser que no debido al siguiente
+teorema:
+\begin{theorem}
+	Si $ABC$ y $XYZ$ son dos triángulos semejantes\footnotemark rectos
+	en $B$ y $X$ respectivamente, entonces
+	\[\sin \angle ACB = \sin \angle XZY.\]
+\end{theorem}
+
+\footnotetext{Semejantes con ese orden de vértices.}
+
+Podemos probar esto por semejanza o por
+Tales y queda a cargo del lector.
+
+En particular, este teorema muestra que
+el valor del seno de un ángulo no depende
+de las distancias que desprenden de él,
+sino que es algo intrínseco al ángulo en cuestión,
+esto porque para cada ángulo $\alpha$ dibujado,
+siempre es posible construir un triángulo rectángulo
+siendo este uno de sus ángulos internos, y computar
+el seno del mismo, ya que sabemos que
+las dimensiones exactas de este triángulo
+no importarán.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{figures/trigouniquidad.pdf}
+\end{figure}
+
+Así, podemos probar lo que se conoce como el teorema
+fundamental de la trigonometría:
+\begin{theorem}
+	Para todo ángulo $\alpha$, se cumple que
+	\[\sin^2 \alpha + \cos^2\alpha = 1\]
+	donde $\sin^2\alpha = (\sin \alpha)^2$
+	y de manera análoga para el $\cos \alpha$.
+\end{theorem}
+
+La demostración es por el Teorema de Pitágoras.
+
+Si tenemos un triángulo rectángulo $ABC$
+recto en $B$ y $\alpha = \angle ACB$,
+entonces
+\[\sin^2\alpha + \cos^2\alpha = \frac{AB^2}{AC^2} + \frac{BC^2}{AC^2} = \frac{AB^2 + BC^2}{AC^2} = 1\]
+por el Teorema de Pitágoras.
+
+Normalmente, por conveniencia, cuando
+se tiene un triángulo $ABC$, se
+suele definir $a = BC$, $b = AC$
+y $c = AB$ como las longitudes de los lados,
+siendo $a$ el ``lado opuesto''
+a $\angle A$ y así para los otros dos
+lados. Cuando se use $a$, $b$ y $c$
+teniendo un triángulo de referencia,
+se sobreentiende la definición
+de $a = BC$, $b = AC$ y $c = AB$.
+
+A continuación vemos dos teoremas que son tan
+potentes que por si solos pueden
+resolver problemas por completo.
+
+\begin{theorem}[Ley del Seno extendida]
+	Sea $ABC$ un triángulo con circunradio $r$,
+	entonces
+	\[\frac{a}{\sin \angle A} = \frac{b}{\sin \angle B} = \frac{c}{\sin \angle C} = 2r.\]
+\end{theorem}
+
+Probaremos que
+\[\frac{b}{\sin \angle B} = 2r\]
+ya que análogamente tendríamos las otras igualdades.
+
+Esto resulta ser extremadamente sencillo si
+trazamos $A^\prime$ tal que $AA^\prime$ es
+diámetro del circuncírculo de $ABC$.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{figures/sinelawproof.pdf}
+	\caption{Demostración de la Ley de Senos.}
+\end{figure}
+
+Claramente $\angle CBA = \angle CA^\prime A$
+por arco capaz y $\angle ACA^\prime = 90^\circ$
+porque $AA^\prime$ es diámetro.
+
+De aquí:
+\[\frac{b}{\sin \angle CBA} = \frac{b}{\sin \angle CA^\prime A} = \frac{b}{\frac{b}{2r}} = 2r\]
+porque $AA^\prime = 2r$ ya que es diámetro.
+
+\begin{example}[Teorema de la bisectriz]
+	Sea $ABC$ un triángulo y $D$ un punto en el lado
+	$BC$, entonces $AD$ es bisectriz de $\angle A$
+	si y solo si
+	\[\frac{AB}{AC} = \frac{DB}{DC}.\]
+\end{example}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{figures/bisectortheoremproof.pdf}
+	\caption{Teorema de la bisectriz.}
+\end{figure}
+
+Podemos hacer de los ángulos
+suplementarios $\theta = \angle ADB$ y $\angle CDA$,
+sabiendo que necesariamente
+$\sin \angle ADB = \sin \angle CDA$.
+
+Entonces podemos aplicar la ley de senos
+en los triángulos $ADB$ y $ADC$:
+\begin{align*}
+	\frac{AB}{\sin \theta} & = \frac{BD}{\sin \angle BAD} \\
+	\frac{AC}{\sin \theta} & = \frac{CD}{\sin \angle DAC} \\
+\end{align*}
+
+Dividiendo ambas ecuaciones:
+\[\frac{AB}{AC} = \frac{BD}{CD}\cdot\frac{\sin\angle BAD}{\sin \angle DAC}.\]
+
+De aquí claramente $\frac{AB}{AC} = \frac{DB}{DC}$
+si y solo si $\sin \angle BAD = \sin \angle DAC$
+si y solo si $\angle BAD = \angle DAC$ porque $\angle BAC < 180^\circ$.
+
+\begin{remark}
+	Una prueba elemental muy elegante de este importante
+	teorema consiste en definir el punto $X$
+	como la intersección de la recta paralela a $AD$
+	que pasa por $B$ con la recta $AC$ y usar el Teorema de Tales
+	para probar que la razón se cumple si y solo si
+	$AD$ es bisectriz de $\angle A$.
+\end{remark}
+
+\begin{theorem}[Teorema del coseno]
+	Si $ABC$ es un triángulo, entonces
+	\[a^2 = b^2 + c^2 -2bc\cos\angle A.\]
+\end{theorem}
+
+Probar esto es solo un poco de álgebra.
+Hacemos los trazos como se ven en la figura:
+\begin{figure}[H]
+	\centering
+	\includegraphics{figures/cosinelawproof.pdf}
+	\caption{Demostración del teorema del coseno.}
+\end{figure}
+
+Notemos que, por Pitágoras:
+\begin{align*}
+	h_1^2 + (b - x)^2 & = a^2 \\
+	h_2^2 + (c - y)^2 & = a^2
+\end{align*}
+Sumando ambas ecuaciones:
+\[2a^2 = h_1^2 + h_2^2 + b^2 + c^2 + x^2 + y^2 -2bx - 2cy.\]
+Como $x^2 + h_1^2 = c^2$ e $y^2 + h_2^2 = b^2$
+(por Pitágoras), entonces
+\begin{align*}
+	\cancel{2}a^2 & = \cancel{2}b^2 + \cancel{2}c^2 -\cancel{2}(bx + cy) \\
+\end{align*}
+
+Pero resulta ser que $x = c \cdot \cos \angle A$ e $y = b \cdot \cos \angle A$,
+y sustituyendo obtenemos el resultado deseado:
+\[a^2 = b^2 + c^2 - (b \cdot c\cdot \cos \angle A + c \cdot b \cdot \cos \angle A) = b^2 + c^2 -2bc\cos\angle A\]
+
+\begin{example}[Teorema de Stewart]
+	Sea $ABC$ un triángulo y sea $D$ un punto
+	en el segmento $BC$. Si $a = AB$,
+	$b = AC$, $p = BD$, $q = DC$ y $d = AD$;
+	entonces
+	\[a^2q + b^2p = (p + q)(d^2 + pq).\]
+\end{example}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{figures/stewarttheoremproof.pdf}
+	\caption{Teorema de Stewart.}
+\end{figure}
+
+\begin{proof}
+	Podemos reordenar la ecuación original:
+	\begin{align*}
+		a^2q + b^2p                & = (p + q)(d^2 + pq)         \\
+		                           & = pd^2 + p^2q + qd^2 + pq^2 \\
+		\iff a^2q - p^2q - qd^2    & = -(b^2p - pd^2 - pq^2)     \\
+		\iff q(q^2 - p^2 - d^2)    & = -p(b^2 - q^2 - d^2)       \\
+		\iff q(-2pd\cos\angle ADB) & = -p(-2qd \cos\angle CDA)   \\
+		\iff \cos \angle ADB       & = -\cos\angle CDA
+	\end{align*}
+
+	Por el Teorema del Coseno. Ahora, $\cos\angle ADB = -\cos \angle CDA$
+	porque $\angle ADB = 180 - \angle CDA$.
+\end{proof}
 
 \section{Problemas}
 Estos problemas no están en orden,
@@ -1049,7 +1281,7 @@ determinado por el ángulo $\angle XOY$.
 
 \begin{problem}[OMAPA 2007/3]
 Sean $E$ y $F$ los puntos medios
-de los lados $AB$ y $AD$ de un cudrado $ABCD$
+de los lados $AB$ y $AD$ de un cuadrado $ABCD$
 y sea $P$ la intersección de $CE$ y $BF$.
 Determine la relación proporcional
 \[CE \colon PC \colon FP.\]
