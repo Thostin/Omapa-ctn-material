@@ -47,11 +47,11 @@
   {
     \seq_map_inline:Nn \g_solution_order_seq
       {
-        \clearpage
         \phantomsection
         \section*{Solución~al~problema~\ref{##1}}
         \label{solution:##1}
         \prop_item:Nn \g_solution_body_prop {##1}
+        \clearpage
       }
   }
 
@@ -75,15 +75,15 @@
 \clearpage
 
 % \input{chapters/hints.tex}
-\include{chapters/algebra.tex}
-\include{chapters/geometry.tex}
-\include{chapters/combinatorics.tex}
-\include{chapters/number_theory.tex}
-\include{chapters/personal_favorites.tex}
+\include{parts/algebra.tex}
+\include{parts/geometry.tex}
+\include{parts/combinatorics.tex}
+\include{parts/number_theory.tex}
+\include{parts/personal_favorites.tex}
 
-\chapter*{Pistas}
+\chapter{Pistas}
 \printhint
 
-\chapter*{Soluciones}
+\chapter{Soluciones}
 \printsolutions
 \end{document}
