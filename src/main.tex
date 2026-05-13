@@ -47,11 +47,11 @@
   {
     \seq_map_inline:Nn \g_solution_order_seq
       {
-        \clearpage
         \phantomsection
         \section*{Solución~al~problema~\ref{##1}}
         \label{solution:##1}
         \prop_item:Nn \g_solution_body_prop {##1}
+        \clearpage
       }
   }
 
@@ -81,9 +81,9 @@
 \include{parts/number_theory.tex}
 \include{parts/personal_favorites.tex}
 
-\chapter*{Pistas}
+\chapter{Pistas}
 \printhint
 
-\chapter*{Soluciones}
+\chapter{Soluciones}
 \printsolutions
 \end{document}
