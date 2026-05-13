@@ -287,7 +287,7 @@ circunferencia.
 \end{definition}
 
 Las circunferencias son fundamentales
-por que en particular si $A$
+porque en particular si $A$
 y $B$ son dos puntos en la circunferencia,
 entonces $OA = OB$, lo que nos da un triángulo
 isósceles de gratis además de $\angle OAB = \angle OBA$.
@@ -494,69 +494,6 @@ con $\angle CAD = \angle CBD$,
 demuestre que $\angle DBA = \angle DCA$.
 \end{problem}
 
-% TODO: DESARROLLAR el lema
-\begin{lemma}
-	\label{lemma:ortocenterreflection}
-	Sea $H$ el ortocentro de un triángulo $ABC$ y $M$ el punto
-	medio de $BC$. Si $X$ e $Y$ son las refexiones de $H$
-	sobre el lado $BC$ y $M$
-	respectivamente entonces $X$ e $Y$ se encuentran
-	en el circuncírculo de $ABC$ y $AY$ es díametro del mismo.
-\end{lemma}
-
-Aquí un ejemplo.
-
-\begin{example}
-	Tres circunferencias iguales tienen un punto $P$ en
-	común y se intersecan también en los puntos
-	$A$, $B$ y $C$. Demuestre que el radio de circuncírculo
-	de $ABC$ es igual al de las otras tres circunferencias
-	y que $P$ es el ortocentro de $ABC$.
-\end{example}
-
-\begin{center}
-	\includegraphics{figures/omapa2007-5.pdf}
-\end{center}
-
-Teniendo en cuenta el lema, vemos que si $P$
-resulta ser el ortocentro y $P^\prime$
-es la reflexión de $P$ sobre $AC$, entonces $P^\prime$
-está en el circuncírculo de $ABC$, pero como obviamente
-los triángulos $PAC$ y $P^\prime AC$ son congruentes
-y el circuncírculo de $P^\prime AC$ es el de $ABC$,
-entonces tienen circunradios iguales, e iguales
-al de $ABC$.
-
-Por lo que solo quedaría probar que $P$ es
-el ortocentro de $ABC$.
-
-Si intersecamos las rectas $AP$ y $BC$ en $A^\prime$,
-entonces sería suficiente probar que $\angle CA^\prime A = 90^\circ$,
-porque esto implica que $AP \perp BC$ y
-análogamente tendríamos $BP \perp AC$ y $CP \perp AB$.
-Como los ángulos $\angle CBP$ y $\angle PAC$ subtienden
-a una misma cuerda $PC$ y están inscriptos
-en circunferencias iguales, entonces éstos
-son iguales, digamos $\angle CBP = \angle PAC = \alpha$. De manera análoga tenemos que
-\[\angle BAP = \angle PCB = \beta \ \text{y} \  \angle ACP = \angle PBA = \gamma.\]
-O sea
-\[180^\circ = \angle BAC + \angle CBA + \angle ACB = 2\alpha + 2\beta + 2\gamma \implies \alpha + \beta + \gamma = 90^\circ,\]
-pero oportunamente
-\[\angle PAC + \angle ACB = \alpha + \beta + \gamma = 90^\circ,\]
-que es lo que que queríamos probar.
-
-
-\begin{remark}
-	Utilizar el \autoref{lemma:ortocenterreflection} es
-	una manera elegante de resolver el problema,
-	aunque puede resolverse sin usarlo notando que
-	si $O$ y $O_1$ son el circuncentro de $ABC$ y
-	el centro de la cía que pasa por $A$ y $C$ entonces
-	\[\angle COA = 2\angle CBA = 2(\angle PAC + \angle ACP) = \angle AO_1C\]
-	y ya estaríamos porque los triángulos $AOC$ y $AO_1C$
-	son congruentes por el criterio $LAL$ ($OA = OC$ y $O_1A = O_1C$ con $\angle COA = \angle AO_1C$).
-\end{remark}
-
 \section{Cuadriláteros cíclicos}
 Este término es quizás el más común y
 útil en geometría de olimpiada.
@@ -685,6 +622,146 @@ es suficiente para afirmar que el
 cuadrilátero es de hecho cíclico, y por ende
 $x = \angle DBA = \angle DCA = 30^\circ$.
 
+Un dato muy útil relacionado al ortocentro es el
+siguiente:
+\begin{example}
+	Sean $O$ y $H$ el circuncentro y ortocentro respectivamente de
+	un triángulo acutángulo $ABC$.
+	Demuestre que $\angle BAO = \angle HAC$.
+\end{example}
+
+\begin{center}
+	\includegraphics{figures/ortocenterangles.pdf}
+\end{center}
+
+Es simplemente por angulitos:
+\[\angle BAH = 90 - \angle B = 90 - \half \angle AOC = 90 - \half(180 - 2\angle OAC) = \angle OAC\]
+por ángulo central y porque $OAC$ es isóceles.
+
+En particular es útil porque nos ayuda a
+intuir dónde puede estar el ortocentro
+del triángulo, si vemos que $\angle OAC = \angle BAP$
+siendo $AP$ una ceviana interior a $ABC$, entonces
+ya sabemos que el ortocentro de $ABC$ está
+en la recta $AP$.
+
+Aquí va un lema que tiene como protagonista al
+ortocentro del triángulo $ABC$.
+
+\begin{lemma}
+	\label{lemma:ortocenterreflection}
+	Sea $H$ el ortocentro de un triángulo $ABC$ y $M$ el punto
+	medio de $BC$. Si $X$ e $Y$ son las refexiones de $H$
+	sobre el lado $BC$ y $M$
+	respectivamente entonces $X$ e $Y$ se encuentran
+	en el circuncírculo de $ABC$ y $AY$ es díametro del mismo.
+\end{lemma}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics{figures/ortocenterreflection.pdf}
+	\end{center}
+	\caption{Las reflexiones del ortocentro.}
+\end{figure}
+
+Notemos que es suficiente probar que
+$ABXC$ es cíclico.
+\begin{question*}
+	¿Por qué?
+\end{question*}
+Como $X$ es la reflexión
+de $H$ sobre $BC$ entonces $\angle HCB = \angle BCX$,
+pero $\angle HCB = \angle BAH$
+es algo que ya sabemos porque $CDFA$
+es cíclico, por lo que $\angle BAX = \angle BAH = \angle BCX$,
+o sea que $ABXC$ es cíclico, que es lo que queríamos
+probar.
+
+Para probar que $Y$ también está en
+el circuncírculo de $ABC$ debemos notar primero
+que $BHCY$ es un paralelogramo.
+
+\begin{question*}
+	¿Por qué?
+\end{question*}
+
+Pero en en realidad nos conveniene
+cambiar el problema: suponer que $AY$
+es diámetro y luego probar que $AHCY$
+es un paralelogramo. Y esto es puro
+angulitos:
+\[\angle YBC = \angle YAC = \angle BAX = \angle FCB.\]
+Aquí $\angle YAC = \angle BAX$ es por
+el ejemplo anterior, en particular
+tenemos $BY \parallel HC$.
+%% WARNING: Si cambio de lugar el ejemplo anterior
+%% esto no tendría sentido.
+
+Por el otro otro lado, de manera muy similar:
+\[\angle CBE = \angle DAE = \angle BAY = \angle BCY.\]
+De nuevo $\angle DAE = \angle BAY$
+por el ejemplo anterior y por que
+ambos ángulos comparten el ángulo $\angle XAY$.
+En conclusión $YC \parallel HB$.
+Esto junto con $BY \parallel HC$
+implica que $AHCY$ es un paralelogramo,
+que es lo que queríamos demostrar.
+
+Aquí un ejemplo.
+
+\begin{example}[OMAPA 2007/5]
+	Tres circunferencias iguales tienen un punto $P$ en
+	común y se intersecan también en los puntos
+	$A$, $B$ y $C$. Demuestre que el radio de circuncírculo
+	de $ABC$ es igual al de las otras tres circunferencias
+	y que $P$ es el ortocentro de $ABC$.
+\end{example}
+
+\begin{center}
+	\includegraphics{figures/omapa2007-5.pdf}
+\end{center}
+
+Teniendo en cuenta el lema, vemos que si $P$
+resulta ser el ortocentro y $P^\prime$
+es la reflexión de $P$ sobre $AC$, entonces $P^\prime$
+está en el circuncírculo de $ABC$, pero como obviamente
+los triángulos $PAC$ y $P^\prime AC$ son congruentes
+y el circuncírculo de $P^\prime AC$ es el de $ABC$,
+entonces tienen circunradios iguales, e iguales
+al de $ABC$.
+
+Por lo que solo quedaría probar que $P$ es
+el ortocentro de $ABC$.
+
+Si intersecamos las rectas $AP$ y $BC$ en $A^\prime$,
+entonces sería suficiente probar que $\angle CA^\prime A = 90^\circ$,
+porque esto implica que $AP \perp BC$ y
+análogamente tendríamos $BP \perp AC$ y $CP \perp AB$.
+Como los ángulos $\angle CBP$ y $\angle PAC$ subtienden
+a una misma cuerda $PC$ y están inscriptos
+en circunferencias iguales, entonces éstos
+son iguales, digamos $\angle CBP = \angle PAC = \alpha$. De manera análoga tenemos que
+\[\angle BAP = \angle PCB = \beta \ \text{y} \  \angle ACP = \angle PBA = \gamma.\]
+O sea
+\[180^\circ = \angle BAC + \angle CBA + \angle ACB = 2\alpha + 2\beta + 2\gamma \implies \alpha + \beta + \gamma = 90^\circ,\]
+pero oportunamente
+\[\angle PAC + \angle ACB = \alpha + \beta + \gamma = 90^\circ,\]
+que es lo que que queríamos probar.
+
+
+\begin{remark}
+	Utilizar el \autoref{lemma:ortocenterreflection} es
+	una manera elegante de resolver el problema,
+	aunque puede resolverse sin usarlo notando que
+	si $O$ y $O_1$ son el circuncentro de $ABC$ y
+	el centro de la cía que pasa por $A$ y $C$ entonces
+	\[\angle COA = 2\angle CBA = 2(\angle PAC + \angle ACP) = \angle AO_1C\]
+	y ya estaríamos porque los triángulos $AOC$ y $AO_1C$
+	son congruentes por el criterio $LAL$ ($OA = OC$ y $O_1A = O_1C$ con $\angle COA = \angle AO_1C$).
+\end{remark}
+
+
+
 \section{Problemas}
 Estos problemas no están en orden,
 algunos son más fáciles y otros
@@ -710,12 +787,6 @@ es igual a
 		Inducción.
 	\end{hint}
 \end{hints}
-\end{problem}
-
-\begin{problem}
-Sean $O$ y $H$ el circuncentro y ortocentro respectivamente de
-un triángulo acutángulo $ABC$.
-Demuestre que $\angle BAO = \angle HAC$.
 \end{problem}
 
 \begin{problem}[Teorema de Brahmagupta nunca supe cómo se escribe]
@@ -983,11 +1054,6 @@ de los lados $AB$ y $AD$ de un cudrado $ABCD$
 y sea $P$ la intersección de $CE$ y $BF$.
 Determine la relación proporcional
 \[CE \colon PC \colon FP.\]
-\begin{hints}
-	\begin{hint}
-
-	\end{hint}
-\end{hints}
 \solutionlabel{problem:omapa2007-3}
 \end{problem}
 
@@ -1054,6 +1120,24 @@ de $H$ a la recta $\ell$ es constante
 sin importar la elección de $A$ y $B$.
 \end{problem}
 
+\begin{problem}[Validación Kanguro Junior 2007/11]
+En la figura, $ABC$ y $DCE$ son triángulos equiláteros
+congruentes y $\angle ACD = 80^\circ$.
+Encuentre el valor de $\angle ABD$.
+\begin{center}
+	\includegraphics{figures/kanguroval2007-11.pdf}
+\end{center}
+\solutionlabel{problem:kanguroval2007-11}
+\end{problem}
+
+\begin{solutiontoproblem}{problem:kanguroval2007-11}
+	\begin{center}
+		\includegraphics{figures/kanguroval2007-11sol.pdf}
+	\end{center}
+	Notemos que $CA = CB = CD = CE$, por ende
+	$C$ es el centro del cuadrilátero cíclico
+	$ABED$ por lo que $\angle DBA = \half\angle DCA = 40^\circ$.
+\end{solutiontoproblem}
 
 \begin{problem}[Iberoamericana 2024]
 Algunos puntos del plano Euclídeo son pintados

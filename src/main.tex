@@ -23,9 +23,9 @@
 
 \newcommand{\hintref}[1]{\textup{\ref{hint:#1}}}
 
-\newcommand{\solutionlabel}[1]{
-    \label{#1}
-\textbf{Sol: } \hyperref[solution:#1]{p. \pageref{solution:#1}}.
+\newcommand{\solutionlabel}[1]{%
+    \label{#1}%
+    \textbf{Sol: } \hyperref[solution:#1]{p.~\pageref*{solution:#1}}.%
 }
 
 \ExplSyntaxOn
@@ -43,16 +43,15 @@
   }
   {}
 
-% Print all stored solutions, in the order they were added
 \NewDocumentCommand{\printsolutions}{}%
   {
     \seq_map_inline:Nn \g_solution_order_seq
       {
-        \par\bigskip
+        \clearpage
+        \phantomsection
         \section*{Solución~al~problema~\ref{##1}}
         \label{solution:##1}
         \prop_item:Nn \g_solution_body_prop {##1}
-        \clearpage
       }
   }
 
