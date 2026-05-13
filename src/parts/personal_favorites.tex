@@ -8,12 +8,14 @@ con coordenadas enteras.
 \end{problem}
 
 \begin{problem}
-En la fiesta de San Juan del CTN
-uno de los juegos consiste en que
-inicialmente se colocan $n \geq 1$ fichas en
-una mesa y juegan entre sí el
-	[presentador del juego] y
-el [retador] de manera alternada.
+En la fiesta de San Juan del CTN,
+cada grupo presenta un juego.
+Uno de los juegos consiste en que
+inicialmente se colocan $n \geq 1$ llaveritos en
+una mesa y juegan entre sí
+Mateo y Sofía, que son el que atiende en el
+juego y un retador respectivamente.
+Ambos juegan entre sí de forma alternada.
 En su turno el jugador
 debe quitar de $1$ a $k$ fichas
 de la mesa.
@@ -21,10 +23,55 @@ Pierde el que quita la última ficha.
 
 Para cada entero positivo $n$,
 determine todos los enteros positivos
-$k$ para los cuales el [presentador]
+$k$ para los cuales Mateo
 puede asegurar ganar el juego
 sabiendo que éste empieza.
+\begin{hints}
+	\begin{hint}
+		¿Qué pueden forzar alguno de los jugadores?
+	\end{hint}
+\end{hints}
+\solutionlabel{problem:ctnsanjuan-1}
 \end{problem}
+\begin{solutiontoproblem}{problem:ctnsanjuan-1}
+	Probaremos que Mateo gana si y solo si $k + 1 \nmid n - 1$
+	Procedemos por inducción en la cantidad de fichas.
+	\paragraph{Caso 1 (caso base). $n \leq k + 1$. }
+	Si $n = 1$, entonces Mateo pierde.
+	Si $1 < n \leq k + 1$,
+	entonces Mateo puede quitar $s \leq k$
+	fichas para dejar exactamente una ficha,
+	forzando a que Sofía quite la última ficha y pierda.
+
+	En conclusión, para $n \leq k + 1$, Mateo pierde
+	si y solo si $k + 1 \nmid n - 1$.
+	Que es lo mismo que decir que
+	Mateo pierde si y solo si
+	\[n = t(k + 1) + 1\]
+	con $t = 0$ y $t(k + 1) + 1 \leq n \leq (t + 1)(k + 1)$.
+
+	\paragraph{Caso 2 (paso inductivo). $(t + 2)(k + 1) \geq n > (t + 1)(k + 1)$.}
+	Si $n = (t + 1)(k + 1) + 1$,
+	entonces si Mateo quita cualquier cantidad de llaveritos,
+	entonces quedarán en la mesa $t(k + 1) + 1 < s \leq (t + 1)(k + 1)$
+	fichas, y con todas esos valores sabemos Sofía puede ganar
+	ya que puede quitar una cantidad de fichas para que queden
+	en la mesa exactamente $t(k + 1) + 1$ fichas,
+	por lo que Mateo pierde por hipótesis inductiva.
+
+	Si $n > (t + 1)(k + 1) + 1$, entonces Mateo puede quitar $1 \leq s \leq k$
+	llaveritos de la mesa para que queden exactamente $(t + 1)(k + 1) + 1$
+	de ellos, cantidades en las cuales, probamos recién, Sofía
+	pierde, o sea que Mateo gana, y la inducción queda completa.
+
+	\begin{remark}
+		En realidad, el jugador que gana, después de
+		su primera jugada, solo tiene que quitar $(k + 1) - a$
+		llaveritos el resto de sus jugadas,
+		siendo $a$ la cantidad de llaveritos que
+		jugó el otro jugador en el turno anterior.
+	\end{remark}
+\end{solutiontoproblem}
 
 \begin{problem}
 Se disponen dos tazas, una con leche y otra con té,
