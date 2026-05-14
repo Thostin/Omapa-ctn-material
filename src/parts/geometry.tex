@@ -1382,7 +1382,54 @@ Demuestre que si los vértices de un
 triángulo cualquiera son rojos,
 entonces el baricentro de ese triángulo
 también es rojo.
+\solutionlabel{problem:iberoamerican2024-4}
 \end{problem}
+
+\begin{solutiontoproblem}{problem:iberoamerican2024-4}
+	%% ISSUE: Poner de alguna manera el cuadrado negro en 
+	%%        vez del cuadrado blanco.
+	\begin{claim}
+		Si los extremos de un segmento son rojos,
+		entonces el punto medio de dicho segmento es rojo.
+	\end{claim}
+
+	\begin{proof}
+		Construimos un triángulo equilátero y
+		nombramos los puntos como se ven en la figura.
+
+		%%TODO: Hacer la figura
+
+		\begin{itemize}
+			\ii $A$ y $B$ son rojos, entonces $X$ es rojo.
+			\ii $B$ y $X$ son rojos, entonces $P$ es rojo.
+			\ii $P$ y $B$ son rojos, entonces $M$ es rojo.
+		\end{itemize}
+	\end{proof}
+
+	\begin{claim}
+		Si los puntos $A$ y $B$ son
+		rojos y $G$ es un punto en el segmento $AB$
+		que lo divide en una razón de $2\colon1$,
+		entonces $G$ es rojo.
+	\end{claim}
+
+	\begin{proof}
+		Dibujamos un triángulo equilátero como se ve en
+		la figura.
+
+		\begin{itemize}
+			\ii $A$ y $B$ son rojos, entonces $X$ es rojo.
+			\ii $A$ y $X$ son rojos, entonces $M$ es rojo por el lema anterior.
+			\ii $B$ y $M$ son rojos, entonces $G$ es rojo.
+		\end{itemize}
+	\end{proof}
+
+	En el problema, si los vértices $A$, $B$
+	y $C$ son rojos, entonces el punto medio $M$ de $AB$
+	es rojo por el \textbf{claim 1}.
+	Por el \textbf{claim 2}, el baricentro (un punto
+	que divide a $AM$ en una razón $2\colon1$) también es rojo.
+\end{solutiontoproblem}
 
 %%%%% Solutions %NOTE: Probably put on another file
 \begin{solutiontoproblem}{problem:mariposa}
