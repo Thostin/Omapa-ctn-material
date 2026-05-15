@@ -163,8 +163,243 @@ Esta transformación es especialmente
 enteros o racionales, o
 si $a - b$ lo es.
 
-\section{Funciones}
-Algo recurrente son las funciones
+\chapter{Funciones}
+Si ya sabes qué es una función,
+entonces puedes saltar este capítulo.
+
+\section{Fundamentos}
+
+Una función puede ser pensada como
+una máquina que toma un valor o una serie
+de valores y devuelve un resultado.
+Por ejemplo, si recibe como entrada
+$x$ y produce una salida $y$, eso
+se puede pensar así:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{figures/maquinafuncion.pdf}
+	\caption{Imagen mental de una función.}
+\end{figure}
+
+Por ejemplo, si esta máquina se llama $f$
+y si como entrada le asignamos el número
+$1$ y $f$ devuelve el número $2$, entonces
+eso se simboliza así:
+\[f(1) = 2.\]
+En general, el valor $f(x)$ simboliza la
+salida que devuelve $x$ si le asignamos $x$
+como la entrada.
+
+Como se puede ver, este concepto es
+muy general y puede ser aplicado a
+casi cualquier cosa.
+
+Hablando de una manera más rigurosa,
+debemos definir qué es exactamente una función,
+pero antes necesitamos otros conceptos.
+
+\begin{definition}[Producto cartesiano]
+	Sea $A$ y $B$ dos conjuntos,
+	el \textit{Producto Cartesiano} de estos
+	dos conjuntos es definido por
+	\[A \times B \coloneqq \{(a, b) : a \in A, b \in B\}.\]
+\end{definition}
+
+La interpretación de esto es que $A \times B$
+es un conjunto de pares ordenados donde
+el primer elemento del par ordenado
+es un elemento de $A$ y el segundo un elemento
+de $B$. Por ejemplo, si $A = \{1, 2, 3\}$
+y $B = \{3, 4\}$, entonces los elementos
+de $A \times B$ son
+\[
+	\begin{array}{cccccc}
+		(1, 3) & (1, 4) & (2, 3) & (2, 4) & (3, 3) & (3, 4)
+	\end{array}
+\]
+
+También podemos definir el producto cartesiano
+entre otros conjuntos, como por ejemplo
+$[1, 2] \times [2, 3]$, y se puede visualizar de la
+siguiente manera:
+\begin{figure}[H]
+	\centering
+	\includegraphics{figures/cartesianproduct.pdf}
+	\caption{El producto cartesiano.}
+\end{figure}
+
+\begin{definition}[Función]
+	Una función $f$ que `va' de un conjunto
+	$A$ a un conjunto $B$ es
+	un subconjunto de $A \times B$ tal que
+	para todo $a \in A$, existe un único
+	elemento $b \in B$ con $(a, b) \in f$.
+	Esto se simboliza con
+	\[f \colon A \to B.\]
+\end{definition}
+
+Al primer conjunto $A$ se le llama
+\textbf{dominio} de la función $f$
+y se denota por $D(f)$,
+y al conjunto $B$ el \textbf{codominio}.
+El conjunto de todos los valores
+de salida de la función se llama
+el \textbf{rango} y se denota
+por $R(f)$ (notemos que $R(f) \subseteq B$),
+así
+\[R(f) = \{b \in B \colon \exists a \in A : f(a) = b\}.\]
+
+Otra manera de interpretar que un subconjunto
+de $A \times B$ es una función es imaginar
+ese conjunto en el plano cartesiano
+y verificar que ninguna recta \textbf{vertical} corta
+al conjunto en más de un punto.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{figures/funciones.pdf}
+\end{figure}
+
+\begin{definition}[Inyectividad]
+	Una función es \textit{inyectiva} si
+	\[f(a) = f(b) \iff a = b.\]
+\end{definition}
+
+Esto se interpreta conque la función $f$
+no asigna dos valores del dominio
+al mismo valor del rango, o sea
+que no puede darse $f(a) = f(b)$
+con $a \neq b$.
+
+También puede verse como que ninguna
+recta \textbf{horizontal} del plano corta a
+a la función en más de un punto.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{figures/inyectividad.pdf}
+\end{figure}
+
+\begin{definition}[Sobreyectividad]
+	Una función $f\colon A \to B$ es sobreyectiva
+	si \textbf{para todo} $b \in B$, existe
+	un $a \in A$ tal que $f(a) = b$.
+\end{definition}
+
+Esto quiere decir que la función adquiere
+todos los valores de su codominio.
+
+\section{Definiendo funciones}
+% Asumamos que ya sabemos o tenemos una noción
+% clara de qué son los números reales;
+% el conjunto de los números reales se denota por
+% $\RR$.
+
+Para definir una función, solo necesitamos
+dos conjuntos no vacíos, y por simpleza consideramos
+los conjuntos $A = B = \{1, 2, 3\}$.
+Claramente podemos definir una función $f \colon A \to B$
+de esta manera:
+\[f = \{(1, 2), (2, 2), (3, 1)\}.\]
+Así, tendremos
+\[
+	\begin{array}{ccc}
+		f(1) = 2 & f(2) = 2 & f(3) = 1.
+	\end{array}
+\]
+
+Notemos que el valor $3$ del codominio
+no está en el rango de $f$, al contrario de $1$ y $2$.
+
+Si definimos el conjunto
+\[g = \{(1, 2), (1, 3), (2, 3), (3, 1)\},\]
+entonces $g$ no es una función,
+porque los pares ordenados
+$(1, 2)$ y $(1, 3)$ asignan el valor $1$
+del dominio a más de un valor del codominio.
+
+De manera similar, si
+\[h = \{(1, 2), (3, 3)\},\]
+entonces $h$ no sería una función de
+$A$ a $B$ ya que el valor $2$ de
+$A$ no es asignado a ningún elemento
+de $B$.
+\begin{remark}
+	Nótese que, en cambio, $h$ sí es una función
+	de $A\backslash\{2\}$ a $B$ ya que en este caso
+	todos los valores del dominio
+	son asignados a un único valor del codominio.
+\end{remark}
+
+Podemos definir funciones del conjunto de
+los números reales al mismo conjunto,
+digamos $f \colon \RR \to \RR$, por una
+fórmula que devuelve un resultado, un ejemplo sería
+el siguiente
+
+\begin{example}
+	Sea $f \colon \RR \to \RR$ una función
+	definida por
+	\[f(x) = x^2.\]
+\end{example}
+
+Básicamente esta función asigna cada número real a
+su cuadrado.
+
+Si analizamos la función vemos que $f$ no es inyectiva,
+porque $f(1) = f(-1) = 1$, o sea que hay dos valores del
+dominio que son asignados al mismo valor del codominio
+(en general, si $x = -x$, entonces $f(x) = f(-x)$).
+Vemos que $f$ tampoco es sobreyectiva,
+porque nunca adquiere valores negativos.
+
+Si vemos atentamente, nos damos cuenta que
+en realidad decir que $f \colon \RR \to \RR$
+está ``definida por'' $f(x) = x^2$ es una abreviación para decir
+\[f = \{(a, b^2) : a, b \in \RR\}.\]
+
+\begin{example}[Función que no hace nada]
+	Sea $f \colon \RR \to \RR$ definida por
+	\[f(x) = x.\]
+\end{example}
+
+Esta función sí es inyectiva, y también sobreyectiva.
+\begin{question*}
+	¿Por qué?
+\end{question*}
+
+Pero notamos que, en sí, esta función asigna
+cada elemento del codominio a un único
+elemento del dominio \textbf{y viceversa},
+a esta clase de funciones se las denomina
+funciones \textbf{biyectivas}.
+
+\begin{definition}[Biyectividad]
+	Una función es \textit{biyectiva} si es inyectiva y sobreyectiva.
+\end{definition}
+
+Para ilustrar por qué si se cumplen estas
+dos condiciones entonces la función es biyectiva podemos
+hacer el siguiente análisis.
+Vemos que si $f$ es inyectiva, entonces
+casi es biyectiva, porque no hay dos
+elementos del dominio que van
+al mismo elemento del codominio,
+o sea que si recortamos los elementos del
+codominio que no usamos, nos quedaría una asignación
+uno-a-uno de los elementos del dominio y codominio.
+En cambio, si la función es a su vez sobreyectiva, entonces
+no es necesario hacer este recorte y ya tendríamos
+una asignación uno-a-uno de los elementos del
+dominio con los elementos del codominio.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{figures/funcionbiyectiva.pdf}
+	\caption{Función biyectiva}
+\end{figure}
+
 
 \section{Desigualdades}
 
