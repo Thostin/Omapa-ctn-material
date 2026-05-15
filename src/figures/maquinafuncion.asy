@@ -16,4 +16,4 @@ label("$f$", (0,0), fontsize(18pt));
 draw((-4.2,0)--(-3.1,0), Arrow(TeXHead));
 draw((2.6,0)--(3.7,0), Arrow(TeXHead));
 label("$x$", ((-4.4, 0)));
-label("$y$", ((4.8, 0)));
+label("$y$", ((3.9, 0)));

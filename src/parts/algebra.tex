@@ -197,7 +197,7 @@ casi cualquier cosa.
 
 Hablando de una manera más rigurosa,
 debemos definir qué es exactamente una función,
-pero antes necesitamos otros conceptos.
+pero antes necesitamos otro concepto.
 
 \begin{definition}[Producto cartesiano]
 	Sea $A$ y $B$ dos conjuntos,
@@ -261,6 +261,12 @@ al conjunto en más de un punto.
 	\includegraphics{figures/funciones.pdf}
 \end{figure}
 
+O con conjuntos:
+
+\begin{center}
+	\includegraphics{figures/conjuntosfunciones.pdf}
+\end{center}
+
 \begin{definition}[Inyectividad]
 	Una función es \textit{inyectiva} si
 	\[f(a) = f(b) \iff a = b.\]
@@ -289,6 +295,12 @@ a la función en más de un punto.
 
 Esto quiere decir que la función adquiere
 todos los valores de su codominio.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{figures/funcionsobreyectiva.pdf}
+	\caption{Función sobreyectiva.}
+\end{figure}
 
 \section{Definiendo funciones}
 % Asumamos que ya sabemos o tenemos una noción
@@ -376,7 +388,11 @@ a esta clase de funciones se las denomina
 funciones \textbf{biyectivas}.
 
 \begin{definition}[Biyectividad]
-	Una función es \textit{biyectiva} si es inyectiva y sobreyectiva.
+	Una función es \textit{biyectiva}
+	si asigna cada elemento de su dominio
+	un único elemento de su codominio
+	y viceversa. Más específicamente,
+	es biyectiva si es inyectiva y sobreyectiva.
 \end{definition}
 
 Para ilustrar por qué si se cumplen estas
@@ -400,6 +416,73 @@ dominio con los elementos del codominio.
 	\caption{Función biyectiva}
 \end{figure}
 
+\subsection*{Problemas para esta sección}
+\begin{problem}
+Sean $A = \{1, 2, 3, 4\}$ y $B = \{5, 6, 7\}$,
+determine si los siguientes conjuntos
+son funciones de $A$ a $B$:
+\begin{itemize}
+	\ii $\{(1, 5), (3, 6), (2, 6)\}$.
+	\ii $\{(1, 4), (2, 5), (3, 6), (4, 7)\}$.
+	\ii $\{(2, 5), (1, 5), (3, 5), (4, 5)\}$.
+	\ii $\{(2, 5), (3, 6), (2, 7), (1, 5)\}$.
+	\ii $\{(1, 5), (3, 7), (2, 7), (4, 6)\}$.
+\end{itemize}
+\end{problem}
+
+\begin{problem}
+Muestre que si $A$ y $B$ son
+conjuntos finitos no vacíos
+\textbf{del mismo tamaño},
+entonces cualquier función
+inyectiva de $A$ a $B$ es una
+biyección de $A$ a $B$.
+\end{problem}
+
+%% TODO:Pensar si cómo presentar bien este lema.
+%%      No sé si escribir un apartado de ecuaciones 
+%%      funcionales.
+\begin{problem}[Lema muy potente]
+Sea $f \colon A \to A$ una
+función. Demuestre que si
+\[f(f(x)) = x\]
+para todo $x \in A$, entonces $f$
+es biyectiva.
+\begin{hints}
+	\begin{hint}
+		No es difícil ver que $f$ es sobreyectiva.
+	\end{hint}
+	\begin{hint}
+		Para probar que es inyectiva, supón que $f(a) = f(b)$ y demuestre que $a = b$.
+	\end{hint}
+\end{hints}
+\solutionlabel{problem:ffxbiyectivalema}
+\end{problem}
+
+\begin{solutiontoproblem}{problem:ffxbiyectivalema}
+	Vemos que para todo $x \in A$ (codominio de $f$),
+	entonces $a = f(x) \in A$ satisface $f(a) = x$,
+	por lo que es obvio que $f$ es sobreyectiva.
+
+	Por el contrario, si
+	\begin{align*}
+		f(a)                 & = f(b)         \\
+		\implies a = f(f(a)) & = f(f(b))  = b \\
+		\implies      a      & = b,
+	\end{align*}
+	por lo que $f$ es inyectiva, completando la prueba.
+\end{solutiontoproblem}
+
+\begin{problem}
+Sea $f \colon \RR\backslash\{0\} \to \RR$ definida por
+\[f(x) = \frac1x.\]
+Demuestre que $f$ es biyectiva.
+\begin{hints}
+	\begin{hint}
+		Una manera elegante es usar el problema anterior.
+	\end{hint}
+\end{hints}
+\end{problem}
 
 \section{Desigualdades}
 
