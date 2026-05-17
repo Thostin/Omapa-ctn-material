@@ -8,7 +8,6 @@ Primero hablaremos de conceptos más
 generales.
 
 \chapter{Propiedades Básicas}
-
 \section{Suma y multiplicación de posibilidades}
 Lo mejor es expresar esto con ejemplos:
 \begin{example}
@@ -427,6 +426,8 @@ Estas son herramientas fundamentales que
 nos ayudan a resolver todo tipo
 de problemas de combinatoria.
 
+\section{Permutaciones básicas}
+
 \begin{definition}[Permutación]
 	Una permutación de una colección
 	de elementos $a_1$, $a_2$, \dots, $a_n$
@@ -500,6 +501,50 @@ es la cantidad de maneras de seleccionar dos equipos
 de entre $12$ sin importar el orden, pero esto
 es aplicación de fórmula:
 \[{12\choose{2}} = \frac{12 \cdot 11 }{2!} = 66.\]
+
+\section{Permutaciones circulares}
+Este caso particular de las permutaciones
+habla acerca de la cantidad de maneras de
+ordenar $n$ elementos en un arreglo
+\textbf{circular}, dígase, la cantidad de maneras
+de sentar a $n$ personas en una mesa circular,
+considerando que dos permutaciones son iguales
+si una es una rotación de la otra,
+por ejemplo, estas dos permutaciones son iguales:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{figures/permutacionescirculares.pdf}
+	\caption{Permutaciones circulares.}
+\end{figure}
+
+Notemos que dos permutaciones
+circulares son iguales si y solo si
+cada elemento a la izquierda de cada otro correspondiente
+son iguales. En la figura de arriba, ambas permutaciones
+son iguales porque el elemento a la  derecha del $1$
+es el $2$ en ambas; el elemento a la derecha del $2$
+es el $3$ en ambas y lo mismo pasa con el $3$.
+
+Esto nos motiva a tomar a cualquier elemento
+como referencia, por ejemplo el $1$,
+y contar la cantidad de permutaciones del
+resto de elementos, ya que todas estas serán
+diferentes por el argumento del párrafo anterior.
+
+\begin{question*}
+	Convéncete de que esto es cierto.
+\end{question*}
+
+Pero la cantidad de maneras de permutar $n - 1$
+elementos es $(n - 1)!$, que es la respuesta que estábamos
+buscando.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{figures/circularesperm4.pdf}
+	\caption{Todas las permutaciones circulares con $n = 4$.}
+\end{figure}
 
 \section{Principio de inclusión-exclusión}
 Este es un concepto que, normalmente, suele
@@ -657,7 +702,7 @@ con conjuntos.
 \end{proof}
 
 \subsection*{Problemas para esta sección}
-\begin{problem}{OMAPA 2025/5} %TODO: Chequear el enunciado original
+\begin{problem}[OMAPA 2025/5] %TODO: Chequear el enunciado original
 \label{problem:omapa2025-5}
 % TODO: Escribir solución del problema
 Claudia tiene $10$ tazas distintas entre sí. Ella desea pintar cada taza de un
@@ -669,7 +714,6 @@ puede hacerlo?
 		Calcular la cantidad
 		de maneras que no cumple la condición.
 	\end{hint}
-
 	\begin{hint}
 		Considerar las proposiciones que consideran
 		la cantidad de maneras que no satisfacen la
