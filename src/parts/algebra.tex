@@ -290,6 +290,7 @@ a la función en más de un punto.
 \begin{definition}[Sobreyectividad]
 	Una función $f\colon A \to B$ es sobreyectiva
 	si \textbf{para todo} $b \in B$, existe
+	por lo menos
 	un $a \in A$ tal que $f(a) = b$.
 \end{definition}
 
@@ -303,11 +304,6 @@ todos los valores de su codominio.
 \end{figure}
 
 \section{Definiendo funciones}
-% Asumamos que ya sabemos o tenemos una noción
-% clara de qué son los números reales;
-% el conjunto de los números reales se denota por
-% $\RR$.
-
 Para definir una función, solo necesitamos
 dos conjuntos no vacíos, y por simpleza consideramos
 los conjuntos $A = B = \{1, 2, 3\}$.
@@ -416,6 +412,53 @@ dominio con los elementos del codominio.
 	\caption{Función biyectiva}
 \end{figure}
 
+\begin{lemma}[Muy útil]
+	Sea $f \colon A \to A$ una
+	función. Demuestre que si
+	\[f(f(x)) = x\]
+	para todo $x \in A$, entonces $f$
+	es biyectiva.
+\end{lemma}
+
+\begin{proof}
+	Vemos que para todo $x \in A$ (codominio de $f$),
+	entonces $a = f(x) \in A$ satisface $f(a) = x$,
+	por lo que es obvio que $f$ es sobreyectiva.
+
+	Por el contrario, si
+	\begin{align*}
+		f(a)                 & = f(b)         \\
+		\implies a = f(f(a)) & = f(f(b))  = b \\
+		\implies      a      & = b,
+	\end{align*}
+	por lo que $f$ es inyectiva, completando la prueba.
+\end{proof}
+
+\begin{example}
+	Sea $f \colon \ZZ \to \ZZ$ definida por
+	\begin{equation*}
+		f(x) =
+		\begin{cases}
+			n + 1 \hspace{1cm} \text{si $n$ es par} \\
+			n - 1 \hspace{1cm} \text{si $n$ es impar.}
+		\end{cases}
+	\end{equation*}
+	Demuestre que $f$ es biyectiva.
+\end{example}
+Este problema presenta una función no
+muy complicada, pero cuyo análisis
+se trivializa con el lema.
+
+\paragraph{Caso 1. $n$ es par. } Entonces
+\[f(f(n)) = f(n + 1) = (n + 1) - 1 = n.\]
+
+\paragraph{Caso 2. $n$ es impar. } Análogamente
+\[f(f(n)) = f(n - 1) = (n - 1) + 1 = n.\]
+
+Por el lema que vimos recién, entonces $f$
+es biyectiva porque $f(f(n)) = n$ para todo
+$n$, sin importar la paridad de $n$.
+
 \subsection*{Problemas para esta sección}
 \begin{problem}
 Sean $A = \{1, 2, 3, 4\}$ y $B = \{5, 6, 7\}$,
@@ -439,40 +482,6 @@ inyectiva de $A$ a $B$ es una
 biyección de $A$ a $B$.
 \end{problem}
 
-%% TODO:Pensar si cómo presentar bien este lema.
-%%      No sé si escribir un apartado de ecuaciones 
-%%      funcionales.
-\begin{problem}[Lema muy potente]
-Sea $f \colon A \to A$ una
-función. Demuestre que si
-\[f(f(x)) = x\]
-para todo $x \in A$, entonces $f$
-es biyectiva.
-\begin{hints}
-	\begin{hint}
-		No es difícil ver que $f$ es sobreyectiva.
-	\end{hint}
-	\begin{hint}
-		Para probar que es inyectiva, supón que $f(a) = f(b)$ y demuestre que $a = b$.
-	\end{hint}
-\end{hints}
-\solutionlabel{problem:ffxbiyectivalema}
-\end{problem}
-
-\begin{solutiontoproblem}{problem:ffxbiyectivalema}
-	Vemos que para todo $x \in A$ (codominio de $f$),
-	entonces $a = f(x) \in A$ satisface $f(a) = x$,
-	por lo que es obvio que $f$ es sobreyectiva.
-
-	Por el contrario, si
-	\begin{align*}
-		f(a)                 & = f(b)         \\
-		\implies a = f(f(a)) & = f(f(b))  = b \\
-		\implies      a      & = b,
-	\end{align*}
-	por lo que $f$ es inyectiva, completando la prueba.
-\end{solutiontoproblem}
-
 \begin{problem}
 Sea $f \colon \RR\backslash\{0\} \to \RR$ definida por
 \[f(x) = \frac1x.\]
@@ -488,7 +497,7 @@ Demuestre que $f$ es biyectiva.
 
 \section{Ecuaciones}
 
-\section{Problemas}
+\section{Problemas de álgebra}
 
 \begin{problem}
 Resuelva el sistema de ecuaciones:
